@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Roomie</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">Must contain at least 8 characters</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <string name="logo_of_app">App Logo</string>
+    <string name="title_string">ROOMIE</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="button_string">LOG IN</string>
+    <string name="city_logo_description">City Logo</string>
+    <string name="forgot_password">FORGOT PASSWORD?</string>
+    <string name="switch_action_or">OR</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="people_picture">People Picture</string>
+</resources>

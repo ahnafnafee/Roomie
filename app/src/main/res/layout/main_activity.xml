@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/material_card"
+        android:layout_width="300dp"
+        android:layout_height="500dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardMaxElevation="5dp"
+        app:cardPreventCornerOverlap="true">
+
+        <ImageView
+            android:id="@+id/people_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/people_picture"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pic1" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="16dp">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/skip_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="48dp"
+            android:hapticFeedbackEnabled="true"
+            android:src="@drawable/skip_red"
+            app:backgroundTint="@android:color/white"
+            app:fabSize="auto"
+            app:rippleColor="#22724545"
+            app:tint="#ED7563" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/rewind_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:hapticFeedbackEnabled="true"
+            android:src="@drawable/rewind_blue"
+            app:backgroundTint="@android:color/white"
+            app:fabSize="auto"
+            app:rippleColor="#325768"
+            app:tint="#5BC9FA" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/like_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="48dp"
+            android:hapticFeedbackEnabled="true"
+            android:src="@drawable/like_green"
+            app:backgroundTint="@android:color/white"
+            app:fabSize="auto"
+            app:rippleColor="#221F8A22"
+            app:tint="#6FE2B3"
+            tools:ignore="RelativeOverlap" />
+
+    </RelativeLayout>
+
+</LinearLayout>
