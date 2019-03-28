@@ -11,7 +11,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public ImageView mImage;
 
@@ -33,21 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
         count = 0;
 
-        mLike.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                imageSwitch();
-
-            }
-        });
-
-        mSkip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent cardView = new Intent(getBaseContext(), CardStack.class);
-                startActivity(cardView);
-            }
-        });
+        mLike.setOnClickListener(this);
+        mSkip.setOnClickListener(this);
     }
 
     public void imageSwitch() {
@@ -66,4 +53,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onClick(View v) {
+        if (v.equals(mLike)) {
+            imageSwitch();
+        } else if (v.equals(mSkip)) {
+            Intent cardView = new Intent(getBaseContext(), CardStack.class);
+            startActivity(cardView);
+        }
+
+    }
 }

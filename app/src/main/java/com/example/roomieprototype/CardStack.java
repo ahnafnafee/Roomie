@@ -2,6 +2,7 @@ package com.example.roomieprototype;
 
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,8 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -25,26 +25,29 @@ import link.fls.swipestack.SwipeStack;
 
 public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStackListener, View.OnClickListener {
 
-    private Button mButtonLeft, mButtonRight;
-    private FloatingActionButton mFab;
+    public String imgStr;
 
     private ArrayList<String> mData;
     private SwipeStack mSwipeStack;
     private SwipeStackAdapter mAdapter;
+    public int count;
+    private FloatingActionButton mButtonLeft, mButtonRight, mRewind;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cardstack_expt);
+        setContentView(R.layout.main_activity);
+
+        count = 0;
 
         mSwipeStack = findViewById(R.id.swipeStack);
-        mButtonLeft = findViewById(R.id.buttonSwipeLeft);
-        mButtonRight = findViewById(R.id.buttonSwipeRight);
-        mFab = findViewById(R.id.fabAdd);
+        mButtonLeft = findViewById(R.id.skip_button);
+        mButtonRight = findViewById(R.id.like_button);
+        mRewind = findViewById(R.id.rewind_button);
 
         mButtonLeft.setOnClickListener(this);
         mButtonRight.setOnClickListener(this);
-        mFab.setOnClickListener(this);
+        mRewind.setOnClickListener(this);
 
         mData = new ArrayList<>();
         mAdapter = new SwipeStackAdapter(mData);
@@ -54,10 +57,21 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
         fillWithTestData();
     }
 
-    private void fillWithTestData() {
+    public void fillWithTestData() {
         for (int x = 0; x < 5; x++) {
-            mData.add(getString(R.string.dummy_text) + " " + (x + 1));
+            imgStr = "drawable/pic" + (x + 1);
+            mData.add(imgStr);
         }
+    }
+
+    public String imageSwitch() {
+        count++;
+
+        if (count == 6) {
+            count = 1;
+        }
+        String uri = "drawable/pic" + count;
+        return uri;
     }
 
     @Override
@@ -66,8 +80,8 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
             mSwipeStack.swipeTopViewToLeft();
         } else if (v.equals(mButtonRight)) {
             mSwipeStack.swipeTopViewToRight();
-        } else if (v.equals(mFab)) {
-            mData.add(getString(R.string.dummy_fab));
+        } else if (v.equals(mRewind)) {
+            mData.add(imageSwitch());
             mAdapter.notifyDataSetChanged();
         }
     }
@@ -85,7 +99,7 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
         switch (item.getItemId()) {
             case R.id.menuReset:
                 mSwipeStack.resetStack();
-                Snackbar.make(mFab, R.string.stack_reset, Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(mRewind, R.string.stack_reset, Snackbar.LENGTH_SHORT).show();
                 return true;
             case R.id.menuGitHub:
                 Intent browserIntent = new Intent(
@@ -100,14 +114,14 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
     @Override
     public void onViewSwipedToRight(int position) {
         String swipedElement = mAdapter.getItem(position);
-        Toast.makeText(this, getString(R.string.view_swiped_right, swipedElement),
+        Toast.makeText(this, "Swiped right",
                 Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onViewSwipedToLeft(int position) {
         String swipedElement = mAdapter.getItem(position);
-        Toast.makeText(this, getString(R.string.view_swiped_left, swipedElement),
+        Toast.makeText(this, "Swiped left",
                 Toast.LENGTH_SHORT).show();
     }
 
@@ -142,11 +156,15 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
-                convertView = getLayoutInflater().inflate(R.layout.itemspot_expt, parent, false);
+                convertView = getLayoutInflater().inflate(R.layout.swipe_card, parent, false);
             }
 
-            TextView textViewCard = (TextView) convertView.findViewById(R.id.textViewCard);
-            textViewCard.setText(mData.get(position));
+            ImageView imgViewCard = convertView.findViewById(R.id.imgView);
+
+            int imageResource = getResources().getIdentifier(mData.get(position), null, getPackageName());
+            Drawable image = getResources().getDrawable(imageResource);
+
+            imgViewCard.setImageDrawable(image);
 
             return convertView;
         }

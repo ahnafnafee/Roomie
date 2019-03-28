@@ -25,7 +25,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".CardStack" />
+        <activity
+            android:name=".CardStack"
+            android:theme="@style/CardTheme" />
     </application>
 
 </manifest>
