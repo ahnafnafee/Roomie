@@ -21,6 +21,14 @@
             "package_name": "com.example.roomieprototype",
             "certificate_hash": "e43e2ec301f434e8e7c9737ce3c9eb863ca0baed"
           }
+        },
+        {
+          "client_id": "231263261934-dq6j5u534hmngjevrb68c1i1avomqera.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.roomieprototype",
+            "certificate_hash": "ae34d26dfb83dfeee2e60895e9e5636febb57cd3"
+          }
         }
       ],
       "api_key": [
