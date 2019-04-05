@@ -14,12 +14,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 //import static android.Manifest.permission.READ_CONTACTS;
 //import androidx.annotation.NonNull;
@@ -27,29 +29,22 @@ import android.widget.TextView;
 //import android.content.pm.PackageManager;
 //import android.widget.ArrayAdapter;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.firestore.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import static android.widget.Toast.LENGTH_SHORT;
 
 
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
-
-//    /**
-////     * Id to identity READ_CONTACTS permission request.
-////     */
-////    private static final int REQUEST_READ_CONTACTS = 0;
-////
-////    /**
-////     * A dummy authentication store containing known user names and passwords.
-////     * TODO: remove after connecting to a real authentication system.
-////     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
 
     private UserLoginTask mAuthTask = null;
 
@@ -96,59 +91,20 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
 
+        Button mSignUpButton = findViewById(R.id.signup_button);
+        mSignUpButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent signupIntent = new Intent(getBaseContext(), SignUpActivity.class);
+                startActivity(signupIntent);
+            }
+        });
+
         mLoginFormView = findViewById(R.id.primary_layout);
         mProgressView = findViewById(R.id.login_progress);
     }
 
-//    private void populateAutoComplete() {
-//        if (!mayRequestContacts()) {
-//            return;
-//        }
-//
-//        getLoaderManager().initLoader(0, null, this);
-//    }
-//
-//    private boolean mayRequestContacts() {
-//        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-//            return true;
-//        }
-//        if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-//            return true;
-//        }
-//        if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-//            Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
-//                    .setAction(android.R.string.ok, new View.OnClickListener() {
-//                        @Override
-//                        @TargetApi(Build.VERSION_CODES.M)
-//                        public void onClick(View v) {
-//                            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-//                        }
-//                    });
-//        } else {
-//            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-//        }
-//        return false;
-//    }
-//
-//    /**
-//     * Callback received when a permissions request has been completed.
-//     */
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-//                                           @NonNull int[] grantResults) {
-//        if (requestCode == REQUEST_READ_CONTACTS) {
-//            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                populateAutoComplete();
-//            }
-//        }
-//    }
 
-
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     */
     private void attemptLogin() {
         if (mAuthTask != null) {
             return;
@@ -191,8 +147,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            Intent myIntent = new Intent(getBaseContext(), CardStack.class);
-            startActivity(myIntent);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
         }
@@ -287,6 +241,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         private final String mEmail;
         private final String mPassword;
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         UserLoginTask(String email, String password) {
             mEmail = email;
@@ -297,23 +252,39 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
+            DocumentReference docRef = db.collection("users").document(mEmail);
+            final CollectionReference usersRef = db.collection("users");
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        usersRef.whereEqualTo("email", mEmail).whereEqualTo("password", mPassword).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                QuerySnapshot querySnapshot = task.getResult();
+                                if (task.isSuccessful()) {
+                                    if (querySnapshot.isEmpty()) {
+                                        passwordView.setError(getString(R.string.error_incorrect_password));
+                                        mPasswordView.requestFocus();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "Logged in successfully!", LENGTH_SHORT).show();
+                                        Intent myIntent = new Intent(getBaseContext(), CardStack.class);
+                                        startActivity(myIntent);
 
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
+                                    }
+                                }
+                            }
+                        });
+                    } else {
+                        emailView.setError(getString(R.string.error_invalid_email));
+                        mEmailView.requestFocus();
+                        Log.d("DocSnip", "get failed with ", task.getException());
+                    }
                 }
-            }
-
+            });
+                return false;
             // TODO: register the new account here.
-            return true;
         }
 
         @Override
@@ -323,9 +294,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             if (success) {
                 finish();
-            } else {
-                passwordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
             }
         }
 
