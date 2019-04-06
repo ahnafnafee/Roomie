@@ -15,7 +15,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -95,10 +95,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        if (mAuth.getCurrentUser() != null) {
-            // sth
-        }
+        FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
     private void FireBaseReg() {
@@ -109,7 +106,8 @@ public class SignUpActivity extends AppCompatActivity {
         final String password = mPasswordView.getText().toString().trim();
         final String password2 = mPassword2View.getText().toString().trim();
 
-        final CollectionReference userData = db.collection("userData");
+        final DocumentReference docRef = db.collection("userData").document(email);
+
         // auth with email and pass
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -124,11 +122,13 @@ public class SignUpActivity extends AppCompatActivity {
                                     email
                             );
 
-                            userData.add(regData)
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            docRef.set(regData)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
-                                        public void onSuccess(DocumentReference documentReference) {
+                                        public void onSuccess(Void aVoid) {
                                             Toast.makeText(SignUpActivity.this, "Registered Successfully", Toast.LENGTH_LONG).show();
+                                            Intent myIntent = new Intent(getBaseContext(), CardStack.class);
+                                            startActivity(myIntent);
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -137,6 +137,7 @@ public class SignUpActivity extends AppCompatActivity {
                                             Toast.makeText(SignUpActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                                         }
                                     });
+
                         } else {
                             Toast.makeText(SignUpActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }

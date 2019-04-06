@@ -186,11 +186,11 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/reg_chk"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/lato_light"
                     android:paddingBottom="16dp"
                     android:text="@string/sign_in_back"
                     android:textColor="#756BFF"
-                    android:focusable="true"
                     android:textSize="16sp" />
 
             </RelativeLayout>
