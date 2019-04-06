@@ -44,6 +44,6 @@
     <string name="email_reg">Email Address</string>
     <string name="password_reg">Password</string>
     <string name="password2_reg">Re-enter Password</string>
-    <string name="reg_chk_text">Have an account?</string>
     <string name="sign_in_back">Sign In</string>
+    <string name="have_an_account">Have an account?\u0020</string>
 </resources>
