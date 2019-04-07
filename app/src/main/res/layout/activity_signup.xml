@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpActivity">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:background="@drawable/login_card">
+
+    </LinearLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="350dp"
+        android:layout_height="650dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="94dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="3dp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/signup_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:text="@string/signup_title"
+                android:textColor="#5B56D5"
+                android:textSize="35sp"
+                app:fontFamily="@font/roboto_bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fullname_text_input"
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="240dp"
+                android:layout_height="60dp"
+                android:layout_below="@id/signup_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:hint="@string/fullname_reg"
+                android:textColorHint="@color/colorPrimaryDark"
+                app:errorEnabled="true"
+                app:fontFamily="@font/lato_regular">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fullname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName|textCapWords"
+                    android:maxLines="1"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/username_text_input"
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="240dp"
+                android:layout_height="60dp"
+                android:layout_below="@id/fullname_text_input"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:hint="@string/username_reg"
+                android:textColorHint="@color/colorPrimaryDark"
+                app:errorEnabled="true"
+                app:fontFamily="@font/lato_regular">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/email_reg_text_input"
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="240dp"
+                android:layout_height="60dp"
+                android:layout_below="@id/username_text_input"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:hint="@string/email_reg"
+                android:textColorHint="@color/colorPrimaryDark"
+                app:errorEnabled="true"
+                app:fontFamily="@font/lato_regular">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/email_reg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password_reg_text_input"
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="240dp"
+                android:layout_height="60dp"
+                android:layout_below="@id/email_reg_text_input"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:hint="@string/password_reg"
+                android:textColorHint="@color/colorPrimaryDark"
+                app:errorEnabled="true"
+                app:fontFamily="@font/lato_regular"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password_reg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password2_reg_text_input"
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="240dp"
+                android:layout_height="60dp"
+                android:layout_below="@id/password_reg_text_input"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:hint="@string/password2_reg"
+                android:textColorHint="@color/colorPrimaryDark"
+                app:errorEnabled="true"
+                app:fontFamily="@font/lato_regular"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password2_reg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/signup_reg_button"
+                style="@style/Widget.Roomie.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_below="@id/password2_reg_text_input"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/lato_light"
+                android:text="@string/sign_up"
+                android:textSize="20sp" />
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true">
+
+                <TextView
+                    android:id="@+id/reg_chk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato_light"
+                    android:paddingBottom="16dp"
+                    android:text="@string/have_an_account"
+                    android:textColor="#B5B5B5"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/signin_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/reg_chk"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/lato_light"
+                    android:paddingBottom="16dp"
+                    android:text="@string/sign_in_back"
+                    android:textColor="#756BFF"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</RelativeLayout>
