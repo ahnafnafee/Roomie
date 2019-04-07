@@ -22,3 +22,6 @@ This application works similarly to the Tinder app, where instead of matching wi
 | Hirali Patel      | Product Owner              |
 | Mahita Tatavarthy | Developer                  |
 
+### Libraries Implemented
+
+1. flschweiger/SwipeStack: <https://github.com/flschweiger/SwipeStack>
