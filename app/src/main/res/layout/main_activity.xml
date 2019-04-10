@@ -1,67 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clipChildren="false"
-    tools:context=".CardStack">
+    android:fitsSystemWindows="true">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/skip_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="48dp"
-        android:layout_marginBottom="16dp"
-        android:hapticFeedbackEnabled="true"
-        android:src="@drawable/skip_red"
-        app:backgroundTint="@android:color/white"
-        app:fabSize="auto"
-        app:tint="#ED7563" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/like_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="16dp"
-        android:hapticFeedbackEnabled="true"
-        android:src="@drawable/like_green"
-        app:backgroundTint="@android:color/white"
-        app:fabSize="auto"
-        app:tint="#6FE2B3"
-        tools:ignore="RelativeOverlap" />
-
-    <link.fls.swipestack.SwipeStack
-        android:id="@+id/swipeStack"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/skip_button"
-        android:layout_marginBottom="64dp"
-        android:padding="32dp"
-        app:stack_rotation="1"
-        app:stack_size="3" />
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:clipChildren="false"
+        tools:context=".CardStack">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/rewind_button"
+            android:id="@+id/skip_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="48dp"
             android:layout_marginBottom="16dp"
             android:hapticFeedbackEnabled="true"
-            android:src="@drawable/rewind_blue"
+            android:src="@drawable/skip_red"
             app:backgroundTint="@android:color/white"
             app:fabSize="auto"
-            app:tint="#5BC9FA" />
+            app:tint="#ED7563" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/like_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="48dp"
+            android:layout_marginBottom="16dp"
+            android:hapticFeedbackEnabled="true"
+            android:src="@drawable/like_green"
+            app:backgroundTint="@android:color/white"
+            app:fabSize="auto"
+            app:tint="#6FE2B3"
+            tools:ignore="RelativeOverlap" />
 
-</RelativeLayout>
+        <link.fls.swipestack.SwipeStack
+            android:id="@+id/swipeStack"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/skip_button"
+            android:layout_marginBottom="64dp"
+            android:padding="32dp"
+            app:stack_rotation="1"
+            app:stack_size="3" />
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/rewind_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="16dp"
+                android:hapticFeedbackEnabled="true"
+                android:src="@drawable/rewind_blue"
+                app:backgroundTint="@android:color/white"
+                app:fabSize="auto"
+                app:tint="#5BC9FA" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </RelativeLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:menu="@menu/drawer_view"
+        app:headerLayout="@layout/nav_header"/>
+</androidx.drawerlayout.widget.DrawerLayout>
