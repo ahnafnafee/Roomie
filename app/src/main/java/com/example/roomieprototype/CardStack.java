@@ -15,12 +15,17 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import link.fls.swipestack.SwipeStack;
 
 public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStackListener, View.OnClickListener {
@@ -32,6 +37,7 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
     private SwipeStackAdapter mAdapter;
     public int count;
     private FloatingActionButton mButtonLeft, mButtonRight, mRewind;
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +61,34 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
         mSwipeStack.setListener(this);
 
         fillWithTestData();
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        // set item as selected to persist highlight
+                        menuItem.setChecked(true);
+                        // close drawer when item is tapped
+                        drawerLayout.closeDrawers();
+                        if(menuItem.getItemId()==R.id.nav_sign_out) {
+                            FirebaseAuth.getInstance().signOut();
+                            Toast.makeText(getApplicationContext(),"Successfully logged out.",Toast.LENGTH_SHORT).show();
+                            Intent myIntent = new Intent(getBaseContext(), LoginActivity.class);
+                            startActivity(myIntent);
+                        }
+                        else if(menuItem.getItemId()==R.id.nav_profile) {
+
+                        }
+
+                        return true;
+                    }
+                });
     }
 
     public void fillWithTestData() {
@@ -106,8 +140,10 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
                         Intent.ACTION_VIEW, Uri.parse("https://github.com/flschweiger/SwipeStack"));
                 startActivity(browserIntent);
                 return true;
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
+                return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
