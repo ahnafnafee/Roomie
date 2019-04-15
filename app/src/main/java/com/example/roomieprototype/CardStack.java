@@ -114,6 +114,7 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
             mSwipeStack.swipeTopViewToLeft();
         } else if (v.equals(mButtonRight)) {
             mSwipeStack.swipeTopViewToRight();
+            startActivity(new Intent(CardStack.this, MatchPopUp.class));
         } else if (v.equals(mRewind)) {
             mData.add(imageSwitch());
             mAdapter.notifyDataSetChanged();

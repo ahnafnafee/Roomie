@@ -28,6 +28,9 @@
         <activity
             android:name=".CardStack"
             android:theme="@style/CardTheme" />
+        <activity
+            android:name=".MatchPopUp"
+            android:theme="@style/MatchPopUp" />
     </application>
 
 </manifest>
