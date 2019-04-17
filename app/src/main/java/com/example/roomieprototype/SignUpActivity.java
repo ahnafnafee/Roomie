@@ -79,7 +79,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        // going back yo login screen
+        // going back to login screen
         TextView signBack = findViewById(R.id.signin_back);
         signBack.setOnClickListener(new View.OnClickListener() {
             @Override
