@@ -23,7 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity1 extends AppCompatActivity {
     private TextInputEditText mFullNameView;
     private TextInputLayout fullnameView;
 
@@ -46,7 +46,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_signup_1);
 
         // firebase database initiated
         db = FirebaseFirestore.getInstance();
@@ -130,7 +130,7 @@ public class SignUpActivity extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
-                                            Toast.makeText(SignUpActivity.this, "Registered Successfully", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(SignUpActivity1.this, "Registered Successfully", Toast.LENGTH_LONG).show();
                                             Intent myIntent = new Intent(getBaseContext(), CardStack.class);
                                             startActivity(myIntent);
                                         }
@@ -138,12 +138,12 @@ public class SignUpActivity extends AppCompatActivity {
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(SignUpActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                            Toast.makeText(SignUpActivity1.this, e.getMessage(), Toast.LENGTH_LONG).show();
                                         }
                                     });
 
                         } else {
-                            Toast.makeText(SignUpActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(SignUpActivity1.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
