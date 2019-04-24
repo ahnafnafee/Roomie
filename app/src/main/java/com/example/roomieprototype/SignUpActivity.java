@@ -106,10 +106,23 @@ public class SignUpActivity extends AppCompatActivity {
         final String password = mPasswordView.getText().toString().trim();
         final String password2 = mPassword2View.getText().toString().trim();
 
-        //TODO: Add validation checks for the string fields
-
+        //TODO: Add validation checks for the string field
+        private boolean isEmailValid(String email) {
+        //TODO: Replace this with your own logic
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
 
         //TODO: Validate password against the two fields
+        private boolean isPasswordValid(String password) {
+        //TODO: Replace this with your own logic
+        return password.length() > 7;
+    }
+
+        //TODO: Validate password against the two fields
+        private boolean isPasswordValid(String password) {
+        //TODO: Replace this with your own logic
+        return password.length() > 7;
+    }
 
 
         final DocumentReference docRef = db.collection("userData").document(email);
