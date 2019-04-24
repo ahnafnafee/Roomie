@@ -114,8 +114,8 @@ public class TraitsActivity extends AppCompatActivity {
         //final CollectionReference colRef = db.collection("userData").document(user.getEmail()).collection("Traits");
 
 
-        //Initializing the selected Traits to variables
-        sleepSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        //Initializing the selected Traits Listeners to variables
+        /*sleepSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sleepSchedule = parent.getSelectedItem().toString();
@@ -203,7 +203,7 @@ public class TraitsActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
 
         // registration action
         Button btnSignUp = findViewById(R.id.signup_reg_button);
