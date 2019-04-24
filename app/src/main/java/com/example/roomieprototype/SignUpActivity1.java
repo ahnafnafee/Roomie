@@ -131,7 +131,7 @@ public class SignUpActivity1 extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(Void aVoid) {
                                             Toast.makeText(SignUpActivity1.this, "Registered Successfully", Toast.LENGTH_LONG).show();
-                                            Intent myIntent = new Intent(getBaseContext(), CardStack.class);
+                                            Intent myIntent = new Intent(getBaseContext(), TraitsActivity.class);
                                             startActivity(myIntent);
                                         }
                                     })
