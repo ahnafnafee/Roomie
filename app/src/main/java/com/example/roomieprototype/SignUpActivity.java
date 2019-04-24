@@ -25,7 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
 // Firebase imports
 
 
-public class SignUpActivity extends AppCompatActivity {
+    public class SignUpActivity extends AppCompatActivity {
     private TextInputEditText mFullNameView;
     private TextInputLayout fullnameView;
 
@@ -79,7 +79,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        // going back yo login screen
+        // going back to login screen
         TextView signBack = findViewById(R.id.signin_back);
         signBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,7 +133,7 @@ public class SignUpActivity extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(Void aVoid) {
                                             Toast.makeText(SignUpActivity.this, "Registered Successfully", Toast.LENGTH_LONG).show();
-                                            Intent myIntent = new Intent(getBaseContext(), CardStack.class);
+                                            Intent myIntent = new Intent(getBaseContext(), TraitsActivity.class);
                                             startActivity(myIntent);
                                         }
                                     })

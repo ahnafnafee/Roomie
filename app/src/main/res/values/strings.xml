@@ -46,4 +46,14 @@
     <string name="password2_reg">Re-enter Password</string>
     <string name="sign_in_back">Sign In</string>
     <string name="have_an_account">Have an account?\u0020</string>
+
+    <string name="traits_title">YOUR TRAITS</string>
+    <string name="sleep_schedule">Sleep Schedule: </string>
+    <string name="clean_schedule">Cleaning Habits: </string>
+    <string name="eat_schedule">Eating Habits\nyou want in\nyour roommate:</string>
+    <string name="study_schedule">Study Habits: </string>
+    <string name="social_schedule">Social Schedule: </string>
+    <string name="temp_schedule">Room Temperature\nPreference: </string>
+    <string name="apartment">Do you already\nhave an\napartment? </string>
+    <string name="dorm">Dorm or Suite? </string>
 </resources>

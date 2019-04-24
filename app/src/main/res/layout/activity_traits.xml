@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpActivity">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:background="@drawable/login_card">
+
+    </LinearLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="350dp"
+        android:layout_height="650dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="94dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="3dp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/traits_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:text="@string/traits_title"
+                android:textColor="#5B56D5"
+                android:textSize="35sp"
+                app:fontFamily="@font/roboto_bold" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="75dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp">
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sleep_schedule"
+                        android:textColor="#5B56D5"
+                        android:textSize="14sp"
+                        app:fontFamily="@font/roboto_bold"/>
+
+                    <org.angmarch.views.NiceSpinner
+                        android:id="@+id/sleep_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="70dp">
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/clean_schedule"
+                        android:textColor="#5B56D5"
+                        android:textSize="14sp"
+                        app:fontFamily="@font/roboto_bold"/>
+
+                    <org.angmarch.views.NiceSpinner
+                        android:id="@+id/clean_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="140dp">
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/eat_schedule"
+                        android:textColor="#5B56D5"
+                        android:textSize="14sp"
+                        app:fontFamily="@font/roboto_bold"/>
+
+                    <org.angmarch.views.NiceSpinner
+                        android:id="@+id/eat_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="240dp">
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/study_schedule"
+                        android:textColor="#5B56D5"
+                        android:textSize="14sp"
+                        app:fontFamily="@font/roboto_bold"/>
+
+                    <org.angmarch.views.NiceSpinner
+                        android:id="@+id/study_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="310dp">
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/social_schedule"
+                        android:textColor="#5B56D5"
+                        android:textSize="14sp"
+                        app:fontFamily="@font/roboto_bold"/>
+
+                    <org.angmarch.views.NiceSpinner
+                        android:id="@+id/social_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="380dp">
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/temp_schedule"
+                        android:textColor="#5B56D5"
+                        android:textSize="14sp"
+                        app:fontFamily="@font/roboto_bold"/>
+
+                    <org.angmarch.views.NiceSpinner
+                        android:id="@+id/temperature_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="450dp">
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/apartment"
+                        android:textColor="#5B56D5"
+                        android:textSize="14sp"
+                        app:fontFamily="@font/roboto_bold"/>
+
+                    <org.angmarch.views.NiceSpinner
+                        android:id="@+id/apartment_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="540dp">
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dorm"
+                        android:textColor="#5B56D5"
+                        android:textSize="14sp"
+                        app:fontFamily="@font/roboto_bold"/>
+
+                    <org.angmarch.views.NiceSpinner
+                        android:id="@+id/dorm_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/signup_reg_button"
+                    style="@style/Widget.Roomie.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="610dp"
+                    android:fontFamily="@font/lato_light"
+                    android:text="@string/sign_up"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+        </ScrollView>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</RelativeLayout>
