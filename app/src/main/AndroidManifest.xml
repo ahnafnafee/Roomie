@@ -25,10 +25,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpActivity" />
+        <activity android:name=".SignUpActivity1" />
         <activity
             android:name=".CardStack"
             android:theme="@style/CardTheme" />
+        <activity
+            android:name=".MatchPopUp"
+            android:theme="@style/MatchPopUp" />
     </application>
 
 </manifest>
