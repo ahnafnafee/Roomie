@@ -39,6 +39,8 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
     private FloatingActionButton mButtonLeft, mButtonRight, mRewind;
     private DrawerLayout drawerLayout;
 
+    public ImageView mClose;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +61,8 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
         mAdapter = new SwipeStackAdapter(mData);
         mSwipeStack.setAdapter(mAdapter);
         mSwipeStack.setListener(this);
+
+        mClose = findViewById(R.id.close_button);
 
         fillWithTestData();
 
@@ -114,10 +118,13 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
             mSwipeStack.swipeTopViewToLeft();
         } else if (v.equals(mButtonRight)) {
             mSwipeStack.swipeTopViewToRight();
+            startActivity(new Intent(CardStack.this, MatchPopUp.class));
         } else if (v.equals(mRewind)) {
             mData.add(imageSwitch());
             mAdapter.notifyDataSetChanged();
         }
+
+
     }
 
     @Override

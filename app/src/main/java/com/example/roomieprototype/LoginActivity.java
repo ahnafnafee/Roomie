@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -31,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
+    public ProgressBar progBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,10 +47,14 @@ public class LoginActivity extends AppCompatActivity {
         mPasswordView = findViewById(R.id.password);
         passwordView = findViewById(R.id.password_text_input);
 
-        emailView.setErrorTextAppearance(R.style.error_appearance);
-        passwordView.setErrorTextAppearance(R.style.error_appearance);
+        emailView.setErrorTextAppearance(R.style.TextFieldError);
+        passwordView.setErrorTextAppearance(R.style.TextFieldError);
 
+        // Firebase
         mAuth = FirebaseAuth.getInstance();
+
+        // Progress Bar
+        progBar = findViewById(R.id.progBar);
 
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -73,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         mSignUpButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent signupIntent = new Intent(getBaseContext(), SignUpActivity.class);
+                Intent signupIntent = new Intent(getBaseContext(), SignUpActivity1.class);
                 startActivity(signupIntent);
             }
         });
