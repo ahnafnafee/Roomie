@@ -38,7 +38,7 @@
     <string name="github">View on GitHub</string>
 
 
-    <string name="signup_title">SIGN UP</string>
+    <string name="signup_title">sign up</string>
     <string name="fullname_reg">Full Name</string>
     <string name="username_reg">Username</string>
     <string name="email_reg">Email Address</string>
@@ -46,6 +46,7 @@
     <string name="password2_reg">Re-enter Password</string>
     <string name="sign_in_back">Sign In</string>
     <string name="have_an_account">Have an account?\u0020</string>
+    <string name="next_btn">next</string>
 
     <string name="traits_title">YOUR TRAITS</string>
     <string name="sleep_schedule">Sleep Schedule: </string>
@@ -56,4 +57,5 @@
     <string name="temp_schedule">Room Temperature\nPreference: </string>
     <string name="apartment">Do you already\nhave an\napartment? </string>
     <string name="dorm">Dorm or Suite? </string>
+
 </resources>

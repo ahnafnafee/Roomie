@@ -3,42 +3,26 @@ package com.example.roomieprototype;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.pchmn.materialchips.ChipsInput;
-import com.pchmn.materialchips.model.Chip;
 
 import org.angmarch.views.NiceSpinner;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import static com.pchmn.materialchips.R2.id.info;
 
 // Firebase imports
 
 
-public class TraitsActivity extends AppCompatActivity {
+public class SignUpActivity3 extends AppCompatActivity {
     private TextInputEditText mFullNameView;
     private TextInputLayout fullnameView;
 
@@ -66,7 +50,7 @@ public class TraitsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_traits);
+        setContentView(R.layout.activity_signup_3);
 
         NiceSpinner sleepSpinner = findViewById(R.id.sleep_spinner);
         NiceSpinner cleanSpinner = findViewById(R.id.clean_spinner);

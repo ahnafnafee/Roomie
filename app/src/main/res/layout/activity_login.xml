@@ -16,9 +16,7 @@
         android:layout_centerInParent="true"
         android:visibility="invisible" />
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:id="@+id/primary_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,7 +24,7 @@
         android:orientation="vertical"
         tools:context=".LoginActivity">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout
             android:id="@+id/linear_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

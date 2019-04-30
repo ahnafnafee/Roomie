@@ -6,3 +6,5 @@
     <color name="errorRed">#C43E3E</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#625CDE</color>
 </resources>
+
+

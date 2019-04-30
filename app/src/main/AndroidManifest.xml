@@ -15,10 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".TraitsActivity"></activity>
         <activity
             android:name=".LoginActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,12 +26,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignUpActivity1" />
+        <activity android:name=".SignUpActivity2" />
+        <activity android:name=".SignUpActivity3" />
         <activity
             android:name=".CardStack"
             android:theme="@style/CardTheme" />
         <activity
             android:name=".MatchPopUp"
             android:theme="@style/MatchPopUp" />
+
     </application>
 
 </manifest>
