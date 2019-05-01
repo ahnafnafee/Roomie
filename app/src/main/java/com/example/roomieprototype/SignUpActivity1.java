@@ -28,9 +28,6 @@ public class SignUpActivity1 extends AppCompatActivity {
     private TextInputEditText mFullNameView;
     private TextInputLayout fullnameView;
 
-    private TextInputEditText mUserNameView;
-    private TextInputLayout usernameView;
-
     private TextInputEditText mEmailView;
     private TextInputLayout emailView;
 
@@ -57,21 +54,19 @@ public class SignUpActivity1 extends AppCompatActivity {
 
         // text layouts
         fullnameView = findViewById(R.id.fullname_text_input);
-        usernameView = findViewById(R.id.username_text_input);
         emailView = findViewById(R.id.email_reg_text_input);
         passwordView = findViewById(R.id.password_reg_text_input);
         password2View = findViewById(R.id.password2_reg_text_input);
 
         // test inputs
         mFullNameView = findViewById(R.id.fullname);
-        mUserNameView = findViewById(R.id.username);
         mEmailView = findViewById(R.id.email_reg);
         mPasswordView = findViewById(R.id.password_reg);
         mPassword2View = findViewById(R.id.password2_reg);
 
         // registration action
-        Button btnSignUp = findViewById(R.id.signup_reg_button);
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
+        Button btnNext = findViewById(R.id.next_reg_button_1);
+        btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FireBaseReg();
@@ -100,7 +95,6 @@ public class SignUpActivity1 extends AppCompatActivity {
     private void FireBaseReg() {
         // Getting text from inputs
         final String fullname = mFullNameView.getText().toString().trim();
-        final String username = mUserNameView.getText().toString().trim();
         final String email = mEmailView.getText().toString().trim();
         final String password = mPasswordView.getText().toString().trim();
         final String password2 = mPassword2View.getText().toString().trim();
@@ -123,7 +117,6 @@ public class SignUpActivity1 extends AppCompatActivity {
                             // store in firebase db
                             RegData regData = new RegData(
                                     fullname,
-                                    username,
                                     email
                             );
 
@@ -132,7 +125,7 @@ public class SignUpActivity1 extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(Void aVoid) {
                                             Toast.makeText(SignUpActivity1.this, "Registered Successfully", Toast.LENGTH_LONG).show();
-                                            Intent myIntent = new Intent(getBaseContext(), SignUpActivity3.class);
+                                            Intent myIntent = new Intent(getBaseContext(), SignUpActivity2.class);
                                             startActivity(myIntent);
                                         }
                                     })

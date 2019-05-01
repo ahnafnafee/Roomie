@@ -3,28 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#fff">
-
-    <ImageView
-        android:id="@+id/close_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_margin="8dp"
-        android:clickable="true"
-        android:contentDescription="closebutton"
-        android:focusable="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/close"
-        app:backgroundTint="@android:color/white" />
-
+    android:background="@drawable/diag_bg">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:fontFamily="@font/lato_light"
         android:text="It's a match!"
-        android:textColor="#000"
         android:textSize="45sp" />
 
 
