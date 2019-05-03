@@ -39,8 +39,6 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
     private FloatingActionButton mButtonLeft, mButtonRight, mRewind;
     private DrawerLayout drawerLayout;
 
-    public ImageView mClose;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,8 +60,6 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
         mSwipeStack.setAdapter(mAdapter);
         mSwipeStack.setListener(this);
 
-        mClose = findViewById(R.id.close_button);
-
         fillWithTestData();
 
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -80,13 +76,12 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
                         menuItem.setChecked(true);
                         // close drawer when item is tapped
                         drawerLayout.closeDrawers();
-                        if(menuItem.getItemId()==R.id.nav_sign_out) {
+                        if (menuItem.getItemId() == R.id.nav_sign_out) {
                             FirebaseAuth.getInstance().signOut();
-                            Toast.makeText(getApplicationContext(),"Successfully logged out.",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Successfully logged out.", Toast.LENGTH_SHORT).show();
                             Intent myIntent = new Intent(getBaseContext(), LoginActivity.class);
                             startActivity(myIntent);
-                        }
-                        else if(menuItem.getItemId()==R.id.nav_profile) {
+                        } else if (menuItem.getItemId() == R.id.nav_profile) {
 
                         }
 

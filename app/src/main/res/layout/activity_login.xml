@@ -36,8 +36,8 @@
             tools:targetApi="lollipop">
 
             <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
                 android:layout_gravity="center_horizontal"
                 android:contentDescription="@string/city_logo_description"
                 app:srcCompat="@drawable/city_logo" />
@@ -50,8 +50,8 @@
                 android:shadowColor="#f4f4f4"
                 android:text="@string/title_string"
                 android:textColor="#ffffff"
-                android:textSize="40sp"
-                app:fontFamily="@font/lato_regular" />
+                android:textSize="60sp"
+                app:fontFamily="@font/poiret_one" />
 
         </LinearLayout>
 
@@ -102,8 +102,9 @@
             android:layout_width="110dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
-            android:fontFamily="@font/lato_light"
+            android:fontFamily="@font/poiret_one"
             android:text="@string/button_string"
+            android:textAllCaps="false"
             android:textSize="20sp"
             tools:targetApi="jelly_bean" />
 
@@ -111,10 +112,11 @@
             android:id="@+id/pass_forgot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poiret_one"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:text="@string/forgot_password"
-            android:textSize="12sp" />
+            android:textSize="18sp" />
 
 
     </LinearLayout>
@@ -130,6 +132,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:fontFamily="@font/poiret_one"
             android:text="@string/switch_action_or"
             android:textColor="@android:color/darker_gray" />
 
@@ -156,13 +159,14 @@
     <Button
         android:id="@+id/signup_button"
         style="@style/Widget.Roomie.Button"
-        android:layout_width="wrap_content"
+        android:layout_width="110dp"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
+        android:textAllCaps="false"
         android:layout_marginBottom="24dp"
-        android:fontFamily="@font/lato_light"
+        android:fontFamily="@font/poiret_one"
         android:text="@string/sign_up"
         android:textSize="20sp"
         tools:targetApi="jelly_bean" />

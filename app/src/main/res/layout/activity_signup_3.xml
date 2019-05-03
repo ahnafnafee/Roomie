@@ -7,10 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".SignUpActivity3">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
+        android:id="@+id/gradient_rect_3"
         android:layout_width="match_parent"
-        android:layout_height="190dp"
-        android:background="@drawable/login_card">
+        android:layout_height="180dp"
+        android:background="@drawable/login_card"
+        android:orientation="vertical">
+
     </LinearLayout>
 
     <com.google.android.material.card.MaterialCardView
@@ -32,23 +35,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="28dp"
                 android:text="@string/traits_title"
                 android:textColor="#5B56D5"
                 android:textSize="35sp"
-                app:fontFamily="@font/roboto_bold" />
+                app:fontFamily="@font/poiret_one" />
         </RelativeLayout>
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="75dp"
-            >
+            android:layout_marginTop="110dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp">
+                android:layout_marginStart="28dp"
+                android:layout_marginEnd="28dp"
+                android:layout_marginBottom="16dp">
 
                 <TextView
                     android:id="@+id/sleep_title"
@@ -58,7 +62,7 @@
                     android:text="@string/sleep_schedule"
                     android:textColor="#5B56D5"
                     android:textSize="14sp"
-                    app:fontFamily="@font/roboto_bold"/>
+                    app:fontFamily="@font/roboto_bold" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/sleep_chips"
@@ -73,11 +77,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Night Owl(After 12 am)"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        />
+                        app:chipStrokeWidth="0.7dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/early_bird"
@@ -85,10 +88,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Early Bird(Before 12 am)"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/sleep_depends"
@@ -96,10 +99,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Depends on the day"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                 </com.google.android.material.chip.ChipGroup>
 
@@ -112,16 +115,14 @@
                     android:text="@string/clean_schedule"
                     android:textColor="#5B56D5"
                     android:textSize="14sp"
-                    app:fontFamily="@font/roboto_bold"
-                    />
+                    app:fontFamily="@font/roboto_bold" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/clean_chips"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/clean_title"
-                    app:singleSelection="true"
-                    >
+                    app:singleSelection="true">
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/neat_freak"
@@ -129,10 +130,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Neat Freak"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/rel_neat"
@@ -140,10 +141,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Relatively Neat"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/rel_messy"
@@ -151,10 +152,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Relatively Messy"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/messy"
@@ -162,10 +163,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Messy"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                 </com.google.android.material.chip.ChipGroup>
 
@@ -178,15 +179,14 @@
                     android:text="@string/eat_schedule"
                     android:textColor="#5B56D5"
                     android:textSize="14sp"
-                    app:fontFamily="@font/roboto_bold"/>
+                    app:fontFamily="@font/roboto_bold" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/eat_chips"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/eat_title"
-                    app:singleSelection="true"
-                    >
+                    app:singleSelection="true">
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/veg"
@@ -194,10 +194,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Vegetarian"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/vegan"
@@ -205,10 +205,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Vegan"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/halal"
@@ -216,10 +216,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Halal"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/kosher"
@@ -227,10 +227,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Kosher"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/no_pref"
@@ -238,10 +238,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="No Preference"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                 </com.google.android.material.chip.ChipGroup>
 
@@ -254,15 +254,14 @@
                     android:text="@string/study_schedule"
                     android:textColor="#5B56D5"
                     android:textSize="14sp"
-                    app:fontFamily="@font/roboto_bold"/>
+                    app:fontFamily="@font/roboto_bold" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/study_chips"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/study_title"
-                    app:singleSelection="true"
-                    >
+                    app:singleSelection="true">
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/music"
@@ -270,10 +269,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="With Music"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/quiet"
@@ -281,10 +280,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Quiet"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/other_people"
@@ -292,10 +291,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="With other people"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/myself"
@@ -303,10 +302,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="By myself"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                 </com.google.android.material.chip.ChipGroup>
 
@@ -319,15 +318,14 @@
                     android:text="@string/social_schedule"
                     android:textColor="#5B56D5"
                     android:textSize="14sp"
-                    app:fontFamily="@font/roboto_bold"/>
+                    app:fontFamily="@font/roboto_bold" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/social_chips"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/social_title"
-                    app:singleSelection="true"
-                    >
+                    app:singleSelection="true">
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/party_animal"
@@ -335,10 +333,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Party Animal"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/depends_mood"
@@ -346,10 +344,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Depends on my mood"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/couch_potato"
@@ -357,10 +355,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Couch Potato"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                 </com.google.android.material.chip.ChipGroup>
 
@@ -373,15 +371,14 @@
                     android:text="@string/temp_schedule"
                     android:textColor="#5B56D5"
                     android:textSize="14sp"
-                    app:fontFamily="@font/roboto_bold"/>
+                    app:fontFamily="@font/roboto_bold" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/temperature_chips"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/temperature_title"
-                    app:singleSelection="true"
-                    >
+                    app:singleSelection="true">
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/freezing"
@@ -389,10 +386,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Freezing"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/cold"
@@ -400,10 +397,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Cold"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/moderate"
@@ -411,10 +408,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Moderate"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/warm"
@@ -422,10 +419,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Warm"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/melting"
@@ -433,10 +430,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Melting"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                 </com.google.android.material.chip.ChipGroup>
 
@@ -449,15 +446,14 @@
                     android:text="@string/apartment"
                     android:textColor="#5B56D5"
                     android:textSize="14sp"
-                    app:fontFamily="@font/roboto_bold"/>
+                    app:fontFamily="@font/roboto_bold" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/apartment_chips"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/apartment_title"
-                    app:singleSelection="true"
-                    >
+                    app:singleSelection="true">
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/apart_yes"
@@ -465,10 +461,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Yes"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/apart_no"
@@ -476,10 +472,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="No"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
 
                 </com.google.android.material.chip.ChipGroup>
@@ -494,15 +490,14 @@
                     android:text="@string/dorm"
                     android:textColor="#5B56D5"
                     android:textSize="14sp"
-                    app:fontFamily="@font/roboto_bold"/>
+                    app:fontFamily="@font/roboto_bold" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/dorm_chips"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/dorm_title"
-                    app:singleSelection="true"
-                    >
+                    app:singleSelection="true">
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/dorm"
@@ -510,10 +505,10 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Dorm"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/suite"
@@ -521,25 +516,71 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Suite"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/white_transparency"
                         app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp"
-                        app:checkedIcon="@drawable/ic_check_circle_roomie"/>
+                        app:chipStrokeWidth="0.7dp" />
 
 
                 </com.google.android.material.chip.ChipGroup>
 
-                <Button
-                    android:id="@+id/signup_reg_button"
-                    style="@style/Widget.Roomie.Button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="60dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_centerHorizontal="true"
+                <RelativeLayout
+                    android:id="@+id/nxt_final_field"
+                    android:layout_width="179dp"
+                    android:layout_height="116dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="32dp"
                     android:layout_below="@id/dorm_chips"
-                    android:fontFamily="@font/lato_light"
-                    android:text="@string/sign_up"
-                    android:textSize="20sp" />
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true">
+
+                    <Button
+                        android:id="@+id/signup_reg_button"
+                        style="@style/Widget.Roomie.Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:layout_above="@id/signin_back1"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/poiret_one"
+                        android:text="@string/sign_up"
+                        android:textAllCaps="false"
+                        android:textSize="20sp" />
+
+
+                    <RelativeLayout
+                        android:id="@+id/signin_back1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="16dp">
+
+                        <TextView
+                            android:id="@+id/reg_chk"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/lato_light"
+                            android:paddingBottom="16dp"
+                            android:text="@string/have_an_account"
+                            android:textColor="#B5B5B5"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/signin_back"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/reg_chk"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:fontFamily="@font/lato_light"
+                            android:paddingBottom="16dp"
+                            android:text="@string/sign_in_back"
+                            android:textColor="#756BFF"
+                            android:textSize="16sp" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
             </RelativeLayout>
         </ScrollView>
 
