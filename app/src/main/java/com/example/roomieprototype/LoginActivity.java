@@ -132,6 +132,8 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Toast.makeText(LoginActivity.this, "Logged in successfully", Toast.LENGTH_LONG).show();
                                 Intent myIntent = new Intent(getBaseContext(), CardStack.class);
+                                myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(myIntent);
                                 finish();
                             } else {
@@ -150,5 +152,10 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         return password.length() > 7;
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 }

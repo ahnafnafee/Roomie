@@ -48,8 +48,9 @@
             android:layout_above="@+id/skip_button"
             android:layout_marginBottom="64dp"
             android:padding="32dp"
-            app:stack_rotation="1"
-            app:stack_size="3" />
+            app:scale_factor="0.95"
+            app:stack_spacing="24dp"
+            app:stack_rotation="0" />
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"

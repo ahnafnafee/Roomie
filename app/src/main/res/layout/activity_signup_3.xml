@@ -50,8 +50,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginEnd="28dp"
+                android:layout_marginStart="22dp"
+                android:layout_marginEnd="22dp"
                 android:layout_marginBottom="16dp">
 
                 <TextView
@@ -60,9 +60,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="@string/sleep_schedule"
-                    android:textColor="#5B56D5"
-                    android:textSize="14sp"
-                    app:fontFamily="@font/roboto_bold" />
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="#241993"
+                    android:textSize="16sp" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/sleep_chips"
@@ -76,22 +76,24 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
+                        android:textColor="@color/colorAccent"
                         android:text="Night Owl(After 12 am)"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/early_bird"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
+                        android:textColor="@color/colorAccent"
                         android:text="Early Bird(Before 12 am)"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/sleep_depends"
@@ -99,10 +101,11 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Depends on the day"
+                        android:textColor="@color/colorAccent"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                 </com.google.android.material.chip.ChipGroup>
 
@@ -113,9 +116,9 @@
                     android:layout_below="@id/sleep_chips"
                     android:layout_marginTop="10dp"
                     android:text="@string/clean_schedule"
-                    android:textColor="#5B56D5"
-                    android:textSize="14sp"
-                    app:fontFamily="@font/roboto_bold" />
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="#241993"
+                    android:textSize="16sp" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/clean_chips"
@@ -130,10 +133,11 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Neat Freak"
+                        android:textColor="@color/colorAccent"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/rel_neat"
@@ -141,10 +145,11 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Relatively Neat"
+                        android:textColor="@color/colorAccent"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/rel_messy"
@@ -152,21 +157,23 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Relatively Messy"
+                        android:textColor="@color/colorAccent"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/messy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
+                        android:textColor="@color/colorAccent"
                         android:text="Messy"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                 </com.google.android.material.chip.ChipGroup>
 
@@ -177,9 +184,9 @@
                     android:layout_below="@id/clean_chips"
                     android:layout_marginTop="10dp"
                     android:text="@string/eat_schedule"
-                    android:textColor="#5B56D5"
-                    android:textSize="14sp"
-                    app:fontFamily="@font/roboto_bold" />
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="#241993"
+                    android:textSize="16sp" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/eat_chips"
@@ -193,33 +200,36 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
+                        android:textColor="@color/colorAccent"
                         android:text="Vegetarian"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/vegan"
                         android:layout_width="wrap_content"
+                        android:textColor="@color/colorAccent"
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Vegan"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/halal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
+                        android:textColor="@color/colorAccent"
                         android:text="Halal"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/kosher"
@@ -227,10 +237,11 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Kosher"
+                        android:textColor="@color/colorAccent"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/no_pref"
@@ -238,10 +249,11 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="No Preference"
+                        android:textColor="@color/colorAccent"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                 </com.google.android.material.chip.ChipGroup>
 
@@ -252,9 +264,9 @@
                     android:layout_below="@id/eat_chips"
                     android:layout_marginTop="10dp"
                     android:text="@string/study_schedule"
-                    android:textColor="#5B56D5"
-                    android:textSize="14sp"
-                    app:fontFamily="@font/roboto_bold" />
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="#241993"
+                    android:textSize="16sp" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/study_chips"
@@ -268,11 +280,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
+                        android:textColor="@color/colorAccent"
                         android:text="With Music"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/quiet"
@@ -280,32 +293,35 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Quiet"
+                        android:textColor="@color/colorAccent"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/other_people"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
+                        android:textColor="@color/colorAccent"
                         android:text="With other people"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/myself"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
+                        android:textColor="@color/colorAccent"
                         android:text="By myself"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                 </com.google.android.material.chip.ChipGroup>
 
@@ -316,9 +332,9 @@
                     android:layout_below="@id/study_chips"
                     android:layout_marginTop="10dp"
                     android:text="@string/social_schedule"
-                    android:textColor="#5B56D5"
-                    android:textSize="14sp"
-                    app:fontFamily="@font/roboto_bold" />
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="#241993"
+                    android:textSize="16sp" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/social_chips"
@@ -332,22 +348,24 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
+                        android:textColor="@color/colorAccent"
                         android:text="Party Animal"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/depends_mood"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
+                        android:textColor="@color/colorAccent"
                         android:text="Depends on my mood"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/couch_potato"
@@ -355,10 +373,11 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Couch Potato"
+                        android:textColor="@color/colorAccent"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                 </com.google.android.material.chip.ChipGroup>
 
@@ -369,9 +388,9 @@
                     android:layout_below="@id/social_chips"
                     android:layout_marginTop="10dp"
                     android:text="@string/temp_schedule"
-                    android:textColor="#5B56D5"
-                    android:textSize="14sp"
-                    app:fontFamily="@font/roboto_bold" />
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="#241993"
+                    android:textSize="16sp" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/temperature_chips"
@@ -384,23 +403,25 @@
                         android:id="@+id/freezing"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/colorAccent"
                         android:checkable="true"
                         android:text="Freezing"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/cold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/colorAccent"
                         android:checkable="true"
                         android:text="Cold"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/moderate"
@@ -408,32 +429,35 @@
                         android:layout_height="wrap_content"
                         android:checkable="true"
                         android:text="Moderate"
+                        android:textColor="@color/colorAccent"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/warm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
+                        android:textColor="@color/colorAccent"
                         android:text="Warm"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/melting"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
+                        android:textColor="@color/colorAccent"
                         android:text="Melting"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                 </com.google.android.material.chip.ChipGroup>
 
@@ -444,9 +468,9 @@
                     android:layout_below="@id/temperature_chips"
                     android:layout_marginTop="10dp"
                     android:text="@string/apartment"
-                    android:textColor="#5B56D5"
-                    android:textSize="14sp"
-                    app:fontFamily="@font/roboto_bold" />
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="#241993"
+                    android:textSize="16sp" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/apartment_chips"
@@ -459,23 +483,25 @@
                         android:id="@+id/apart_yes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/colorAccent"
                         android:checkable="true"
                         android:text="Yes"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/apart_no"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
+                        android:textColor="@color/colorAccent"
                         android:text="No"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
 
                 </com.google.android.material.chip.ChipGroup>
@@ -488,9 +514,9 @@
                     android:layout_below="@id/apartment_chips"
                     android:layout_marginTop="10dp"
                     android:text="@string/dorm"
-                    android:textColor="#5B56D5"
-                    android:textSize="14sp"
-                    app:fontFamily="@font/roboto_bold" />
+                    android:fontFamily="@font/lato_regular"
+                    android:textColor="#241993"
+                    android:textSize="16sp" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/dorm_chips"
@@ -503,23 +529,25 @@
                         android:id="@+id/dorm"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/colorAccent"
                         android:checkable="true"
                         android:text="Dorm"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/suite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/colorAccent"
                         android:checkable="true"
                         android:text="Suite"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
-                        app:chipBackgroundColor="@color/white_transparency"
-                        app:chipStrokeColor="#5B56D5"
-                        app:chipStrokeWidth="0.7dp" />
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
 
 
                 </com.google.android.material.chip.ChipGroup>
