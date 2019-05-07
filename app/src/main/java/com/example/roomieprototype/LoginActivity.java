@@ -132,10 +132,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Toast.makeText(LoginActivity.this, "Logged in successfully", Toast.LENGTH_LONG).show();
                                 Intent myIntent = new Intent(getBaseContext(), CardStack.class);
-                                myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(myIntent);
-                                finish();
                             } else {
                                 Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                             }

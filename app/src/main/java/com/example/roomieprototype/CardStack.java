@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -89,6 +90,16 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
                     }
                 });
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mSwipeStack.resetStack();
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+    }
+
 
     public void fillWithTestData() {
         for (int x = 0; x < 5; x++) {

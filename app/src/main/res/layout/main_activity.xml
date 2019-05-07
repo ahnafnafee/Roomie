@@ -12,6 +12,18 @@
         android:clipChildren="false"
         tools:context=".CardStack">
 
+        <link.fls.swipestack.SwipeStack
+            android:id="@+id/swipeStack"
+            android:layout_width="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_height="550dp"
+            android:layout_marginBottom="64dp"
+            android:layout_above="@+id/skip_button"
+            android:padding="32dp"
+            app:scale_factor="0.95"
+            app:stack_spacing="24dp"
+            app:stack_rotation="0" />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/skip_button"
             android:layout_width="wrap_content"
@@ -25,6 +37,19 @@
             app:backgroundTint="@android:color/white"
             app:fabSize="auto"
             app:tint="#ED7563" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/rewind_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16dp"
+            android:hapticFeedbackEnabled="true"
+            android:src="@drawable/rewind_blue"
+            app:backgroundTint="@android:color/white"
+            app:fabSize="auto"
+            app:tint="#5BC9FA" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/like_button"
@@ -41,34 +66,6 @@
             app:tint="#6FE2B3"
             tools:ignore="RelativeOverlap" />
 
-        <link.fls.swipestack.SwipeStack
-            android:id="@+id/swipeStack"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/skip_button"
-            android:layout_marginBottom="64dp"
-            android:padding="32dp"
-            app:scale_factor="0.95"
-            app:stack_spacing="24dp"
-            app:stack_rotation="0" />
-
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/rewind_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center"
-                android:layout_marginBottom="16dp"
-                android:hapticFeedbackEnabled="true"
-                android:src="@drawable/rewind_blue"
-                app:backgroundTint="@android:color/white"
-                app:fabSize="auto"
-                app:tint="#5BC9FA" />
-
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
