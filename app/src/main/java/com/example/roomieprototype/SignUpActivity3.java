@@ -20,7 +20,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 
 import org.angmarch.views.NiceSpinner;
 
@@ -47,6 +52,7 @@ public class SignUpActivity3 extends AppCompatActivity {
     private String temperatureSchedule;
     private String apartmentSchedule;
     private String dormSchedule;
+
 
 
     @Override
@@ -97,6 +103,11 @@ public class SignUpActivity3 extends AppCompatActivity {
                 //Add dorm to firebase
                 dormFireBase();
 
+                //Switch to MainActivity
+                Intent myIntent = new Intent(getBaseContext(), CardStack.class);
+                startActivity(myIntent);
+
+
 
             }
         });
@@ -113,8 +124,8 @@ public class SignUpActivity3 extends AppCompatActivity {
         sleep.put("sleep", sleepSchedule);
 
         //Adding to Firebase
-        DocumentReference docRef = db.collection("userData").document(user.getEmail()).collection("Traits").document(sleepSchedule);
-        docRef.set(sleep);
+        DocumentReference docRef = db.collection("userData").document(user.getEmail());
+        docRef.set(sleep,SetOptions.merge());
     }
 
     private void cleanFireBase() {
@@ -129,8 +140,8 @@ public class SignUpActivity3 extends AppCompatActivity {
         sleep.put("clean", cleanSchedule);
 
         //Adding to Firebase
-        DocumentReference docRef = db.collection("userData").document(user.getEmail()).collection("Traits").document(cleanSchedule);
-        docRef.set(sleep);
+        DocumentReference docRef = db.collection("userData").document(user.getEmail());
+        docRef.set(sleep,SetOptions.merge());
     }
 
     private void eatFireBase() {
@@ -147,8 +158,8 @@ public class SignUpActivity3 extends AppCompatActivity {
         sleep.put("Eat", eatSchedule);
 
         //Adding to Firebase
-        DocumentReference docRef = db.collection("userData").document(user.getEmail()).collection("Traits").document(eatSchedule);
-        docRef.set(sleep);
+        DocumentReference docRef = db.collection("userData").document(user.getEmail());
+        docRef.set(sleep,SetOptions.merge());
     }
 
     private void studyFireBase() {
@@ -164,8 +175,8 @@ public class SignUpActivity3 extends AppCompatActivity {
         sleep.put("Study", studySchedule);
 
         //Adding to Firebase
-        DocumentReference docRef = db.collection("userData").document(user.getEmail()).collection("Traits").document(studySchedule);
-        docRef.set(sleep);
+        DocumentReference docRef = db.collection("userData").document(user.getEmail());
+        docRef.set(sleep,SetOptions.merge());
     }
 
     private void socialFireBase() {
@@ -180,41 +191,41 @@ public class SignUpActivity3 extends AppCompatActivity {
         sleep.put("Social", socialSchedule);
 
         //Adding to Firebase
-        DocumentReference docRef = db.collection("userData").document(user.getEmail()).collection("Traits").document(socialSchedule);
-        docRef.set(sleep);
+        DocumentReference docRef = db.collection("userData").document(user.getEmail());
+        docRef.set(sleep,SetOptions.merge());
     }
 
     private void temperaureFireBase() {
         ChipGroup temperatureGroup = findViewById(R.id.temperature_chips);
 
-        if(temperatureGroup.getCheckedChipId()==R.id.freezing) temperatureSchedule = "Vegetarian";
-        else if(temperatureGroup.getCheckedChipId()==R.id.cold) temperatureSchedule = "Vegan";
-        else if(temperatureGroup.getCheckedChipId()==R.id.moderate) temperatureSchedule = "Kosher";
-        else if(temperatureGroup.getCheckedChipId()==R.id.warm) temperatureSchedule = "Halal";
-        else if(temperatureGroup.getCheckedChipId()==R.id.melting) temperatureSchedule = "No Preference";
+        if(temperatureGroup.getCheckedChipId()==R.id.freezing) temperatureSchedule = "Freezing";
+        else if(temperatureGroup.getCheckedChipId()==R.id.cold) temperatureSchedule = "Cold";
+        else if(temperatureGroup.getCheckedChipId()==R.id.moderate) temperatureSchedule = "Moderate";
+        else if(temperatureGroup.getCheckedChipId()==R.id.warm) temperatureSchedule = "Warm";
+        else if(temperatureGroup.getCheckedChipId()==R.id.melting) temperatureSchedule = "Melting";
 
 
         Map<String, Object> temperature = new HashMap<>();
         temperature.put("Temperature", temperatureSchedule);
 
         //Adding to Firebase
-        DocumentReference docRef = db.collection("userData").document(user.getEmail()).collection("Traits").document(temperatureSchedule);
-        docRef.set(temperature);
+        DocumentReference docRef = db.collection("userData").document(user.getEmail());
+        docRef.set(temperature,SetOptions.merge());
     }
 
     private void apartmentFireBase() {
         ChipGroup apartmentGroup = findViewById(R.id.apartment_chips);
 
-        if(apartmentGroup.getCheckedChipId()==R.id.apart_no) apartmentSchedule = "Yes";
-        else if(apartmentGroup.getCheckedChipId()==R.id.apart_yes) apartmentSchedule = "No";
+        if(apartmentGroup.getCheckedChipId()==R.id.apart_no) apartmentSchedule = "No";
+        else if(apartmentGroup.getCheckedChipId()==R.id.apart_yes) apartmentSchedule = "Yes";
 
 
         Map<String, Object> sleep = new HashMap<>();
         sleep.put("Apartment", apartmentSchedule);
 
         //Adding to Firebase
-        DocumentReference docRef = db.collection("userData").document(user.getEmail()).collection("Traits").document(apartmentSchedule);
-        docRef.set(sleep);
+        DocumentReference docRef = db.collection("userData").document(user.getEmail());
+        docRef.set(sleep,SetOptions.merge());
     }
 
     private void dormFireBase() {
@@ -228,7 +239,7 @@ public class SignUpActivity3 extends AppCompatActivity {
         sleep.put("Dorm", dormSchedule);
 
         //Adding to Firebase
-        DocumentReference docRef = db.collection("userData").document(user.getEmail()).collection("Traits").document(dormSchedule);
-        docRef.set(sleep);
+        DocumentReference docRef = db.collection("userData").document(user.getEmail());
+        docRef.set(sleep,SetOptions.merge());
     }
 }
