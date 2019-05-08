@@ -95,6 +95,8 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
                         userApart = document.getData().get("Apartment").toString();
                         userDorm = document.getData().get("Dorm").toString();
                         Log.d("TAG:", "DocumentSnapshot data: " + document.getData());
+
+                        //Matching the user from the people in the database
                         firebaseUsers.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -104,27 +106,27 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
                                             Integer points = 0;
                                             Integer match = 1;
                                             if (document.getData().get("sleep") != null) {
-                                                Log.d("TAG:", document.getId() + " => " + document.getData().get("sleep"));
-                                                Log.d("TAG:", document.getId() + " userSleep when compare =  " + userSleep);
-                                                Log.d("TAG:", document.getId() + " => " + document.getData().get("clean"));
-                                                Log.d("TAG:", document.getId() + " userSleep when compare =  " + userClean);
 
+                                                //Matching the eating traits
                                                 if ((document.getData().get("Eat").toString().equals(userEat)) && match.equals(1)) {
                                                     match = 1;
                                                 }
                                                 else
                                                     match = 0;
 
+                                                //Matching if they both want dorm or both want suite
                                                 if ((document.getData().get("Dorm").toString().equals(userDorm)) && match.equals(1)) {
                                                     match = 1;
                                                 }
                                                 else
                                                     match = 0;
 
+                                                //Matching if only one of them have an apartment or if both don't have an apartment
                                                 if ((document.getData().get("Apartment").toString().equals("Yes")) && userApart.equals("Yes") && match.equals(1)) {
                                                     match = 0;
                                                 }
 
+                                                //Points for sleeping traits
                                                 if ((document.getData().get("sleep").toString().equals("Night Owl")) && userSleep.equals("Night Owl") && match.equals(1)) {
                                                     points += 3;
                                                 }
@@ -153,6 +155,7 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
                                                     points+=3;
                                                 }
 
+                                                //Points for cleaning traits
                                                 if ((document.getData().get("clean").toString().equals("Neat Freak")) && userClean.equals("Neat Freak") && match.equals(1)) {
                                                     points+=4;
                                                 }
@@ -202,6 +205,7 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
                                                     points+=4;
                                                 }
 
+                                                //points for study traits
                                                 if ((document.getData().get("Study").toString().equals("With Music")) && userStudy.equals("With Music") && match.equals(1)) {
                                                     points+=4;
                                                 }
@@ -251,6 +255,7 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
                                                     points+=1;
                                                 }
 
+                                                //points for social traits
                                                 if ((document.getData().get("Social").toString().equals("Party Animal")) && userSocial.equals("Party Animal") && match.equals(1)) {
                                                     points+=3;
                                                 }
@@ -279,6 +284,7 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
                                                     points+=3;
                                                 }
 
+                                                //points for temperature traits
                                                 if ((document.getData().get("Temperature").toString().equals("Freezing")) && userSocial.equals("Freezing") && match.equals(1)) {
                                                     points+=5;
                                                 }
@@ -355,10 +361,18 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
                                                     points+=5;
                                                 }
 
-
-
-
+                                                //Log the total points
                                                 Log.d("TAG:", document.getId() + " => " + points.toString());
+
+                                                //Matching if the points exceed 11 points
+                                                if (points >= 11)
+                                                    match = 1;
+                                                else
+                                                    match = 0;
+
+                                                //Log if they match
+                                                if (match.equals(1))
+                                                    Log.d("TAG:",  user.getEmail()+ " is matched with " + document.getId());
 
                                             }
                                         }
