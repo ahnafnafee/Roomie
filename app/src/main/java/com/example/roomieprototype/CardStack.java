@@ -5,7 +5,11 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+
+import android.util.DisplayMetrics;
+
 import android.util.Log;
+
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,8 +19,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+
+import com.google.android.material.bottomappbar.BottomAppBar;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -61,7 +69,7 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
     private String userApart;
     private String userDorm;
 
-    public ImageView mClose;
+    public BottomAppBar bottomAppBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -393,7 +401,6 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
         });
 
 
-
         count = 0;
 
         mSwipeStack = findViewById(R.id.swipeStack);
@@ -414,33 +421,44 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
 
         fillWithTestData();
 
-        drawerLayout = findViewById(R.id.drawer_layout);
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
+//        drawerLayout = findViewById(R.id.drawer_layout);
+//        ActionBar actionbar = getSupportActionBar();
+//        actionbar.setDisplayHomeAsUpEnabled(true);
+//        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        // set item as selected to persist highlight
-                        menuItem.setChecked(true);
-                        // close drawer when item is tapped
-                        drawerLayout.closeDrawers();
-                        if(menuItem.getItemId()==R.id.nav_sign_out) {
-                            FirebaseAuth.getInstance().signOut();
-                            Toast.makeText(getApplicationContext(),"Successfully logged out.",Toast.LENGTH_SHORT).show();
-                            Intent myIntent = new Intent(getBaseContext(), LoginActivity.class);
-                            startActivity(myIntent);
-                        }
-                        else if(menuItem.getItemId()==R.id.nav_profile) {
+        bottomAppBar = findViewById(R.id.bottom_appbar);
+        setSupportActionBar(bottomAppBar);
 
-                        }
+//        NavigationView navigationView = findViewById(R.id.nav_view);
+//        navigationView.setNavigationItemSelectedListener(
+//                new NavigationView.OnNavigationItemSelectedListener() {
+//                    @Override
+//                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+//                        // set item as selected to persist highlight
+//                        menuItem.setChecked(true);
+//                        // close drawer when item is tapped
+//                        drawerLayout.closeDrawers();
+//                        if (menuItem.getItemId() == R.id.nav_sign_out) {
+//                            FirebaseAuth.getInstance().signOut();
+//                            Toast.makeText(getApplicationContext(), "Successfully logged out.", Toast.LENGTH_SHORT).show();
+//                            Intent myIntent = new Intent(getBaseContext(), LoginActivity.class);
+//                            startActivity(myIntent);
+//                        } else if (menuItem.getItemId() == R.id.nav_profile) {
+//
+//                        }
+//
+//                        return true;
+//                    }
+//                });
+    }
 
-                        return true;
-                    }
-                });
+    @Override
+    public void onStart() {
+        super.onStart();
+        mSwipeStack.resetStack();
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+
     }
 
     public void fillWithTestData() {
@@ -466,7 +484,8 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
             mSwipeStack.swipeTopViewToLeft();
         } else if (v.equals(mButtonRight)) {
             mSwipeStack.swipeTopViewToRight();
-            startActivity(new Intent(CardStack.this, MatchPopUp.class));
+            DialogFrag.display(getSupportFragmentManager());
+//            startActivity(new Intent(CardStack.this, MatchPopUp.class));
         } else if (v.equals(mRewind)) {
             mData.add(imageSwitch());
             mAdapter.notifyDataSetChanged();
@@ -476,9 +495,13 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
     }
 
     @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.bottom_appbar_menu, menu);
         return true;
     }
 
@@ -486,17 +509,8 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.menuReset:
-                mSwipeStack.resetStack();
-                Snackbar.make(mRewind, R.string.stack_reset, Snackbar.LENGTH_SHORT).show();
-                return true;
-            case R.id.menuGitHub:
-                Intent browserIntent = new Intent(
-                        Intent.ACTION_VIEW, Uri.parse("https://github.com/flschweiger/SwipeStack"));
-                startActivity(browserIntent);
-                return true;
-            case android.R.id.home:
-                drawerLayout.openDrawer(GravityCompat.START);
+            case R.id.app_bar_msg:
+                Toast.makeText(this, "Test 1", Toast.LENGTH_SHORT).show();
                 return true;
         }
         return super.onOptionsItemSelected(item);

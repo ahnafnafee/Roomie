@@ -31,6 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputEditText mPasswordView;
     private TextInputLayout passwordView;
 
+    public TextView test1;
+
     private FirebaseAuth mAuth;
 
     public ProgressBar progBar;
@@ -49,6 +51,16 @@ public class LoginActivity extends AppCompatActivity {
 
         emailView.setErrorTextAppearance(R.style.TextFieldError);
         passwordView.setErrorTextAppearance(R.style.TextFieldError);
+
+        test1 = findViewById(R.id.pass_forgot);
+        test1.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(), CardStack.class));
+            }
+        });
+
+
 
         // Firebase
         mAuth = FirebaseAuth.getInstance();
@@ -133,7 +145,6 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Logged in successfully", Toast.LENGTH_LONG).show();
                                 Intent myIntent = new Intent(getBaseContext(), CardStack.class);
                                 startActivity(myIntent);
-                                finish();
                             } else {
                                 Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                             }
@@ -150,5 +161,10 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         return password.length() > 7;
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 }

@@ -14,14 +14,14 @@
     </string>
 
     <string name="logo_of_app">App Logo</string>
-    <string name="title_string">ROOMIE</string>
+    <string name="title_string">roomie</string>
     <string name="email_hint">Email</string>
     <string name="password_hint">Password</string>
-    <string name="button_string">LOG IN</string>
+    <string name="button_string">login</string>
     <string name="city_logo_description">City Logo</string>
-    <string name="forgot_password">FORGOT PASSWORD?</string>
+    <string name="forgot_password">forgot password?</string>
     <string name="switch_action_or">OR</string>
-    <string name="sign_up">SIGN UP</string>
+    <string name="sign_up">sign up</string>
     <string name="people_picture">People Picture</string>
 
 
@@ -48,7 +48,7 @@
     <string name="have_an_account">Have an account?\u0020</string>
     <string name="next_btn">next</string>
 
-    <string name="traits_title">YOUR TRAITS</string>
+    <string name="traits_title">interests</string>
     <string name="sleep_schedule">Sleep Schedule: </string>
     <string name="clean_schedule">Cleaning Habits: </string>
     <string name="eat_schedule">Eating Habits you want in your roommate:</string>

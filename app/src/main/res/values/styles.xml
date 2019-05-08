@@ -17,6 +17,16 @@
         <item name="backgroundTint">#8A80EF</item>
     </style>
 
+
+    <style name="Widget2.Roomie.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">#503499</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="backgroundTint">#FFFFFF</item>
+        <item name="android:strokeWidth">9</item>
+        <item name="android:strokeColor">#503499</item>
+        <item name="rippleColor">#D0BEFF</item>
+    </style>
+
     <style name="Widget.Roomie.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:textColor">#ffffff</item>
     </style>

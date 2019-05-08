@@ -5,7 +5,8 @@
     <color name="colorAccent">#8A80EF</color>
     <color name="errorRed">#C43E3E</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#625CDE</color>
-    <color name="Black">#000000</color>
+    <color name="white">#fff</color>
+    <color name="dark_purpblue">#503499</color>
 </resources>
 
 
