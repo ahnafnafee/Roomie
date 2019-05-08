@@ -25,7 +25,6 @@
                 app:fabAlignmentMode="center"
                 app:fabCradleMargin="8dp"
                 app:fabCradleRoundedCornerRadius="8dp"
-                app:fabCradleVerticalOffset="8dp"
                 app:menu="@menu/bottom_appbar_menu"
                 android:paddingStart="64dp"
                 android:paddingEnd="64dp"
