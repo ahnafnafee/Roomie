@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     card_view:cardCornerRadius="@dimen/card_corner_radius"
@@ -11,7 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
+        android:foreground="@drawable/img_overaly"
         android:src="@drawable/pic4"
-        android:textSize="44sp" />
+        android:textSize="44sp"
+        tools:ignore="UnusedAttribute" />
 
 </androidx.cardview.widget.CardView>

@@ -31,6 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputEditText mPasswordView;
     private TextInputLayout passwordView;
 
+    public TextView test1;
+
     private FirebaseAuth mAuth;
 
     public ProgressBar progBar;
@@ -49,6 +51,16 @@ public class LoginActivity extends AppCompatActivity {
 
         emailView.setErrorTextAppearance(R.style.TextFieldError);
         passwordView.setErrorTextAppearance(R.style.TextFieldError);
+
+        test1 = findViewById(R.id.pass_forgot);
+        test1.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(), CardStack.class));
+            }
+        });
+
+
 
         // Firebase
         mAuth = FirebaseAuth.getInstance();

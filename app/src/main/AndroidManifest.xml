@@ -31,7 +31,7 @@
         <activity android:name=".SignUpActivity3" />
         <activity
             android:name=".CardStack"
-            android:theme="@style/CardTheme" />
+            android:theme="@style/AppTheme" />
 
     </application>
 

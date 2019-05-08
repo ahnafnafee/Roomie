@@ -49,11 +49,11 @@
             android:fontFamily="@font/questrial"
             android:text="Send a message"
             android:textAllCaps="false"
-            android:textColor="#503499"
+            android:textColor="@color/dark_purpblue"
             app:backgroundTint="@color/white"
             app:cornerRadius="16dp"
             app:rippleColor="#D0BEFF"
-            app:strokeColor="#503499"
+            app:strokeColor="@color/dark_purpblue"
             app:strokeWidth="1dp" />
 
         <com.google.android.material.button.MaterialButton
@@ -66,11 +66,11 @@
             android:fontFamily="@font/questrial"
             android:text="Keep playing"
             android:textAllCaps="false"
-            android:textColor="#503499"
+            android:textColor="@color/dark_purpblue"
             app:backgroundTint="@color/white"
             app:cornerRadius="16dp"
             app:rippleColor="#D0BEFF"
-            app:strokeColor="#503499"
+            app:strokeColor="@color/dark_purpblue"
             app:strokeWidth="1dp" />
 
 
