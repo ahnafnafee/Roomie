@@ -1,5 +1,3 @@
-![alt text](https://travis-ci.org/ahnafnafee/RoomiePrototype.svg?branch=master)
-
 # **Roomie**
 
 *Tinder Style Roommate Finder App*
