@@ -17,5 +17,5 @@ dependencies:
 
 test:
     override:
-        - (./gradlew assemble):
+        - (chmod +x gradlew):
             timeout: 360
