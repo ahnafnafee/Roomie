@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8f0f68327ad44e1ea7a55c0c233b51e7)](https://app.codacy.com/app/ahnafnafee/RoomiePrototype?utm_source=github.com&utm_medium=referral&utm_content=ahnafnafee/RoomiePrototype&utm_campaign=Badge_Grade_Dashboard)
 [![CircleCI](https://circleci.com/gh/ahnafnafee/RoomiePrototype.svg?style=svg)](https://circleci.com/gh/ahnafnafee/RoomiePrototype)
 
 # **Roomie**
