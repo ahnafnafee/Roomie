@@ -104,8 +104,8 @@ public class SignUpActivity3 extends AppCompatActivity {
                 dormFireBase();
 
                 //Switch to MainActivity
-                Intent myIntent = new Intent(getBaseContext(), CardStack.class);
-                startActivity(myIntent);
+                Intent myIntent2 = new Intent(getBaseContext(), CardStack.class);
+                startActivity(myIntent2);
 
 
 
