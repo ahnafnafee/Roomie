@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/ahnafnafee/RoomiePrototype.svg?style=svg)](https://circleci.com/gh/ahnafnafee/RoomiePrototype)
+
 # **Roomie**
 
 *Tinder Style Roommate Finder App*
