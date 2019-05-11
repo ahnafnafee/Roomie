@@ -35,7 +35,7 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
         // Set initial fragment
         if(savedInstanceState == null) {
             getSupportFragmentManager()
-                    .beginTransaction().replace(R.id.container, fragmentMatch).addToBackStack(null).commit();
+                    .beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).replace(R.id.container, fragmentMatch).addToBackStack(null).commitAllowingStateLoss();
         }
 
         mBottomFAB = findViewById(R.id.appbar_fab);
@@ -84,7 +84,7 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
 //                Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.app_bar_msg:
-                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).add(R.id.container, fragmentMessage).addToBackStack(null).commit();
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).add(R.id.container, fragmentMessage).addToBackStack(null).commitAllowingStateLoss();
 //                Toast.makeText(this, "Messages", Toast.LENGTH_SHORT).show();
                 return true;
         }
