@@ -1,17 +1,14 @@
 package com.example.roomieprototype;
 
 
-import android.content.Intent;
+
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 
 import android.util.DisplayMetrics;
 
 import android.util.Log;
 
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +22,8 @@ import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -43,11 +42,12 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import link.fls.swipestack.SwipeStack;
 
-public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStackListener, View.OnClickListener {
+public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStackListener, View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
     public String imgStr;
 
@@ -55,7 +55,7 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
     private SwipeStack mSwipeStack;
     private SwipeStackAdapter mAdapter;
     public int count;
-    private FloatingActionButton mButtonLeft, mButtonRight, mRewind;
+    private FloatingActionButton mBottomFAB;
     private DrawerLayout drawerLayout;
     private Query firebaseUsers;
     private FirebaseFirestore db;
@@ -69,12 +69,20 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
     private String userApart;
     private String userDorm;
 
+    public ImageView mSkipView, mLikeView;
+    BottomNavigationView bottomNavigationView;
+
     public BottomAppBar bottomAppBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        bottomNavigationView.setSelectedItemId(R.id.action_empty);
+
 
         // firebase database initiated
         db = FirebaseFirestore.getInstance();
@@ -404,13 +412,22 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
         count = 0;
 
         mSwipeStack = findViewById(R.id.swipeStack);
-        mButtonLeft = findViewById(R.id.skip_button);
-        mButtonRight = findViewById(R.id.like_button);
-        mRewind = findViewById(R.id.rewind_button);
+//        mButtonLeft = findViewById(R.id.skip_button);
+//        mButtonRight = findViewById(R.id.like_button);
+//        mRewind = findViewById(R.id.rewind_button);
+//
+//        mButtonLeft.setOnClickListener(this);
+//        mButtonRight.setOnClickListener(this);
+//        mRewind.setOnClickListener(this);
 
-        mButtonLeft.setOnClickListener(this);
-        mButtonRight.setOnClickListener(this);
-        mRewind.setOnClickListener(this);
+        // Test
+        mLikeView = findViewById(R.id.like_view);
+        mSkipView = findViewById(R.id.skip_view);
+        mBottomFAB = findViewById(R.id.appbar_fab);
+
+        mLikeView.setOnClickListener(this);
+        mSkipView.setOnClickListener(this);
+        mBottomFAB.setOnClickListener(this);
 
         mData = new ArrayList<>();
         mAdapter = new SwipeStackAdapter(mData);
@@ -480,13 +497,13 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
 
     @Override
     public void onClick(View v) {
-        if (v.equals(mButtonLeft)) {
+        if (v.equals(mSkipView)) {
             mSwipeStack.swipeTopViewToLeft();
-        } else if (v.equals(mButtonRight)) {
+        } else if (v.equals(mLikeView)) {
             mSwipeStack.swipeTopViewToRight();
             DialogFrag.display(getSupportFragmentManager());
 //            startActivity(new Intent(CardStack.this, MatchPopUp.class));
-        } else if (v.equals(mRewind)) {
+        } else if (v.equals(mBottomFAB)) {
             mData.add(imageSwitch());
             mAdapter.notifyDataSetChanged();
         }
@@ -499,22 +516,28 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
         moveTaskToBack(true);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.bottom_appbar_menu, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.bottom_appbar_menu, menu);
+//        return true;
+//    }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
+            case R.id.avatar_icon:
+                BottomSheetDialogFragment bottomSheetDialogFragment = BottomNavigationDrawerFragment.newInstance();
+                bottomSheetDialogFragment.show(getSupportFragmentManager(), "Bottom Sheet Dialog Fragment");
+                Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
+                return true;
             case R.id.app_bar_msg:
-                Toast.makeText(this, "Test 1", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Messages", Toast.LENGTH_SHORT).show();
                 return true;
         }
-        return super.onOptionsItemSelected(item);
+        return false;
     }
+
 
     @Override
     public void onViewSwipedToRight(int position) {

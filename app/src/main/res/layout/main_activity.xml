@@ -1,107 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clipChildren="false"
     tools:context=".CardStack">
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/coord_appbar"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/coord_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_alignParentBottom="true">
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:itemIconTint="@drawable/selector_bottombar_item"
+            app:itemTextColor="@drawable/selector_bottombar_item"
+            app:elevation="6dp"
+            app:menu="@menu/bottom_appbar_menu"
+            android:background="@color/transparent"/>
 
-
-            <com.google.android.material.bottomappbar.BottomAppBar
-                android:id="@+id/bottom_appbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                app:backgroundTint="@color/white"
-                app:buttonGravity="top|bottom"
-                app:fabAlignmentMode="center"
-                app:fabCradleMargin="8dp"
-                app:fabCradleRoundedCornerRadius="8dp"
-                app:menu="@menu/bottom_appbar_menu"
-                android:paddingStart="64dp"
-                android:paddingEnd="64dp"
-                app:navigationIcon="@drawable/ic_avatar" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/appbar_fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/icon_play"
-                app:backgroundTint="@color/colorAccent"
-                app:fabSize="auto"
-                app:layout_anchor="@id/bottom_appbar"
-                app:tint="@color/white" />
-
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-        <RelativeLayout
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottom_appbar"
             android:layout_width="match_parent"
-            android:layout_above="@id/coord_appbar"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:backgroundTint="@color/white"
+            app:buttonGravity="top|bottom"
+            app:fabAlignmentMode="center"
+            app:fabCradleMargin="8dp"
+            app:fabCradleRoundedCornerRadius="8dp" />
 
-            <link.fls.swipestack.SwipeStack
-                android:id="@+id/swipeStack"
-                android:layout_width="match_parent"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_height="match_parent"
-                android:layout_above="@+id/skip_button"
-                android:padding="32dp"
-                app:scale_factor="0.95"
-                app:stack_spacing="24dp"
-                app:stack_rotation="0" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/skip_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="48dp"
-                android:layout_marginBottom="16dp"
-                android:hapticFeedbackEnabled="true"
-                android:src="@drawable/skip_red"
-                app:backgroundTint="@android:color/white"
-                app:fabSize="auto"
-                app:tint="#ED7563" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/appbar_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_play"
+            app:backgroundTint="@color/colorAccent"
+            app:fabSize="auto"
+            app:layout_anchor="@id/bottom_appbar"
+            app:tint="@color/white" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/rewind_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="16dp"
-                android:hapticFeedbackEnabled="true"
-                android:src="@drawable/rewind_blue"
-                app:backgroundTint="@android:color/white"
-                app:fabSize="auto"
-                app:tint="#5BC9FA" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/like_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginEnd="48dp"
-                android:layout_marginBottom="16dp"
-                android:hapticFeedbackEnabled="true"
-                android:src="@drawable/like_green"
-                app:backgroundTint="@android:color/white"
-                app:fabSize="auto"
-                app:tint="#6FE2B3"
-                tools:ignore="RelativeOverlap" />
+    <RelativeLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/swipe_select"
+        android:layout_marginBottom="16dp">
 
-        </RelativeLayout>
-
+        <link.fls.swipestack.SwipeStack
+            android:id="@+id/swipeStack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:padding="32dp"
+            app:scale_factor="0.95"
+            app:stack_rotation="0"
+            app:stack_spacing="24dp" />
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/swipe_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/coord_appbar">
+
+        <ImageView
+            android:id="@+id/skip_view"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/divider"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:src="@drawable/swipe_left" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="200dp"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@android:color/darker_gray" />
+
+        <ImageView
+            android:id="@+id/like_view"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/divider"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:src="@drawable/swipe_right" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

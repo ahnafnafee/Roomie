@@ -122,39 +122,39 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_above="@id/signup_button"
+    android:layout_below="@id/primary_layout">
+
+    <TextView
+        android:id="@+id/switch_action"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/signup_button"
-        android:layout_below="@id/primary_layout">
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/poiret_one"
+        android:text="@string/switch_action_or"
+        android:textColor="@android:color/darker_gray" />
 
-        <TextView
-            android:id="@+id/switch_action"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:fontFamily="@font/poiret_one"
-            android:text="@string/switch_action_or"
-            android:textColor="@android:color/darker_gray" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_toStartOf="@id/switch_action"
+        android:background="@android:color/darker_gray" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_toStartOf="@id/switch_action"
-            android:background="@android:color/darker_gray" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_toEndOf="@id/switch_action"
+        android:background="@android:color/darker_gray" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_toEndOf="@id/switch_action"
-            android:background="@android:color/darker_gray" />
-
-    </RelativeLayout>
+</RelativeLayout>
 
     <Button
         android:id="@+id/signup_button"
