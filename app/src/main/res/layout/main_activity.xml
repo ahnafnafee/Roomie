@@ -55,67 +55,7 @@
         android:layout_above="@id/coord_appbar"
         android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:id="@+id/top_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:layout_above="@id/swipe_select"
-                android:layout_marginBottom="16dp">
-
-                <link.fls.swipestack.SwipeStack
-                    android:id="@+id/swipeStack"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:padding="32dp"
-                    app:scale_factor="0.95"
-                    app:stack_rotation="0"
-                    app:stack_spacing="24dp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/swipe_select"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true">
-
-                <ImageView
-                    android:id="@+id/skip_view"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/divider"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:src="@drawable/swipe_left" />
-
-                <View
-                    android:id="@+id/divider"
-                    android:layout_width="200dp"
-                    android:layout_height="1dp"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginEnd="32dp"
-                    android:background="@android:color/darker_gray" />
-
-                <ImageView
-                    android:id="@+id/like_view"
-                    android:layout_width="34dp"
-                    android:layout_height="34dp"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@id/divider"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:src="@drawable/swipe_right" />
-
-            </RelativeLayout>
-
-        </RelativeLayout>
 
     </FrameLayout>
 
