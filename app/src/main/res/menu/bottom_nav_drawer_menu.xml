@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="none">
         <item
-            android:id="@+id/nav1"
+            android:id="@+id/nav1_account"
             android:icon="@drawable/ic_user"
             android:title="Account Details" />
         <item
-            android:id="@+id/nav2"
+            android:id="@+id/nav2_logout"
             android:icon="@drawable/ic_logout"
             android:title="Log Out" />
 

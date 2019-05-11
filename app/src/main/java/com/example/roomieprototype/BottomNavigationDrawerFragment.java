@@ -2,14 +2,17 @@ package com.example.roomieprototype;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -65,8 +68,15 @@ public class BottomNavigationDrawerFragment extends BottomSheetDialogFragment {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.nav1:
-                        break;
+                    case R.id.nav1_account:
+                        Toast.makeText(getContext(), "My Account", Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.nav2_logout:
+                        FirebaseAuth.getInstance().signOut();
+                        Toast.makeText(getContext(), "Successfully logged out.", Toast.LENGTH_SHORT).show();
+                        Intent myIntent = new Intent(getContext(), LoginActivity.class);
+                        startActivity(myIntent);
+                        getActivity().finish();
                 }
                 return false;
             }
