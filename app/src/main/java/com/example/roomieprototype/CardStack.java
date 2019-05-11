@@ -17,9 +17,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.android.gms.tasks.Tasks;
 import com.google.android.material.bottomappbar.BottomAppBar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,6 +33,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -39,6 +42,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -46,6 +52,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import link.fls.swipestack.SwipeStack;
+
+import static com.google.android.gms.tasks.Tasks.await;
 
 public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStackListener, View.OnClickListener {
 
@@ -68,6 +76,7 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
     private String userTemperature;
     private String userApart;
     private String userDorm;
+    private ArrayList<String> matchList;
 
     public BottomAppBar bottomAppBar;
 
@@ -86,6 +95,7 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
         user = mAuth.getCurrentUser();
 
         firebaseUsers = db.collection("userData");
+        matchList = new ArrayList<>();
 
         ((CollectionReference) firebaseUsers).document(user.getEmail()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -379,12 +389,15 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
                                                     match = 0;
 
                                                 //Log if they match
-                                                if (match.equals(1))
-                                                    Log.d("TAG:",  user.getEmail()+ " is matched with " + document.getId());
-
+                                                if (match.equals(1)) {
+                                                    matchList.add(document.getData().get("fullname").toString());
+                                                    Log.d("TAG:", user.getEmail() + " is matched with " + document.getId());
+                                                }
                                             }
                                         }
                                     }
+                                    mAdapter = new SwipeStackAdapter(mData,matchList);
+                                    mSwipeStack.setAdapter(mAdapter);
                                 }
                                 else {
                                     Log.d("TAG:", "Error getting documents: ", task.getException());
@@ -413,8 +426,6 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
         mRewind.setOnClickListener(this);
 
         mData = new ArrayList<>();
-        mAdapter = new SwipeStackAdapter(mData);
-        mSwipeStack.setAdapter(mAdapter);
         mSwipeStack.setListener(this);
 
         //mClose = findViewById(R.id.close_button);
@@ -460,6 +471,8 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
     }
+
+
 
     public void fillWithTestData() {
         for (int x = 0; x < 5; x++) {
@@ -538,9 +551,11 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
     public class SwipeStackAdapter extends BaseAdapter {
 
         private List<String> mData;
+        private List<String> mText;
 
-        public SwipeStackAdapter(List<String> data) {
-            this.mData = data;
+        public SwipeStackAdapter(List<String> data1,List<String> data2 ) {
+            this.mData = data1;
+            this.mText = data2;
         }
 
         @Override
@@ -568,6 +583,9 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
 
             int imageResource = getResources().getIdentifier(mData.get(position), null, getPackageName());
             Drawable image = getResources().getDrawable(imageResource);
+
+            //TextView textViewCard = (TextView) convertView.findViewById(R.id.textViewCard);
+            //textViewCard.setText(matchList.get(0));
 
             imgViewCard.setImageDrawable(image);
 

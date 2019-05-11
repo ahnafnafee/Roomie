@@ -10,11 +10,18 @@
     <ImageView
         android:id="@+id/imgView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="300dp"
         android:scaleType="centerCrop"
         android:foreground="@drawable/img_overaly"
         android:src="@drawable/pic4"
         android:textSize="44sp"
         tools:ignore="UnusedAttribute" />
+
+    <TextView
+        android:id="@+id/textViewCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="44sp"
+        android:text="@string/card_name"/>
 
 </androidx.cardview.widget.CardView>
