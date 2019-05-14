@@ -75,10 +75,6 @@ public class SignUpActivity3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //Switch to MainActivity
-                Intent myIntent = new Intent(getBaseContext(), CardStack.class);
-                startActivity(myIntent);
-
                 //Add Sleep Schedule to Firebase
                 sleepFireBase();
 
@@ -104,7 +100,7 @@ public class SignUpActivity3 extends AppCompatActivity {
                 dormFireBase();
 
                 //Switch to MainActivity
-                Intent myIntent2 = new Intent(getBaseContext(), CardStack.class);
+                Intent myIntent2 = new Intent(getBaseContext(), MatchingScreen.class);
                 startActivity(myIntent2);
 
 
