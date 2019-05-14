@@ -7,6 +7,8 @@
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#625CDE</color>
     <color name="white">#fff</color>
     <color name="dark_purpblue">#503499</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="black">#000000</color>
 </resources>
 
 
