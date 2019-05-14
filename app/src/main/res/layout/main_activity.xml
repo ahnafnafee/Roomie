@@ -21,7 +21,6 @@
             android:layout_gravity="bottom"
             app:itemIconTint="@drawable/selector_bottombar_item"
             app:itemTextColor="@drawable/selector_bottombar_item"
-            app:elevation="6dp"
             app:menu="@menu/bottom_appbar_menu"
             android:background="@color/transparent"/>
 
@@ -54,8 +53,6 @@
         android:layout_width="match_parent"
         android:layout_above="@id/coord_appbar"
         android:layout_height="match_parent">
-
-
 
     </FrameLayout>
 
