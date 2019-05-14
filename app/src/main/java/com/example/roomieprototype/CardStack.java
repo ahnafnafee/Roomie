@@ -1,17 +1,9 @@
 package com.example.roomieprototype;
 
 
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-
 import android.util.DisplayMetrics;
-
 import android.util.Log;
-
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,13 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.google.android.gms.tasks.Tasks;
 import com.google.android.material.bottomappbar.BottomAppBar;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -48,11 +37,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import link.fls.swipestack.SwipeStack;
 
 import static com.google.android.gms.tasks.Tasks.await;
 
@@ -78,8 +63,13 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
     private String userApart;
     private String userDorm;
     private ArrayList<String> matchList;
+  
+public class CardStack extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
     public BottomAppBar bottomAppBar;
+    BottomNavigationView bottomNavigationView;
+
+    private FloatingActionButton mBottomFAB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,41 +96,27 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
 
         fillWithTestData();
 
-//        drawerLayout = findViewById(R.id.drawer_layout);
-//        ActionBar actionbar = getSupportActionBar();
-//        actionbar.setDisplayHomeAsUpEnabled(true);
-//        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        bottomNavigationView.setSelectedItemId(R.id.action_empty);
+
+        // Set initial fragment
+        if(savedInstanceState == null) {
+            getSupportFragmentManager()
+                    .beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).replace(R.id.container, fragmentMatch).addToBackStack(null).commitAllowingStateLoss();
+        }
+
+        mBottomFAB = findViewById(R.id.appbar_fab);
+        mBottomFAB.setOnClickListener(this);
 
         bottomAppBar = findViewById(R.id.bottom_appbar);
         setSupportActionBar(bottomAppBar);
 
-//        NavigationView navigationView = findViewById(R.id.nav_view);
-//        navigationView.setNavigationItemSelectedListener(
-//                new NavigationView.OnNavigationItemSelectedListener() {
-//                    @Override
-//                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-//                        // set item as selected to persist highlight
-//                        menuItem.setChecked(true);
-//                        // close drawer when item is tapped
-//                        drawerLayout.closeDrawers();
-//                        if (menuItem.getItemId() == R.id.nav_sign_out) {
-//                            FirebaseAuth.getInstance().signOut();
-//                            Toast.makeText(getApplicationContext(), "Successfully logged out.", Toast.LENGTH_SHORT).show();
-//                            Intent myIntent = new Intent(getBaseContext(), LoginActivity.class);
-//                            startActivity(myIntent);
-//                        } else if (menuItem.getItemId() == R.id.nav_profile) {
-//
-//                        }
-//
-//                        return true;
-//                    }
-//                });
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        mSwipeStack.resetStack();
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
@@ -165,17 +141,12 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
 
     @Override
     public void onClick(View v) {
-        if (v.equals(mButtonLeft)) {
-            mSwipeStack.swipeTopViewToLeft();
-        } else if (v.equals(mButtonRight)) {
-            mSwipeStack.swipeTopViewToRight();
-            DialogFrag.display(getSupportFragmentManager());
-//            startActivity(new Intent(CardStack.this, MatchPopUp.class));
-        } else if (v.equals(mRewind)) {
-            mData.add(imageSwitch());
-            mAdapter.notifyDataSetChanged();
-        }
+        if (v.equals(mBottomFAB)) {
+            Log.d("Test: ", String.valueOf(getSupportFragmentManager().getBackStackEntryCount()));
+            if (getSupportFragmentManager().getBackStackEntryCount() > 1)
+                getSupportFragmentManager().popBackStack();
 
+        }
 
     }
 
@@ -184,21 +155,25 @@ public class CardStack extends AppCompatActivity implements SwipeStack.SwipeStac
         moveTaskToBack(true);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.bottom_appbar_menu, menu);
-        return true;
-    }
+    FragmentMessages fragmentMessage = new FragmentMessages();
+    FragmentMatch fragmentMatch = new FragmentMatch();
+
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
+            case R.id.avatar_icon:
+                BottomSheetDialogFragment bottomSheetDialogFragment = BottomNavigationDrawerFragment.newInstance();
+                bottomSheetDialogFragment.show(getSupportFragmentManager(), "Bottom Sheet Dialog Fragment");
+//                Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
+                return true;
             case R.id.app_bar_msg:
-                Toast.makeText(this, "Test 1", Toast.LENGTH_SHORT).show();
+                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).add(R.id.container, fragmentMessage).addToBackStack(null).commitAllowingStateLoss();
+//                Toast.makeText(this, "Messages", Toast.LENGTH_SHORT).show();
                 return true;
         }
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 
     @Override

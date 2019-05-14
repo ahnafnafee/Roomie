@@ -4,8 +4,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/avatar_icon"
+        android:icon="@drawable/ic_avatar"
+        android:title="Profile"/>
+
+    <item
+        android:id="@+id/action_empty"
+        android:title=""
+        android:enabled="false" />
+
+    <item
         android:id="@+id/app_bar_msg"
         android:icon="@drawable/ic_messages"
-        android:title="Messages"
-        app:showAsAction="ifRoom"/>
+        android:title="Messages"/>
 </menu>

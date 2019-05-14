@@ -25,7 +25,6 @@ public class DialogFrag extends DialogFragment {
 
     private static final String TAG = "Dialog";
 
-    private ImageView closeBtn;
     private MaterialButton playBtn, msgBtn;
 
 //    private Toolbar toolbar;
@@ -69,17 +68,9 @@ public class DialogFrag extends DialogFragment {
         super.onCreateView(inflater, container, savedInstanceState);
         final View view = inflater.inflate(R.layout.dialog_fragment, container, false);
 
-        closeBtn = view.findViewById(R.id.diag_close);
         playBtn = view.findViewById(R.id.playin_btn);
         msgBtn = view.findViewById(R.id.diag_msg_btn);
 
-
-        closeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getDialog().dismiss();
-            }
-        });
 
         playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
