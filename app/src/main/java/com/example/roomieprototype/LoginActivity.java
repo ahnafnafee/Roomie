@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         test1.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), CardStack.class));
+                startActivity(new Intent(getBaseContext(), MatchingScreen.class));
             }
         });
 
@@ -143,7 +143,7 @@ public class LoginActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 Toast.makeText(LoginActivity.this, "Logged in successfully", Toast.LENGTH_LONG).show();
-                                Intent myIntent = new Intent(getBaseContext(), CardStack.class);
+                                Intent myIntent = new Intent(getBaseContext(), MatchingScreen.class);
                                 startActivity(myIntent);
                             } else {
                                 Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
