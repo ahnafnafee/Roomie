@@ -92,8 +92,6 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
 
     }
 
-
-
     @Override
     public void onClick(View v) {
         if (v.equals(mBottomFAB)) {
@@ -130,8 +128,4 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
         }
         return false;
     }
-
-
-
-
 }

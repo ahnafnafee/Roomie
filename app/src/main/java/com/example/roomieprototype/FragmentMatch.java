@@ -65,7 +65,6 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
         }
 
         count = 0;
-
         mSwipeStack = RootView.findViewById(R.id.swipeStack);
 
         mLikeView = RootView.findViewById(R.id.like_view);
