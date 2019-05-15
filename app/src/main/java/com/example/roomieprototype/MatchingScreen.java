@@ -30,7 +30,7 @@ public class MatchingScreen extends AppCompatActivity {
 
     private ArrayList<String> mData;
     private SwipeStack mSwipeStack;
-    private CardStack.SwipeStackAdapter mAdapter;
+    private FragmentMatch.SwipeStackAdapter mAdapter;
     public int count;
     private FloatingActionButton mButtonLeft, mButtonRight, mRewind;
     private DrawerLayout drawerLayout;
