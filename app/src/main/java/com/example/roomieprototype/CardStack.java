@@ -6,42 +6,13 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.gms.tasks.Tasks;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
-import static com.google.android.gms.tasks.Tasks.await;
 
 
 public class CardStack extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
@@ -50,20 +21,18 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
     BottomNavigationView bottomNavigationView;
 
     private FloatingActionButton mBottomFAB;
-    private ArrayList<String> matchList;
-    private FragmentMatch fragobj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        matchList = getIntent().getStringArrayListExtra("matchList");
-        Log.d("TAG","cardstack"+matchList.toString());
+        ArrayList<String> matchList = getIntent().getStringArrayListExtra("matchList");
+        Log.d("TAG","cardstack"+ matchList.toString());
         Bundle bundle = new Bundle();
         bundle.putStringArrayList("matchList", matchList);
         // set Fragmentclass Arguments
-        fragobj = new FragmentMatch();
+        FragmentMatch fragobj = new FragmentMatch();
         fragobj.setArguments(bundle);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -109,7 +78,6 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
     }
 
     FragmentMessages fragmentMessage = new FragmentMessages();
-    FragmentMatch fragmentMatch = new FragmentMatch();
 
 
     @Override

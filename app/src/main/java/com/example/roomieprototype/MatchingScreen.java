@@ -26,14 +26,6 @@ import java.util.ArrayList;
 
 public class MatchingScreen extends AppCompatActivity {
 
-    public String imgStr;
-
-    private ArrayList<String> mData;
-    private SwipeStack mSwipeStack;
-    private FragmentMatch.SwipeStackAdapter mAdapter;
-    public int count;
-    private FloatingActionButton mButtonLeft, mButtonRight, mRewind;
-    private DrawerLayout drawerLayout;
     private Query firebaseUsers;
     private FirebaseFirestore db;
     private FirebaseUser user;
@@ -46,8 +38,6 @@ public class MatchingScreen extends AppCompatActivity {
     private String userApart;
     private String userDorm;
     private ArrayList<String> matchList;
-
-    public BottomAppBar bottomAppBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

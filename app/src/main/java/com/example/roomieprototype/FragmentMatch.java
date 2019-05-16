@@ -2,7 +2,6 @@ package com.example.roomieprototype;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.sax.RootElement;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,26 +10,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import link.fls.swipestack.SwipeStack;
 
@@ -44,7 +27,6 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
     private FloatingActionButton mBottomFAB;
     private View mAdd;
     public int count;
-    private DrawerLayout drawerLayout;
     private ArrayList<String> matchList;
 
     public FragmentMatch() {
@@ -179,7 +161,7 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
             int imageResource = getResources().getIdentifier(mData.get(position), null, "com.example.roomieprototype");
             Drawable image = getResources().getDrawable(imageResource);
 
-            TextView textViewCard = (TextView) convertView.findViewById(R.id.textViewCard);
+            TextView textViewCard = convertView.findViewById(R.id.textViewCard);
             textViewCard.setText(matchList.get(position));
 
             imgViewCard.setImageDrawable(image);
