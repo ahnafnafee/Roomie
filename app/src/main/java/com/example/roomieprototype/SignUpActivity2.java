@@ -1,12 +1,19 @@
 package com.example.roomieprototype;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +21,7 @@ import com.google.android.material.chip.ChipGroup;
 
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,6 +42,7 @@ public class SignUpActivity2 extends AppCompatActivity {
     int month;
     int dayOfMonth;
     Calendar calendar;
+    public ImageButton imageButton;
 
     SpinnerDialog spinnerDialog;
 
@@ -45,6 +54,23 @@ public class SignUpActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_signup_2);
 
         final TextView uniText = findViewById(R.id.uni_spinner);
+        // Image Button
+        imageButton = findViewById(R.id.profile_signup_pic);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                getIntent.setType("image/*");
+
+                Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                pickIntent.setType("image/*");
+
+                Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
+                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {pickIntent});
+                Log.d("TAG",chooserIntent.getExtras().toString());
+                startActivityForResult(chooserIntent, PICK_IMAGE);
+            }
+        });
 
         // Next activity
         Button btnNxt = findViewById(R.id.next_reg_button_2);
@@ -116,6 +142,31 @@ public class SignUpActivity2 extends AppCompatActivity {
             }
         });
 
+    }
+
+    // What to do with the selected image
+    public static final int PICK_IMAGE = 1;
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode != RESULT_CANCELED){
+            if (requestCode == PICK_IMAGE) {
+                if(data != null){
+                    Log.d("TAG",data.getData().toString());
+                    Uri imageUri = data.getData();
+                    Bitmap bitmap = null;
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Drawable d = new BitmapDrawable(getResources(), bitmap);
+                    imageButton.setImageDrawable(d);
+                }
+            }
+        }
     }
 
 }
