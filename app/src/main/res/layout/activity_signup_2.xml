@@ -48,14 +48,14 @@
                 android:paddingBottom="16dp"
                 android:layout_centerInParent="true">
 
-                <androidx.appcompat.widget.AppCompatImageButton
+                <com.mikhaellopez.circularimageview.CircularImageView
                     android:id="@+id/profile_signup_pic"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:scaleType="centerInside"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/diag_dp"
-                    android:scaleType="fitCenter"
-                    android:background="@null"/>
+                    android:background="@null" />
 
                 <TextView
                     android:id="@+id/gender_txt"
@@ -187,15 +187,13 @@
 
                 <Button
                     android:id="@+id/next_reg_button_2"
-                    style="@style/Widget.Roomie.Button"
+                    style="@style/Main.UnelevatedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="60dp"
                     android:layout_above="@id/signin_back1"
                     android:layout_centerHorizontal="true"
                     android:fontFamily="@font/poiret_one"
-                    android:text="@string/next_btn"
-                    android:textAllCaps="false"
-                    android:textSize="20sp" />
+                    android:text="@string/next_btn" />
 
 
                 <RelativeLayout

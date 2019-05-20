@@ -9,6 +9,13 @@
     <color name="dark_purpblue">#503499</color>
     <color name="transparent">#00ffffff</color>
     <color name="black">#000000</color>
+
+
+    <color name="toggle_hover">@color/colorPrimaryDark</color>
+    <color name="toggle_normal">#FAFAFA</color>
+    <color name="toggle_active">@color/colorAccent</color>
+    <color name="toggle_normal_off">#FAFAFA</color>
+
 </resources>
 
 

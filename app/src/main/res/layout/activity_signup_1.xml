@@ -47,7 +47,9 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/fullname_text_input"
-                    style="@style/LoginTextInputLayoutStyle"
+                    app:boxStrokeColor="#A194F9"
+                    app:boxStrokeWidth="2dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="240dp"
                     android:layout_height="60dp"
                     android:layout_centerHorizontal="true"
@@ -68,7 +70,9 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/email_reg_text_input"
-                    style="@style/LoginTextInputLayoutStyle"
+                    app:boxStrokeColor="#A194F9"
+                    app:boxStrokeWidth="2dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="240dp"
                     android:layout_height="60dp"
                     android:layout_below="@id/fullname_text_input"
@@ -90,7 +94,9 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/password_reg_text_input"
-                    style="@style/LoginTextInputLayoutStyle"
+                    app:boxStrokeColor="#A194F9"
+                    app:boxStrokeWidth="2dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="240dp"
                     android:layout_height="60dp"
                     android:layout_below="@id/email_reg_text_input"
@@ -113,7 +119,9 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/password2_reg_text_input"
-                    style="@style/LoginTextInputLayoutStyle"
+                    app:boxStrokeColor="#A194F9"
+                    app:boxStrokeWidth="2dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="240dp"
                     android:layout_height="60dp"
                     android:layout_below="@id/password_reg_text_input"
@@ -147,15 +155,13 @@
 
                 <Button
                     android:id="@+id/next_reg_button_1"
-                    style="@style/Widget.Roomie.Button"
+                    android:textColor="@color/white"
+                    style="@style/Main.UnelevatedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="60dp"
                     android:layout_above="@id/signin_back1"
                     android:layout_centerHorizontal="true"
-                    android:fontFamily="@font/poiret_one"
-                    android:text="@string/next_btn"
-                    android:textAllCaps="false"
-                    android:textSize="20sp" />
+                    android:text="@string/next_btn" />
 
 
                 <RelativeLayout

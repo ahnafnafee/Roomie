@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -6,40 +6,40 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="CardTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="Main.UnelevatedButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:backgroundTint">#8A80EF</item>
+        <item name="android:fontFamily">@font/poiret_one</item>
     </style>
 
-    <style name="Widget.Roomie.Button" parent="Widget.MaterialComponents.Button">
-        <item name="android:textColor">#ffffff</item>
-        <item name="backgroundTint">#8A80EF</item>
-    </style>
-
-
-    <style name="Widget2.Roomie.Button" parent="Widget.MaterialComponents.Button">
-        <item name="android:textColor">#503499</item>
-        <item name="cornerRadius">12dp</item>
-        <item name="backgroundTint">#FFFFFF</item>
-        <item name="android:strokeWidth">9</item>
-        <item name="android:strokeColor">#503499</item>
+    <style name="Dialog.UnelevatedButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/dark_purpblue</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="strokeColor">@color/dark_purpblue</item>
         <item name="rippleColor">#D0BEFF</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="android:fontFamily">@font/questrial</item>
     </style>
 
-    <style name="Widget.Roomie.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="android:textColor">#ffffff</item>
-    </style>
-
-    <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxStrokeColor">#A194F9</item>
-        <item name="boxStrokeWidth">2dp</item>
-        <item name="android:colorControlNormal" tools:targetApi="lollipop">#A194F9</item>
-    </style>
-
-    <style name="TextFieldError" parent="@android:style/TextAppearance">
+    <style name="TextFieldError">
         <item name="android:textColor">@color/errorRed</item>
         <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="ToggleButton" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@drawable/apartment_toggle</item>
+        <item name="android:textColor">@drawable/apartment_toggle_text</item>
+        <item name="android:button">@null</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/questrial</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="MatchPopUp" parent="Theme.MaterialComponents.Light.NoActionBar">

@@ -2,8 +2,6 @@ package com.example.roomieprototype;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-import link.fls.swipestack.SwipeStack;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +9,6 @@ import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomappbar.BottomAppBar;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -26,14 +22,6 @@ import java.util.ArrayList;
 
 public class MatchingScreen extends AppCompatActivity {
 
-    public String imgStr;
-
-    private ArrayList<String> mData;
-    private SwipeStack mSwipeStack;
-    private FragmentMatch.SwipeStackAdapter mAdapter;
-    public int count;
-    private FloatingActionButton mButtonLeft, mButtonRight, mRewind;
-    private DrawerLayout drawerLayout;
     private Query firebaseUsers;
     private FirebaseFirestore db;
     private FirebaseUser user;
@@ -46,8 +34,6 @@ public class MatchingScreen extends AppCompatActivity {
     private String userApart;
     private String userDorm;
     private ArrayList<String> matchList;
-
-    public BottomAppBar bottomAppBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
