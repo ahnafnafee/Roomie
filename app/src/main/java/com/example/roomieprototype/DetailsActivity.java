@@ -101,22 +101,22 @@ public class DetailsActivity extends AppCompatActivity implements DecodeBitmapTa
         int bigResId;
         switch (smallResId) {
             case R.drawable.p1:
-                bigResId = R.drawable.p1_big;
+                bigResId = R.drawable.p1;
                 break;
             case R.drawable.p2:
-                bigResId = R.drawable.p2_big;
+                bigResId = R.drawable.p2;
                 break;
             case R.drawable.p3:
-                bigResId = R.drawable.p3_big;
+                bigResId = R.drawable.p3;
                 break;
             case R.drawable.p4:
-                bigResId = R.drawable.p4_big;
+                bigResId = R.drawable.p4;
                 break;
             case R.drawable.p5:
-                bigResId = R.drawable.p5_big;
+                bigResId = R.drawable.p5;
                 break;
             default:
-                bigResId = R.drawable.p1_big;
+                bigResId = R.drawable.p1;
         }
 
         final DisplayMetrics metrics = new DisplayMetrics();

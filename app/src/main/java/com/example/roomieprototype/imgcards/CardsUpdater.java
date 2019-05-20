@@ -30,24 +30,6 @@ public class CardsUpdater extends DefaultViewUpdater {
             ViewCompat.setAlpha(imageView, 1f);
         }
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            final CardSliderLayoutManager lm =  getLayoutManager();
-            final float ratio = (float) lm.getDecoratedLeft(view) / lm.getActiveCardLeft();
-
-            final float z;
-
-            if (position < 0) {
-                z = Z_CENTER_1 * ratio;
-            } else if (position < 0.5f) {
-                z = Z_CENTER_1;
-            } else if (position < 1f) {
-                z = Z_CENTER_2;
-            } else {
-                z = Z_RIGHT;
-            }
-
-            card.setCardElevation(Math.max(0, z));
-        }
     }
 
 }

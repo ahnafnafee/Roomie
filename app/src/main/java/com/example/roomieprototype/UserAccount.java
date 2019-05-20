@@ -2,7 +2,6 @@ package com.example.roomieprototype;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,7 @@ import com.ramotion.cardslider.CardSnapHelper;
 public class UserAccount extends AppCompatActivity {
 
     private final int[] pics = {R.drawable.p1, R.drawable.p2, R.drawable.p3, R.drawable.p4, R.drawable.p5};
-    private final SliderAdapter sliderAdapter = new SliderAdapter(pics, 20, new OnCardClickListener());
+    private final SliderAdapter sliderAdapter = new SliderAdapter(pics, 5, new OnCardClickListener());
 
     private CardSliderLayoutManager layoutManger;
     private RecyclerView recyclerView;
@@ -38,7 +37,7 @@ public class UserAccount extends AppCompatActivity {
     }
 
     private void initRecyclerView() {
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setAdapter(sliderAdapter);
         recyclerView.setHasFixedSize(true);
 
@@ -93,7 +92,7 @@ public class UserAccount extends AppCompatActivity {
         @Override
         public View makeView() {
             final ImageView imageView = new ImageView(UserAccount.this);
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 
             final ViewGroup.LayoutParams lp = new ImageSwitcher.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             imageView.setLayoutParams(lp);
