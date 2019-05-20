@@ -33,6 +33,7 @@
             android:name=".CardStack"
             android:theme="@style/AppTheme" />
         <activity android:name=".UserAccount" />
+        <activity android:name=".DetailsActivity" />
     </application>
 
 </manifest>

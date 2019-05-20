@@ -12,7 +12,7 @@
         <LinearLayout
             android:id="@+id/gradient_rect_1"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="140dp"
             android:background="@drawable/login_card"
             android:orientation="vertical"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -21,8 +21,8 @@
 
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/user_dp"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:scaleType="centerInside"
             android:src="@drawable/main_dp"
             app:layout_constraintBottom_toBottomOf="@id/gradient_rect_1"
@@ -44,6 +44,18 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/user_dp" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/account_fullname"
+            android:layout_marginTop="16dp"
+            android:clipChildren="false"
+            android:overScrollMode="never"
+            app:layoutManager="com.ramotion.cardslider.CardSliderLayoutManager"/>
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,7 +69,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/account_fullname">
+            app:layout_constraintTop_toBottomOf="@id/recycler_view">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
