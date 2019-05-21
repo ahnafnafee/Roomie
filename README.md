@@ -5,26 +5,34 @@
 
 *Tinder Style Roommate Finder App*
 
-### Problem Statement
+# Problem Statement
 
 Coming into college, most of us are faced with the irritating dilemma of finding a good roommate. There really are not any good sites to find roommates without going through a lot of hassle. 
 
 What if there was an app that could say goodbye to all those hassles and present the user with simplicity and connectivity?
 
-### Abstract
+# Abstract
 
 This application works similarly to the Tinder app, where instead of matching with a potential partner, the user will be able to match with a potential roommate. It is targeted towards college students people are looking for roommates. They are able to input their major, hobbies, and other preferences as well as their school or their general location where they are looking for roommates. The app will then generate potential roommates with similar interests for the user to match with, and the user can decide whether they want to reach out to their matches or not. 
 
-### Team
+# Team
 
-| Name              | Role                       |
-| ----------------- | -------------------------- |
-| Tapasya Sharma    | Database Administrator     |
-| Ahnaf An Nafee    | Scrum Master               |
-| Saharsh Vedi      | Android/Database Developer |
-| Hirali Patel      | Product Owner              |
-| Mahita Tatavarthy | Developer                  |
+| Name              | Role                                          |
+| ----------------- | --------------------------------------------- |
+| Tapasya Sharma    | Database Administrator                        |
+| Ahnaf An Nafee    | Scrum Master / Developer / Technical Designer |
+| Saharsh Vedi      | Android / Database Developer                  |
+| Hirali Patel      | Product Owner                                 |
+| Mahita Tatavarthy | Developer                                     |
 
-### Libraries Implemented
+# Libraries Implemented
 
-1. flschweiger/SwipeStack: <https://github.com/flschweiger/SwipeStack>
+1. flschweiger/SwipeStack: [A simple, customizable and easy to use swipeable view stack for Android.](https://github.com/flschweiger/SwipeStack)
+2. lopspower/CircularImageView: [Create circular ImageView in Android in the simplest way possible.](https://github.com/lopspower/CircularImageView)
+3. MdFarhanRaja/SearchableSpinner: [Fully Searchable Spiner Dialog](https://github.com/MdFarhanRaja/SearchableSpinner)
+4. Ramotion/cardslider-android: [Cardslider is a material design UI controller that allows you to swipe through cards with pictures and accompanying descriptions.](https://github.com/Ramotion/cardslider-android)
+
+# License
+
+Roomie is licensed under Mozilla Public License 2.0 license. View [license](https://github.com/ahnafnafee/RoomiePrototype/blob/master/LICENSE).
+
