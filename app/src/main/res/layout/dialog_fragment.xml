@@ -34,18 +34,11 @@
             android:id="@+id/diag_msg_btn"
             android:layout_width="176dp"
             android:layout_height="50dp"
+            style="@style/Dialog.UnelevatedButton"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="130dp"
-            android:fontFamily="@font/questrial"
-            android:text="Send a message"
-            android:textAllCaps="false"
-            android:textColor="@color/dark_purpblue"
-            app:backgroundTint="@color/white"
-            app:cornerRadius="16dp"
-            app:rippleColor="#D0BEFF"
-            app:strokeColor="@color/dark_purpblue"
-            app:strokeWidth="1dp" />
+            android:text="Send a message" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/playin_btn"
@@ -54,15 +47,8 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="24dp"
-            android:fontFamily="@font/questrial"
-            android:text="Keep playing"
-            android:textAllCaps="false"
-            android:textColor="@color/dark_purpblue"
-            app:backgroundTint="@color/white"
-            app:cornerRadius="16dp"
-            app:rippleColor="#D0BEFF"
-            app:strokeColor="@color/dark_purpblue"
-            app:strokeWidth="1dp" />
+            style="@style/Dialog.UnelevatedButton"
+            android:text="Keep playing" />
 
 
     </RelativeLayout>

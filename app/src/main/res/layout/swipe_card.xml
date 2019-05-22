@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,23 +8,111 @@
     card_view:cardCornerRadius="@dimen/card_corner_radius"
     card_view:cardElevation="@dimen/elevation_large">
 
-    <ImageView
-        android:id="@+id/imgView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:scaleType="centerCrop"
-        android:foreground="@drawable/img_overaly"
-        android:src="@drawable/pic4"
-        android:textSize="44sp"
-        tools:ignore="UnusedAttribute" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textViewCard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="350dp"
-        android:textSize="44sp"
-        android:text="@string/card_name"/>
+        <ImageView
+            android:id="@+id/imgView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foreground="@drawable/img_overaly"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pic4"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintLeft_toLeftOf="parent"
+            card_view:layout_constraintRight_toRightOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UnusedAttribute" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/user_item_rel"
+            android:layout_width="match_parent"
+            android:layout_height="102dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/swipe_info_block"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintLeft_toLeftOf="parent"
+            card_view:layout_constraintRight_toRightOf="parent">
+
+            <TextView
+                android:id="@+id/textViewCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/questrial"
+                android:paddingTop="8dp"
+                android:text="@string/card_name"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/user_chip_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:chipSpacingHorizontal="8dp"
+                app:layout_constraintBottom_toTopOf="@id/university_name"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewCard"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:text="Relatively Neat"
+                    android:textColor="@color/dark_purpblue"
+                    android:textSize="12sp"
+                    app:chipBackgroundColor="@color/gender_chip_color"
+                    app:chipStrokeColor="@color/colorAccent"
+                    app:chipStrokeWidth="1dp"
+                    app:rippleColor="#A295F9" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:gravity="center_horizontal"
+                    android:text="Vegan"
+                    android:textColor="@color/dark_purpblue"
+                    android:textSize="12sp"
+                    app:chipBackgroundColor="@color/gender_chip_color"
+                    app:chipStrokeColor="@color/colorAccent"
+                    app:chipStrokeWidth="1dp"
+                    app:rippleColor="#A295F9" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/super_lock"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:src="@drawable/swipe_super_lock"
+                app:civ_border_width="0dp"
+                app:layout_constraintRight_toRightOf="parent"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/university_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/questrial"
+                android:text="Drexel University, '23"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/user_chip_group" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

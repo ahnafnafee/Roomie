@@ -15,7 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MatchingScreen"></activity>
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name"
@@ -29,9 +28,12 @@
         <activity android:name=".SignUpActivity1" />
         <activity android:name=".SignUpActivity2" />
         <activity android:name=".SignUpActivity3" />
+        <activity android:name=".MatchingScreen" />
         <activity
             android:name=".CardStack"
             android:theme="@style/AppTheme" />
+        <activity android:name=".UserAccount" />
+        <activity android:name=".DetailsActivity" />
     </application>
 
 </manifest>

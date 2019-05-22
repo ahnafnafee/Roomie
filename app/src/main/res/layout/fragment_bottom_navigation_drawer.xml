@@ -26,7 +26,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/lato_regular"
-        android:text="Angela Moss"
+        android:text="Alison Taylor"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -49,7 +49,8 @@
         android:layout_width="54dp"
         android:layout_height="54dp"
         android:layout_marginStart="16dp"
-        android:src="@drawable/user_dp"
+        android:src="@drawable/main_dp"
+        android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/user_fullname" />
 

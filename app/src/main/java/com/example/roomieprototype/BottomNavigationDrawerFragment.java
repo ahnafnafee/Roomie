@@ -69,6 +69,7 @@ public class BottomNavigationDrawerFragment extends BottomSheetDialogFragment {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav1_account:
+                        startActivity(new Intent(getContext(), UserAccount.class));
                         Toast.makeText(getContext(), "My Account", Toast.LENGTH_SHORT).show();
                         return true;
                     case R.id.nav2_logout:

@@ -10,9 +10,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import link.fls.swipestack.SwipeStack;
@@ -24,8 +25,6 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
     private SwipeStack mSwipeStack;
     private SwipeStackAdapter mAdapter;
     public ImageView mSkipView, mLikeView;
-    private FloatingActionButton mBottomFAB;
-    private View mAdd;
     public int count;
     private ArrayList<String> matchList;
 
@@ -51,13 +50,9 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
 
         mLikeView = RootView.findViewById(R.id.like_view);
         mSkipView = RootView.findViewById(R.id.skip_view);
-        mAdd = RootView.findViewById(R.id.divider);
-
-        mBottomFAB = RootView.findViewById(R.id.appbar_fab);
 
         mLikeView.setOnClickListener(this);
         mSkipView.setOnClickListener(this);
-        mAdd.setOnClickListener(this);
 
         mData = new ArrayList<>();
         mAdapter = new SwipeStackAdapter(mData,matchList);
@@ -95,9 +90,6 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
         } else if (v.equals(mLikeView)) {
             mSwipeStack.swipeTopViewToRight();
             DialogFrag.display(getFragmentManager());
-        } else if (v.equals(mAdd)) {
-            mData.add(imageSwitch());
-            mAdapter.notifyDataSetChanged();
         }
 
     }
