@@ -1,6 +1,9 @@
 package com.example.roomieprototype;
 
 
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -15,10 +18,16 @@ import android.widget.Toast;
 //import android.widget.Toast;
 
 //import com.google.android.gms.tasks.Tasks;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 //import com.google.android.material.navigation.NavigationView;
 //import com.google.android.material.snackbar.Snackbar;
 //import com.google.firebase.auth.FirebaseAuth;
@@ -54,18 +63,28 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
     BottomNavigationView bottomNavigationView;
 
     private FloatingActionButton mBottomFAB;
-    private ArrayList<String> matchList;
+    private ArrayList<String> matchList, matchEmailList;
     private FragmentMatch fragmentMatch;
+    private FirebaseStorage storage;
+    private StorageReference storageReference;
+    private StorageReference userPicRef;
+    private FirebaseFirestore db;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
+        // firebase storage initiated
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
         matchList = getIntent().getStringArrayListExtra("matchList");
+        matchEmailList = getIntent().getStringArrayListExtra("matchEmailList");
         Log.d("TAG","cardstack"+matchList.toString());
         Bundle bundle = new Bundle();
         bundle.putStringArrayList("matchList", matchList);
+        bundle.putStringArrayList("matchEmailList", matchEmailList);
         // set Fragmentclass Arguments
         fragmentMatch = new FragmentMatch();
         fragmentMatch.setArguments(bundle);
@@ -147,4 +166,5 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
         }
         return false;
     }
+
 }
