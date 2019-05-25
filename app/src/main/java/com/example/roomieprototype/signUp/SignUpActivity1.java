@@ -1,4 +1,4 @@
-package com.example.roomieprototype;
+package com.example.roomieprototype.signUp;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.roomieprototype.LoginActivity;
+import com.example.roomieprototype.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -18,11 +20,15 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.HashMap;
 
 public class SignUpActivity1 extends AppCompatActivity {
     private TextInputEditText mFullNameView;
@@ -39,6 +45,7 @@ public class SignUpActivity1 extends AppCompatActivity {
 
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
+    private DatabaseReference reference;
 
 
     @Override
@@ -115,15 +122,28 @@ public class SignUpActivity1 extends AppCompatActivity {
                         if (task.isSuccessful()) {
 
                             // store in firebase db
-                            RegData regData = new RegData(
+                            final RegData regData = new RegData(
                                     fullname,
                                     email
                             );
+
+                            FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                            assert firebaseUser != null;
+                            String userid = firebaseUser.getUid();
+                            reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+
+                            final HashMap<String, String> hashMap = new HashMap<>();
+                            hashMap.put("id", userid);
+                            hashMap.put("email", email);
+                            hashMap.put("fullname", fullname);
+                            hashMap.put("imageURL", "default");
+                            hashMap.put("status", "offline");
 
                             docRef.set(regData)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
+                                            reference.setValue(hashMap);
                                             Toast.makeText(SignUpActivity1.this, "Registered Successfully", Toast.LENGTH_LONG).show();
                                             Intent myIntent = new Intent(getBaseContext(), SignUpActivity2.class);
                                             startActivity(myIntent);

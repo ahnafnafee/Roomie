@@ -26,15 +26,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpActivity1" />
-        <activity android:name=".SignUpActivity2" />
-        <activity android:name=".SignUpActivity3" />
+        <activity android:name=".signUp.SignUpActivity1" />
+        <activity android:name=".signUp.SignUpActivity2" />
+        <activity android:name=".signUp.SignUpActivity3" />
         <activity android:name=".MatchingScreen" />
+        <activity android:name=".MessageActivity" />
         <activity
             android:name=".CardStack"
             android:theme="@style/AppTheme" />
         <activity android:name=".UserAccount" />
         <activity android:name=".DetailsActivity" />
+
     </application>
 
 </manifest>

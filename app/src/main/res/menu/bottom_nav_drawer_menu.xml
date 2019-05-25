@@ -4,7 +4,7 @@
         <item
             android:id="@+id/nav1_account"
             android:icon="@drawable/ic_user"
-            android:title="Account Details" />
+            android:title="My Profile" />
         <item
             android:id="@+id/nav2_logout"
             android:icon="@drawable/ic_logout"

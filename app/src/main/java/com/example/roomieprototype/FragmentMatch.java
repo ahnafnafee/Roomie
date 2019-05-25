@@ -92,15 +92,17 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
         mSkipView.setOnClickListener(this);
 
         mData = new ArrayList<>();
-        mAdapter = new SwipeStackAdapter(mData,matchList);
+        mAdapter = new SwipeStackAdapter(mData, matchList);
         mSwipeStack.setAdapter(mAdapter);
         mSwipeStack.setListener(this);
         fillWithTestData();
         Log.d("TAG",mData.toString()+"before change");
+      
         // firebase storage initiated
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         i = 2;
+
 
         for(int j = 0;j<matchSize;j++) {
                 Log.d("TAG","0th if statement");
@@ -143,7 +145,7 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
     public String imageSwitch() {
         count++;
 
-        if (count == matchList.size()+1) {
+        if (count == matchList.size() + 1) {
             count = 1;
         }
         String uri = "drawable/pic" + count;

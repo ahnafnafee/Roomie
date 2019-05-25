@@ -53,4 +53,8 @@
         <item name="listPreferredItemHeightSmall">56dp</item>
     </style>
 
+    <style name="MenuStyle" parent="Theme.MaterialComponents.Light">
+        <item name="android:background">@android:color/white</item>
+    </style>
+
 </resources>

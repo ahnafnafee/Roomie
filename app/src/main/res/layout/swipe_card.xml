@@ -18,7 +18,6 @@
             android:layout_height="match_parent"
             android:foreground="@drawable/img_overaly"
             android:scaleType="centerCrop"
-            android:src="@drawable/pic4"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintLeft_toLeftOf="parent"
             card_view:layout_constraintRight_toRightOf="parent"

@@ -1,4 +1,4 @@
-package com.example.roomieprototype;
+package com.example.roomieprototype.signUp;
 
 public class RegData {
 

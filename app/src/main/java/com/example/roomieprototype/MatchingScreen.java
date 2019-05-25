@@ -353,6 +353,7 @@ public class MatchingScreen extends AppCompatActivity {
                                                 if (match.equals(1)) {
                                                     matchList.add(document.getData().get("fullname").toString());
                                                     matchEmailList.add(document.getData().get("email").toString());
+
                                                     if(document.getData().containsKey(user.getEmail()))
                                                         swipedRightBy.add(document.getData().get("email").toString());
                                                     count++;
