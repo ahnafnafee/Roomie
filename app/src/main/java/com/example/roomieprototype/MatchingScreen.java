@@ -35,7 +35,7 @@ public class MatchingScreen extends AppCompatActivity {
     private String userTemperature;
     private String userApart;
     private String userDorm;
-    private ArrayList<String> matchList, matchEmailList;
+    private ArrayList<String> matchList, matchEmailList, swipedRightBy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,7 @@ public class MatchingScreen extends AppCompatActivity {
         firebaseUsers = db.collection("userData");
         matchList = new ArrayList<>();
         matchEmailList = new ArrayList<>();
+        swipedRightBy = new ArrayList<>();
         Task task = ((CollectionReference) firebaseUsers).document(user.getEmail()).get();
 
         task.addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -79,7 +80,7 @@ public class MatchingScreen extends AppCompatActivity {
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     Integer count = 0;
-                                    for(QueryDocumentSnapshot document : task.getResult()) {
+                                    for(final QueryDocumentSnapshot document : task.getResult()) {
                                         if(!(user.getEmail().equals(document.getData().get("email").toString()))) {
                                             Integer points = 0;
                                             Integer match = 1;
@@ -352,6 +353,9 @@ public class MatchingScreen extends AppCompatActivity {
                                                 if (match.equals(1)) {
                                                     matchList.add(document.getData().get("fullname").toString());
                                                     matchEmailList.add(document.getData().get("email").toString());
+
+                                                    if(document.getData().containsKey(user.getEmail()))
+                                                        swipedRightBy.add(document.getData().get("email").toString());
                                                     count++;
                                                     Log.d("TAG:", user.getEmail() + " is matched with " + document.getId());
                                                 }
@@ -361,6 +365,7 @@ public class MatchingScreen extends AppCompatActivity {
                                     Intent myIntent2 = new Intent(getBaseContext(), CardStack.class);
                                     myIntent2.putExtra("matchList", matchList);
                                     myIntent2.putExtra("matchEmailList", matchEmailList);
+                                    myIntent2.putExtra("swipedRightBy", swipedRightBy);
                                     startActivity(myIntent2);
                                 }
                                 else {

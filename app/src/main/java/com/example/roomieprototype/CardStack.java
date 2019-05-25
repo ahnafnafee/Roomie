@@ -1,16 +1,23 @@
 package com.example.roomieprototype;
 
 
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import com.example.roomieprototype.messages.Fragments.FragmentMessages;
+import android.widget.Toast;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -35,13 +42,14 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
     BottomNavigationView bottomNavigationView;
 
     private FloatingActionButton mBottomFAB;
-    private ArrayList<String> matchList, matchEmailList;
+    private ArrayList<String> matchList, matchEmailList, swipedRightBy;
     private FragmentMatch fragmentMatch;
     private FirebaseStorage storage;
     private StorageReference storageReference;
     private StorageReference userPicRef;
     private FirebaseFirestore db;
     private FirebaseUser user;
+  
     DatabaseReference reference;
 
     @Override
@@ -54,10 +62,13 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
         storageReference = storage.getReference();
         matchList = getIntent().getStringArrayListExtra("matchList");
         matchEmailList = getIntent().getStringArrayListExtra("matchEmailList");
-        Log.d("TAG", "cardstack" + matchList.toString());
+        swipedRightBy = getIntent().getStringArrayListExtra("swipedRightBy");
+        Log.d("TAG","cardstack"+matchList.toString());
         Bundle bundle = new Bundle();
         bundle.putStringArrayList("matchList", matchList);
         bundle.putStringArrayList("matchEmailList", matchEmailList);
+        bundle.putStringArrayList("swipedRightBy", swipedRightBy);
+      
         // set Fragmentclass Arguments
         fragmentMatch = new FragmentMatch();
         fragmentMatch.setArguments(bundle);
@@ -165,5 +176,4 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
         super.onPause();
         status("offline");
     }
-
 }
