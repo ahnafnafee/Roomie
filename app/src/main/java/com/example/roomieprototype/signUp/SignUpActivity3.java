@@ -1,9 +1,13 @@
-package com.example.roomieprototype;
+package com.example.roomieprototype.signUp;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.roomieprototype.CardStack;
+import com.example.roomieprototype.MatchingScreen;
+import com.example.roomieprototype.R;
 import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

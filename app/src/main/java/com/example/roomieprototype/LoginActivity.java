@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.roomieprototype.signUp.SignUpActivity1;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -19,6 +20,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -98,6 +100,22 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    FirebaseUser firebaseUser;
+
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//
+//        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+//
+//        //check if user is null
+//        if (firebaseUser != null){
+//            Intent intent = new Intent(LoginActivity.this, CardStack.class);
+//            startActivity(intent);
+//            finish();
+//        }
+//    }
 
 
     private void attemptLogin() {

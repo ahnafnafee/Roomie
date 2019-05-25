@@ -62,7 +62,7 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
         if (bundle != null) {
             matchList = bundle.getStringArrayList("matchList");
             matchEmailList = bundle.getStringArrayList("matchEmailList");
-            Log.d("TAG","fragmentmatch"+matchList.toString());
+            Log.d("TAG", "fragmentmatch" + matchList.toString());
         }
 
         count = 0;
@@ -77,35 +77,35 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
         mSkipView.setOnClickListener(this);
 
         mData = new ArrayList<>();
-        mAdapter = new SwipeStackAdapter(mData,matchList);
+        mAdapter = new SwipeStackAdapter(mData, matchList);
         mSwipeStack.setAdapter(mAdapter);
         mSwipeStack.setListener(this);
         fillWithTestData();
-        Log.d("TAG",mData.toString()+"before change");
+        Log.d("TAG", mData.toString() + "before change");
         // firebase storage initiated
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         i = 2;
 
-        for(int j = 0;j<matchSize;j++) {
-                Log.d("TAG","0th if statement");
-                userPicRef = storageReference.child(matchEmailList.get(j));
-                final long ONE_MEGABYTE = 1024 * 1024 * 10;
-                final int g = j;
-                userPicRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                    @Override
-                    public void onSuccess(byte[] bytes) {
-                        Drawable image = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
-                        mData.set(g,image);
-                        mAdapter.refresh(mData);
-                        mSwipeStack.resetStack();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle any errors
-                    }
-                });
+        for (int j = 0; j < matchSize; j++) {
+            Log.d("TAG", "0th if statement");
+            userPicRef = storageReference.child(matchEmailList.get(j));
+            final long ONE_MEGABYTE = 1024 * 1024 * 10;
+            final int g = j;
+            userPicRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                @Override
+                public void onSuccess(byte[] bytes) {
+                    Drawable image = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+                    mData.set(g, image);
+                    mAdapter.refresh(mData);
+                    mSwipeStack.resetStack();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle any errors
+                }
+            });
 
 
         }
@@ -128,7 +128,7 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
     public String imageSwitch() {
         count++;
 
-        if (count == matchList.size()+1) {
+        if (count == matchList.size() + 1) {
             count = 1;
         }
         String uri = "drawable/pic" + count;
@@ -178,7 +178,7 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
         private List<Drawable> mPic;
         private List<String> mText;
 
-        public SwipeStackAdapter(List<Drawable> data1,List<String> data2 ) {
+        public SwipeStackAdapter(List<Drawable> data1, List<String> data2) {
             this.mPic = data1;
             this.mText = data2;
         }
@@ -198,8 +198,7 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
             return position;
         }
 
-        public void refresh(List<Drawable> data3)
-        {
+        public void refresh(List<Drawable> data3) {
             this.mPic = data3;
             notifyDataSetChanged();
         }
