@@ -16,26 +16,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:background="?attr/colorPrimary"
+            android:background="?attr/colorPrimaryDark"
             android:minHeight="?attr/actionBarSize"
-            app:titleTextColor="@android:color/white" />
+            app:titleTextColor="@android:color/white">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:background="@color/colorPrimaryDark"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poiret_one"
+                android:textColor="@color/white"
+                android:textSize="28dp"
+                android:text="messages"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <RelativeLayout
+            android:id="@+id/rel2_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/toolbar" />
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar"
+            android:layout_alignParentBottom="true">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:fontFamily="@font/poiret_one"
-            android:text="Messages"
-            android:textColor="@color/black"
-            android:textSize="50sp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
+        </RelativeLayout>
 
     </RelativeLayout>
 

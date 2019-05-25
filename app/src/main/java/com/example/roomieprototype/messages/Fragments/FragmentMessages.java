@@ -22,7 +22,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 
@@ -40,6 +39,8 @@ public class FragmentMessages extends Fragment {
 
     private UserAdapter userAdapter;
     private List<User> mUsers;
+
+    private List<String> sUsers, cUsers;
 
     private ArrayList<String> matchList, matchEmailList, xUserList;
 
@@ -68,6 +69,8 @@ public class FragmentMessages extends Fragment {
 
         usersList = new ArrayList<>();
         mUsers = new ArrayList<>();
+        sUsers = new ArrayList<>();
+        cUsers = new ArrayList<>();
         xUserList = new ArrayList<>();
 
         readUsers();
@@ -118,7 +121,6 @@ public class FragmentMessages extends Fragment {
                     queryChatList.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            Log.d("child query", String.valueOf(dataSnapshot));
                             for (final String item: xUserList) {
                                 final DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("Chatlist")
                                         .child(fuser.getUid())
@@ -129,8 +131,6 @@ public class FragmentMessages extends Fragment {
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         if (!dataSnapshot.exists()){
                                             chatRef.child("id").setValue(item);
-                                            Log.d("DataSnapshot 1",""+ chatRef.child("id"));
-                                            Log.d("DataSnapshot 1",""+ dataSnapshot);
                                         }
                                     }
 
@@ -143,9 +143,7 @@ public class FragmentMessages extends Fragment {
                                 final DatabaseReference chatRefReceiver = FirebaseDatabase.getInstance().getReference("Chatlist")
                                         .child(item)
                                         .child(fuser.getUid());
-                                Log.d("DataSnapshot 2",""+ chatRefReceiver);
                                 chatRefReceiver.child("id").setValue(fuser.getUid());
-                                Log.d("DataSnapshot 2",""+ chatRefReceiver.child("id"));
                             }
                         }
 
@@ -185,10 +183,13 @@ public class FragmentMessages extends Fragment {
                     for (Chatlist chatlist : usersList){
                         if (user!=null && user.getId() != null && !user.getId().equals(chatlist.getId())){
                             mUsers.add(user);
-                            Log.d("Inside ChatList", String.valueOf(mUsers));
+                            Log.d("Within ChatList: ", String.valueOf(user));
+                            break;
                         }
                     }
                 }
+
+
                 Log.d("Inside ChatList", String.valueOf(mUsers));
                 for (User u: mUsers) {
                     Log.d("Fullname", String.valueOf(u.getFullname()));
