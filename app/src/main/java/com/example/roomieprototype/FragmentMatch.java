@@ -135,7 +135,7 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
 
     public void fillWithTestData() {
         for (int x = 0; x < matchList.size(); x++) {
-            imgStr = "drawable/pic" + (x + 1);
+            imgStr = "drawable/pic1";
             int imageResource = getResources().getIdentifier(imgStr, null, "com.example.roomieprototype");
             Drawable image = getResources().getDrawable(imageResource);
             mData.add(image);
