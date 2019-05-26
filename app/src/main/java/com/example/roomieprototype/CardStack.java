@@ -35,7 +35,7 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
     BottomNavigationView bottomNavigationView;
 
     private FloatingActionButton mBottomFAB;
-    private ArrayList<String> matchList, matchEmailList;
+    private ArrayList<String> matchList, matchEmailList, swipedRightBy;
     private FragmentMatch fragmentMatch;
     private FirebaseStorage storage;
     private StorageReference storageReference;
@@ -55,12 +55,14 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
         if (getIntent()!=null) {
             matchList = getIntent().getStringArrayListExtra("matchList");
             matchEmailList = getIntent().getStringArrayListExtra("matchEmailList");
+            swipedRightBy = getIntent().getStringArrayListExtra("swipedRightBy");
 
             Log.d("TAG", "cardstack" + matchList.toString());
 
             Bundle bundle = new Bundle();
             bundle.putStringArrayList("matchList", matchList);
             bundle.putStringArrayList("matchEmailList", matchEmailList);
+            bundle.putStringArrayList("swipedRightBy", swipedRightBy);
             // set Fragmentclass Arguments
             fragmentMatch = new FragmentMatch();
             fragmentMatch.setArguments(bundle);

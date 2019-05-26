@@ -72,7 +72,6 @@ public class UserAccount extends AppCompatActivity {
                 DataSnapshot snapshot = (DataSnapshot) dataSnapshot.child(userid);
                 userInfo = snapshot.getValue(User.class);
                 assert userInfo != null;
-                Log.d("CurrentUser", String.valueOf(userInfo.getImageURL()));
 
                 userDP = findViewById(R.id.user_dp);
                 if (userInfo.getId()!=null) {
