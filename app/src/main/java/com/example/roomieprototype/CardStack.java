@@ -6,13 +6,6 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import com.example.roomieprototype.messages.Fragments.FragmentMessages;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -29,6 +22,12 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 
 public class CardStack extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -36,14 +35,13 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
     BottomNavigationView bottomNavigationView;
 
     private FloatingActionButton mBottomFAB;
-    private ArrayList<String> matchList, matchEmailList, swipedRightBy;
+    private ArrayList<String> matchList, matchEmailList;
     private FragmentMatch fragmentMatch;
     private FirebaseStorage storage;
     private StorageReference storageReference;
     private StorageReference userPicRef;
     private FirebaseFirestore db;
     private FirebaseUser user;
-  
     DatabaseReference reference;
 
     @Override
@@ -54,18 +52,20 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
         // firebase storage initiated
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
-        matchList = getIntent().getStringArrayListExtra("matchList");
-        matchEmailList = getIntent().getStringArrayListExtra("matchEmailList");
-        swipedRightBy = getIntent().getStringArrayListExtra("swipedRightBy");
-        Log.d("TAG","cardstack"+matchList.toString());
-        Bundle bundle = new Bundle();
-        bundle.putStringArrayList("matchList", matchList);
-        bundle.putStringArrayList("matchEmailList", matchEmailList);
-        bundle.putStringArrayList("swipedRightBy", swipedRightBy);
-      
-        // set Fragmentclass Arguments
-        fragmentMatch = new FragmentMatch();
-        fragmentMatch.setArguments(bundle);
+        if (getIntent()!=null) {
+            matchList = getIntent().getStringArrayListExtra("matchList");
+            matchEmailList = getIntent().getStringArrayListExtra("matchEmailList");
+
+            Log.d("TAG", "cardstack" + matchList.toString());
+
+            Bundle bundle = new Bundle();
+            bundle.putStringArrayList("matchList", matchList);
+            bundle.putStringArrayList("matchEmailList", matchEmailList);
+            // set Fragmentclass Arguments
+            fragmentMatch = new FragmentMatch();
+            fragmentMatch.setArguments(bundle);
+        }
+
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
@@ -170,4 +170,5 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
         super.onPause();
         status("offline");
     }
+
 }
