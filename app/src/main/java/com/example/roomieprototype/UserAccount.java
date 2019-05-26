@@ -2,21 +2,41 @@ package com.example.roomieprototype;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.roomieprototype.imgcards.SliderAdapter;
 import com.example.roomieprototype.imgutils.DecodeBitmapTask;
+import com.example.roomieprototype.messages.Adapter.UserAdapter;
+import com.example.roomieprototype.messages.Model.Chatlist;
+import com.example.roomieprototype.messages.Model.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.ramotion.cardslider.CardSliderLayoutManager;
 import com.ramotion.cardslider.CardSnapHelper;
+
+import java.io.InputStream;
 
 public class UserAccount extends AppCompatActivity {
 
@@ -27,13 +47,82 @@ public class UserAccount extends AppCompatActivity {
     private RecyclerView recyclerView;
     private int currentPosition;
     private DecodeBitmapTask decodeMapBitmapTask;
+    private FirebaseUser cUser;
+    public User userInfo;
+    private CircularImageView userDP;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_account);
 
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        cUser = mAuth.getCurrentUser();
+
         initRecyclerView();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+        final String userid = cUser.getUid();
+        String email = cUser.getEmail();
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                DataSnapshot snapshot = (DataSnapshot) dataSnapshot.child(userid);
+                userInfo = snapshot.getValue(User.class);
+                assert userInfo != null;
+                Log.d("CurrentUser", String.valueOf(userInfo.getImageURL()));
+
+                userDP = findViewById(R.id.user_dp);
+                if (userInfo.getId()!=null) {
+                    new DownloadImageTask(userDP)
+                            .execute(userInfo.getImageURL());
+                }
+
+                TextView fullname = findViewById(R.id.account_fullname);
+                fullname.setText(userInfo.getFullname().toLowerCase());
+
+                EditText eName = findViewById(R.id.name_edit);
+                eName.setText(userInfo.getFullname());
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
+    }
+
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
     }
 
     private void initRecyclerView() {

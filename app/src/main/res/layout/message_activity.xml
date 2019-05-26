@@ -49,29 +49,28 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:padding="5dp"
+        android:padding="10dp"
         android:id="@+id/bottom"
         android:background="#fff"
         android:layout_alignParentBottom="true"
-        android:layout_height="56dp">
+        android:layout_height="wrap_content">
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="36dp"
+            android:layout_height="wrap_content"
             android:id="@+id/text_send"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:paddingTop="6dp"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
+            android:paddingBottom="6dp"
             android:background="@drawable/message_txt_bg"
             android:hint="Type a message..."
             android:layout_toStartOf="@id/btn_send"
             android:layout_centerVertical="true"/>
 
         <ImageButton
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginEnd="8dp"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
             android:layout_marginStart="8dp"
             android:background="@drawable/send_btn"
             android:id="@+id/btn_send"
