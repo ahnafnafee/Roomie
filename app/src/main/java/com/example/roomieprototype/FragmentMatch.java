@@ -1,9 +1,9 @@
 package com.example.roomieprototype;
 
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,26 +14,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import link.fls.swipestack.SwipeStack;
 
@@ -45,7 +37,7 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
     private SwipeStackAdapter mAdapter;
     public ImageView mSkipView, mLikeView;
     public int count;
-    private ArrayList<String> matchList, matchEmailList, swipedRightBy;
+    private ArrayList<String> matchList, matchEmailList;
     private FirebaseStorage storage;
     private StorageReference storageReference;
     private StorageReference userPicRef;
@@ -54,8 +46,6 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
     private Integer i;
     private Integer swipeCount;
     private Integer matchSize;
-    private ArrayList<String> imgURL;
-
 
     public FragmentMatch() {
         // Required empty public constructor
@@ -72,17 +62,8 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
         if (bundle != null) {
             matchList = bundle.getStringArrayList("matchList");
             matchEmailList = bundle.getStringArrayList("matchEmailList");
-            swipedRightBy = bundle.getStringArrayList("swipedRightBy");
             Log.d("TAG", "fragmentmatch" + matchList.toString());
         }
-
-        db = FirebaseFirestore.getInstance();
-
-        // firebase auth initiated
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
-        // firebase user initiated
-        user = mAuth.getCurrentUser();
 
         count = 0;
         swipeCount = 0;
@@ -96,7 +77,6 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
         mSkipView.setOnClickListener(this);
 
         mData = new ArrayList<>();
-        imgURL = new ArrayList<>();
         mAdapter = new SwipeStackAdapter(mData, matchList);
         mSwipeStack.setAdapter(mAdapter);
         mSwipeStack.setListener(this);
@@ -110,15 +90,6 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
         for (int j = 0; j < matchSize; j++) {
             Log.d("TAG", "0th if statement");
             userPicRef = storageReference.child(matchEmailList.get(j));
-
-            userPicRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                @Override
-                public void onSuccess(Uri uri) {
-                    imgURL.add((String.valueOf(uri)));
-                }
-            });
-
-
             final long ONE_MEGABYTE = 1024 * 1024 * 10;
             final int g = j;
             userPicRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
@@ -140,17 +111,29 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
         }
 
 
+        //mClose = findViewById(R.id.close_button);
+
         return RootView;
     }
 
-
     public void fillWithTestData() {
         for (int x = 0; x < matchList.size(); x++) {
-            Drawable img = ResourcesCompat.getDrawable(getResources(), R.drawable.white_bg, null);
-            mData.add(img);
+            imgStr = "drawable/pic" + (x + 1);
+            int imageResource = getResources().getIdentifier(imgStr, null, "com.example.roomieprototype");
+            Drawable image = getResources().getDrawable(imageResource);
+            mData.add(image);
         }
     }
 
+    public String imageSwitch() {
+        count++;
+
+        if (count == matchList.size() + 1) {
+            count = 1;
+        }
+        String uri = "drawable/pic" + count;
+        return uri;
+    }
 
     @Override
     public void onClick(View v) {
@@ -158,6 +141,7 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
             mSwipeStack.swipeTopViewToLeft();
         } else if (v.equals(mLikeView)) {
             mSwipeStack.swipeTopViewToRight();
+            DialogFrag.display(getFragmentManager());
         }
 
     }
@@ -172,15 +156,6 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
     public void onViewSwipedToRight(final int position) {
         String swipedElement = mAdapter.getItem(position);
         Toast.makeText(getContext(), "Swiped right", Toast.LENGTH_SHORT).show();
-        if(swipedRightBy.contains(matchEmailList.get(position))) {
-            //matchList.remove(position);
-            DialogFrag.display(getFragmentManager());
-        }else {
-            Map<String, Object> userRight = new HashMap<>();
-            userRight.put(matchEmailList.get(position), matchEmailList.get(position));
-            DocumentReference docRef = db.collection("userData").document(user.getEmail());
-            docRef.set(userRight,SetOptions.merge());
-        }
         //mData.remove(position);
         //matchList.remove(position);
     }
@@ -233,8 +208,6 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
             if (convertView == null) {
                 convertView = getLayoutInflater().inflate(R.layout.swipe_card, parent, false);
             }
-
-            ConstraintLayout topCard = convertView.findViewById(R.id.topCard);
 
             ImageView imgViewCard = convertView.findViewById(R.id.imgView);
 
