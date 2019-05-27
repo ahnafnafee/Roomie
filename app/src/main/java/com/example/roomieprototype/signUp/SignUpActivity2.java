@@ -22,6 +22,7 @@ import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -108,7 +109,7 @@ public class SignUpActivity2 extends AppCompatActivity {
             public void onClick(View v) {
                 // Get the data from an ImageView as bytes
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 40, baos);
                 byte[] data = baos.toByteArray();
 
                 UploadTask uploadTask = userPicRef.putBytes(data);
@@ -120,6 +121,22 @@ public class SignUpActivity2 extends AppCompatActivity {
                 }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        String userid = user.getUid();
+                        String email = user.getEmail();
+
+                        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userid).child("imageURL");
+
+                        storageReference.child(email).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                reference.setValue(String.valueOf(uri));
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                // Handle any errors
+                            }
+                        });
                         // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
                         // ...
                     }
