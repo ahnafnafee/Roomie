@@ -35,7 +35,7 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
     BottomNavigationView bottomNavigationView;
 
     private FloatingActionButton mBottomFAB;
-    private ArrayList<String> matchList, matchEmailList, swipedRightBy;
+    private ArrayList<String> matchList, matchEmailList;
     private FragmentMatch fragmentMatch;
     private FirebaseStorage storage;
     private StorageReference storageReference;
@@ -52,30 +52,23 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
         // firebase storage initiated
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
-        if (getIntent()!=null) {
-            matchList = getIntent().getStringArrayListExtra("matchList");
-            matchEmailList = getIntent().getStringArrayListExtra("matchEmailList");
-            swipedRightBy = getIntent().getStringArrayListExtra("swipedRightBy");
-
-            Log.d("TAG", "cardstack" + matchList.toString());
-
-            Bundle bundle = new Bundle();
-            bundle.putStringArrayList("matchList", matchList);
-            bundle.putStringArrayList("matchEmailList", matchEmailList);
-            bundle.putStringArrayList("swipedRightBy", swipedRightBy);
-            // set Fragmentclass Arguments
-            fragmentMatch = new FragmentMatch();
-            fragmentMatch.setArguments(bundle);
-        }
-
+        matchList = getIntent().getStringArrayListExtra("matchList");
+        matchEmailList = getIntent().getStringArrayListExtra("matchEmailList");
+        Log.d("TAG", "cardstack" + matchList.toString());
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList("matchList", matchList);
+        bundle.putStringArrayList("matchEmailList", matchEmailList);
+        // set Fragmentclass Arguments
+        fragmentMatch = new FragmentMatch();
+        fragmentMatch.setArguments(bundle);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
-        Log.d("TAG",user.getDisplayName());
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.action_empty);
+
 
 
         // Set initial fragment

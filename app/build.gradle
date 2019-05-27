@@ -50,7 +50,6 @@ dependencies {
     // Third party libraries
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
     implementation 'com.mikhaellopez:circularimageview:3.2.0'
     implementation 'link.fls:swipestack:0.3.0'
     implementation 'com.github.MdFarhanRaja:SearchableSpinner:2.0'
