@@ -77,7 +77,6 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
         bottomNavigationView.setSelectedItemId(R.id.action_empty);
 
 
-
         // Set initial fragment
         if (savedInstanceState == null) {
             getSupportFragmentManager()
