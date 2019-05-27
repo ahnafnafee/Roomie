@@ -165,7 +165,6 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
     @Override
     public void onStart() {
         super.onStart();
-        mSwipeStack.resetStack();
     }
 
     @Override
