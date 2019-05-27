@@ -1,6 +1,7 @@
 package com.example.roomieprototype.signUp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
@@ -131,6 +133,11 @@ public class SignUpActivity1 extends AppCompatActivity {
                             assert firebaseUser != null;
                             String userid = firebaseUser.getUid();
                             reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+                            UserProfileChangeRequest updateDisplayName = new UserProfileChangeRequest.Builder().setDisplayName(fullname).build();
+                            UserProfileChangeRequest updateImageURL = new UserProfileChangeRequest.Builder().setPhotoUri(Uri.parse("gs://roomieprototype.appspot.com/"+email)).build();
+
+                            firebaseUser.updateProfile(updateDisplayName);
+                            firebaseUser.updateProfile(updateImageURL);
 
                             final HashMap<String, String> hashMap = new HashMap<>();
                             hashMap.put("id", userid);

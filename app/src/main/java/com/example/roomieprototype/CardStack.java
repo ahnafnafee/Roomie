@@ -71,6 +71,7 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
+        Log.d("TAG",user.getDisplayName());
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);

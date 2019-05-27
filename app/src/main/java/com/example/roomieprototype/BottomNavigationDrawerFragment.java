@@ -3,19 +3,39 @@ package com.example.roomieprototype;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.mikhaellopez.circularimageview.CircularImageView;
 
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLDecoder;
 
 public class BottomNavigationDrawerFragment extends BottomSheetDialogFragment {
 
@@ -52,6 +72,9 @@ public class BottomNavigationDrawerFragment extends BottomSheetDialogFragment {
     };
 
     private ImageView closeButton;
+    private TextView fullName;
+    private CircularImageView userImage;
+    private FirebaseUser user;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -60,6 +83,29 @@ public class BottomNavigationDrawerFragment extends BottomSheetDialogFragment {
         //Get the content View
         View contentView = View.inflate(getContext(), R.layout.fragment_bottom_navigation_drawer, null);
         dialog.setContentView(contentView);
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        fullName = contentView.findViewById(R.id.user_fullname);
+        userImage = contentView.findViewById(R.id.user_profile_pic);
+        Log.d("TAG","name"+user.getDisplayName());
+        fullName.setText(user.getDisplayName());
+
+        // Reference to an image file in Cloud Storage
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(user.getEmail());
+
+        final long ONE_MEGABYTE = 1024 * 1024;
+        storageReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                Drawable image = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+                userImage.setImageDrawable(image);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+
 
         NavigationView navigationView = contentView.findViewById(R.id.navigation_view);
 

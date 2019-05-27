@@ -62,6 +62,7 @@ public class SignUpActivity2 extends AppCompatActivity {
     private Drawable d;
     private FirebaseFirestore db;
     private FirebaseUser user;
+    private DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
