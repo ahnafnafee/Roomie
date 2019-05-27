@@ -3,6 +3,7 @@ package com.example.roomieprototype;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,22 +15,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
 
 import link.fls.swipestack.SwipeStack;
 
@@ -50,6 +54,7 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
     private Integer i;
     private Integer swipeCount;
     private Integer matchSize;
+    private ArrayList<String> imgURL;
 
 
     public FragmentMatch() {
@@ -91,6 +96,7 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
         mSkipView.setOnClickListener(this);
 
         mData = new ArrayList<>();
+        imgURL = new ArrayList<>();
         mAdapter = new SwipeStackAdapter(mData, matchList);
         mSwipeStack.setAdapter(mAdapter);
         mSwipeStack.setListener(this);
@@ -104,6 +110,13 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
         for (int j = 0; j < matchSize; j++) {
             Log.d("TAG", "0th if statement");
             userPicRef = storageReference.child(matchEmailList.get(j));
+
+            userPicRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    imgURL.add((String.valueOf(uri)));
+                }
+            });
 
 
             final long ONE_MEGABYTE = 1024 * 1024 * 10;
@@ -133,13 +146,8 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
 
     public void fillWithTestData() {
         for (int x = 0; x < matchList.size(); x++) {
-
-
-            imgStr = "drawable/pic" + (x + 1);
-            int imageResource = getResources().getIdentifier(imgStr, null, "com.example.roomieprototype");
-            Drawable image = getResources().getDrawable(imageResource);
-            mData.add(image);
-
+            Drawable img = ResourcesCompat.getDrawable(getResources(), R.drawable.white_bg, null);
+            mData.add(img);
         }
     }
 
@@ -225,6 +233,8 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
             if (convertView == null) {
                 convertView = getLayoutInflater().inflate(R.layout.swipe_card, parent, false);
             }
+
+            ConstraintLayout topCard = convertView.findViewById(R.id.topCard);
 
             ImageView imgViewCard = convertView.findViewById(R.id.imgView);
 
