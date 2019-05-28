@@ -43,10 +43,10 @@
                 android:id="@+id/skip_view"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:scaleType="centerInside"
                 android:layout_centerVertical="true"
                 android:layout_toStartOf="@id/divider"
                 android:foreground="?android:attr/selectableItemBackground"
+                android:scaleType="centerInside"
                 android:src="@drawable/s_left" />
 
             <View

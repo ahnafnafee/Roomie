@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.roomieprototype.CardStack;
 import com.example.roomieprototype.MatchingScreen;
 import com.example.roomieprototype.R;
@@ -14,9 +16,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
+
 import java.util.HashMap;
 import java.util.Map;
-import androidx.appcompat.app.AppCompatActivity;
 
 
 public class SignUpActivity3 extends AppCompatActivity {
@@ -32,7 +34,6 @@ public class SignUpActivity3 extends AppCompatActivity {
     private String temperatureSchedule;
     private String apartmentSchedule;
     private String dormSchedule;
-
 
 
     @Override
@@ -88,7 +89,6 @@ public class SignUpActivity3 extends AppCompatActivity {
                 startActivity(myIntent2);
 
 
-
             }
         });
     }
@@ -96,42 +96,44 @@ public class SignUpActivity3 extends AppCompatActivity {
     private void sleepFireBase() {
         ChipGroup sleepGroup = findViewById(R.id.sleep_chips);
 
-        if(sleepGroup.getCheckedChipId()==R.id.night_owl) sleepSchedule = "Night Owl";
-        else if(sleepGroup.getCheckedChipId()==R.id.early_bird) sleepSchedule = "Early Bird";
-        else if(sleepGroup.getCheckedChipId()==R.id.sleep_depends) sleepSchedule = "Depends on the day";
+        if (sleepGroup.getCheckedChipId() == R.id.night_owl) sleepSchedule = "Night Owl";
+        else if (sleepGroup.getCheckedChipId() == R.id.early_bird) sleepSchedule = "Early Bird";
+        else if (sleepGroup.getCheckedChipId() == R.id.sleep_depends)
+            sleepSchedule = "Depends on the day";
 
         Map<String, Object> sleep = new HashMap<>();
         sleep.put("sleep", sleepSchedule);
 
         //Adding to Firebase
         DocumentReference docRef = db.collection("userData").document(user.getEmail());
-        docRef.set(sleep,SetOptions.merge());
+        docRef.set(sleep, SetOptions.merge());
     }
 
     private void cleanFireBase() {
         ChipGroup cleanGroup = findViewById(R.id.clean_chips);
 
-        if(cleanGroup.getCheckedChipId()==R.id.neat_freak) cleanSchedule = "Neat Freak";
-        else if(cleanGroup.getCheckedChipId()==R.id.rel_neat) cleanSchedule = "Relatively Neat";
-        else if(cleanGroup.getCheckedChipId()==R.id.rel_messy) cleanSchedule = "Relatively Messy";
-        else if(cleanGroup.getCheckedChipId()==R.id.messy) cleanSchedule = "Messy";
+        if (cleanGroup.getCheckedChipId() == R.id.neat_freak) cleanSchedule = "Neat Freak";
+        else if (cleanGroup.getCheckedChipId() == R.id.rel_neat) cleanSchedule = "Relatively Neat";
+        else if (cleanGroup.getCheckedChipId() == R.id.rel_messy)
+            cleanSchedule = "Relatively Messy";
+        else if (cleanGroup.getCheckedChipId() == R.id.messy) cleanSchedule = "Messy";
 
         Map<String, Object> sleep = new HashMap<>();
         sleep.put("clean", cleanSchedule);
 
         //Adding to Firebase
         DocumentReference docRef = db.collection("userData").document(user.getEmail());
-        docRef.set(sleep,SetOptions.merge());
+        docRef.set(sleep, SetOptions.merge());
     }
 
     private void eatFireBase() {
         ChipGroup eatGroup = findViewById(R.id.eat_chips);
 
-        if(eatGroup.getCheckedChipId()==R.id.veg) eatSchedule = "Vegetarian";
-        else if(eatGroup.getCheckedChipId()==R.id.vegan) eatSchedule = "Vegan";
-        else if(eatGroup.getCheckedChipId()==R.id.kosher) eatSchedule = "Kosher";
-        else if(eatGroup.getCheckedChipId()==R.id.halal) eatSchedule = "Halal";
-        else if(eatGroup.getCheckedChipId()==R.id.no_pref) eatSchedule = "No Preference";
+        if (eatGroup.getCheckedChipId() == R.id.veg) eatSchedule = "Vegetarian";
+        else if (eatGroup.getCheckedChipId() == R.id.vegan) eatSchedule = "Vegan";
+        else if (eatGroup.getCheckedChipId() == R.id.kosher) eatSchedule = "Kosher";
+        else if (eatGroup.getCheckedChipId() == R.id.halal) eatSchedule = "Halal";
+        else if (eatGroup.getCheckedChipId() == R.id.no_pref) eatSchedule = "No Preference";
 
 
         Map<String, Object> sleep = new HashMap<>();
@@ -139,16 +141,17 @@ public class SignUpActivity3 extends AppCompatActivity {
 
         //Adding to Firebase
         DocumentReference docRef = db.collection("userData").document(user.getEmail());
-        docRef.set(sleep,SetOptions.merge());
+        docRef.set(sleep, SetOptions.merge());
     }
 
     private void studyFireBase() {
         ChipGroup studyGroup = findViewById(R.id.study_chips);
 
-        if(studyGroup.getCheckedChipId()==R.id.music) studySchedule = "With Music";
-        else if(studyGroup.getCheckedChipId()==R.id.quiet) studySchedule = "Quiet";
-        else if(studyGroup.getCheckedChipId()==R.id.other_people) studySchedule = "With Other People";
-        else if(studyGroup.getCheckedChipId()==R.id.myself) studySchedule = "By Myself";
+        if (studyGroup.getCheckedChipId() == R.id.music) studySchedule = "With Music";
+        else if (studyGroup.getCheckedChipId() == R.id.quiet) studySchedule = "Quiet";
+        else if (studyGroup.getCheckedChipId() == R.id.other_people)
+            studySchedule = "With Other People";
+        else if (studyGroup.getCheckedChipId() == R.id.myself) studySchedule = "By Myself";
 
 
         Map<String, Object> sleep = new HashMap<>();
@@ -156,15 +159,17 @@ public class SignUpActivity3 extends AppCompatActivity {
 
         //Adding to Firebase
         DocumentReference docRef = db.collection("userData").document(user.getEmail());
-        docRef.set(sleep,SetOptions.merge());
+        docRef.set(sleep, SetOptions.merge());
     }
 
     private void socialFireBase() {
         ChipGroup socialGroup = findViewById(R.id.social_chips);
 
-        if(socialGroup.getCheckedChipId()==R.id.party_animal) socialSchedule = "Party Animal";
-        else if(socialGroup.getCheckedChipId()==R.id.depends_mood) socialSchedule = "Depends on my mood";
-        else if(socialGroup.getCheckedChipId()==R.id.couch_potato) socialSchedule = "Couch Potato";
+        if (socialGroup.getCheckedChipId() == R.id.party_animal) socialSchedule = "Party Animal";
+        else if (socialGroup.getCheckedChipId() == R.id.depends_mood)
+            socialSchedule = "Depends on my mood";
+        else if (socialGroup.getCheckedChipId() == R.id.couch_potato)
+            socialSchedule = "Couch Potato";
 
 
         Map<String, Object> sleep = new HashMap<>();
@@ -172,17 +177,19 @@ public class SignUpActivity3 extends AppCompatActivity {
 
         //Adding to Firebase
         DocumentReference docRef = db.collection("userData").document(user.getEmail());
-        docRef.set(sleep,SetOptions.merge());
+        docRef.set(sleep, SetOptions.merge());
     }
 
     private void temperaureFireBase() {
         ChipGroup temperatureGroup = findViewById(R.id.temperature_chips);
 
-        if(temperatureGroup.getCheckedChipId()==R.id.freezing) temperatureSchedule = "Freezing";
-        else if(temperatureGroup.getCheckedChipId()==R.id.cold) temperatureSchedule = "Cold";
-        else if(temperatureGroup.getCheckedChipId()==R.id.moderate) temperatureSchedule = "Moderate";
-        else if(temperatureGroup.getCheckedChipId()==R.id.warm) temperatureSchedule = "Warm";
-        else if(temperatureGroup.getCheckedChipId()==R.id.melting) temperatureSchedule = "Melting";
+        if (temperatureGroup.getCheckedChipId() == R.id.freezing) temperatureSchedule = "Freezing";
+        else if (temperatureGroup.getCheckedChipId() == R.id.cold) temperatureSchedule = "Cold";
+        else if (temperatureGroup.getCheckedChipId() == R.id.moderate)
+            temperatureSchedule = "Moderate";
+        else if (temperatureGroup.getCheckedChipId() == R.id.warm) temperatureSchedule = "Warm";
+        else if (temperatureGroup.getCheckedChipId() == R.id.melting)
+            temperatureSchedule = "Melting";
 
 
         Map<String, Object> temperature = new HashMap<>();
@@ -190,14 +197,14 @@ public class SignUpActivity3 extends AppCompatActivity {
 
         //Adding to Firebase
         DocumentReference docRef = db.collection("userData").document(user.getEmail());
-        docRef.set(temperature,SetOptions.merge());
+        docRef.set(temperature, SetOptions.merge());
     }
 
     private void apartmentFireBase() {
         ChipGroup apartmentGroup = findViewById(R.id.apartment_chips);
 
-        if(apartmentGroup.getCheckedChipId()==R.id.apart_no) apartmentSchedule = "No";
-        else if(apartmentGroup.getCheckedChipId()==R.id.apart_yes) apartmentSchedule = "Yes";
+        if (apartmentGroup.getCheckedChipId() == R.id.apart_no) apartmentSchedule = "No";
+        else if (apartmentGroup.getCheckedChipId() == R.id.apart_yes) apartmentSchedule = "Yes";
 
 
         Map<String, Object> sleep = new HashMap<>();
@@ -205,14 +212,14 @@ public class SignUpActivity3 extends AppCompatActivity {
 
         //Adding to Firebase
         DocumentReference docRef = db.collection("userData").document(user.getEmail());
-        docRef.set(sleep,SetOptions.merge());
+        docRef.set(sleep, SetOptions.merge());
     }
 
     private void dormFireBase() {
         ChipGroup dormGroup = findViewById(R.id.dorm_chips);
 
-        if(dormGroup.getCheckedChipId()==R.id.dorm) dormSchedule = "Dorm";
-        else if(dormGroup.getCheckedChipId()==R.id.suite) dormSchedule = "Suite";
+        if (dormGroup.getCheckedChipId() == R.id.dorm) dormSchedule = "Dorm";
+        else if (dormGroup.getCheckedChipId() == R.id.suite) dormSchedule = "Suite";
 
 
         Map<String, Object> sleep = new HashMap<>();
@@ -220,6 +227,6 @@ public class SignUpActivity3 extends AppCompatActivity {
 
         //Adding to Firebase
         DocumentReference docRef = db.collection("userData").document(user.getEmail());
-        docRef.set(sleep,SetOptions.merge());
+        docRef.set(sleep, SetOptions.merge());
     }
 }

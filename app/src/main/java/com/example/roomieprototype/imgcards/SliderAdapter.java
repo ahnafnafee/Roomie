@@ -5,9 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.roomieprototype.R;
-
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.roomieprototype.R;
 
 public class SliderAdapter extends RecyclerView.Adapter<SliderCard> {
 

@@ -80,8 +80,8 @@ public class MatchingScreen extends AppCompatActivity {
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     Integer count = 0;
-                                    for(QueryDocumentSnapshot document : task.getResult()) {
-                                        if(!(user.getEmail().equals(document.getData().get("email").toString()))) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        if (!(user.getEmail().equals(document.getData().get("email").toString()))) {
                                             Integer points = 0;
                                             Integer match = 1;
                                             if (document.getData().get("sleep") != null) {
@@ -89,15 +89,13 @@ public class MatchingScreen extends AppCompatActivity {
                                                 //Matching the eating traits
                                                 if ((document.getData().get("Eat").toString().equals(userEat)) && match.equals(1)) {
                                                     match = 1;
-                                                }
-                                                else
+                                                } else
                                                     match = 0;
 
                                                 //Matching if they both want dorm or both want suite
                                                 if ((document.getData().get("Dorm").toString().equals(userDorm)) && match.equals(1)) {
                                                     match = 1;
-                                                }
-                                                else
+                                                } else
                                                     match = 0;
 
                                                 //Matching if only one of them have an apartment or if both don't have an apartment
@@ -108,236 +106,166 @@ public class MatchingScreen extends AppCompatActivity {
                                                 //Points for sleeping traits
                                                 if ((document.getData().get("sleep").toString().equals("Night Owl")) && userSleep.equals("Night Owl") && match.equals(1)) {
                                                     points += 3;
-                                                }
-                                                else if ((document.getData().get("sleep").toString().equals("Depends on the day")) && userSleep.equals("Night Owl") && match.equals(1)) {
-                                                    points+=2;
-                                                }
-                                                else if ((document.getData().get("sleep").toString().equals("Early Bird")) && userSleep.equals("Night Owl") && match.equals(1)) {
-                                                    points+=1;
-                                                }
-                                                else if ((document.getData().get("sleep").toString().equals("Night Owl")) && userSleep.equals("Depends on the day") && match.equals(1)) {
+                                                } else if ((document.getData().get("sleep").toString().equals("Depends on the day")) && userSleep.equals("Night Owl") && match.equals(1)) {
                                                     points += 2;
-                                                }
-                                                else if ((document.getData().get("sleep").toString().equals("Depends on the day")) && userSleep.equals("Depends on the day") && match.equals(1)) {
-                                                    points+=3;
-                                                }
-                                                else if ((document.getData().get("sleep").toString().equals("Early Bird")) && userSleep.equals("Depends on the day") && match.equals(1)) {
-                                                    points+=2;
-                                                }
-                                                else if ((document.getData().get("sleep").toString().equals("Night Owl")) && userSleep.equals("Early Bird") && match.equals(1)) {
+                                                } else if ((document.getData().get("sleep").toString().equals("Early Bird")) && userSleep.equals("Night Owl") && match.equals(1)) {
                                                     points += 1;
-                                                }
-                                                else if ((document.getData().get("sleep").toString().equals("Depends on the day")) && userSleep.equals("Early Bird") && match.equals(1)) {
-                                                    points+=2;
-                                                }
-                                                else if ((document.getData().get("sleep").toString().equals("Early Bird")) && userSleep.equals("Early Bird") && match.equals(1)) {
-                                                    points+=3;
+                                                } else if ((document.getData().get("sleep").toString().equals("Night Owl")) && userSleep.equals("Depends on the day") && match.equals(1)) {
+                                                    points += 2;
+                                                } else if ((document.getData().get("sleep").toString().equals("Depends on the day")) && userSleep.equals("Depends on the day") && match.equals(1)) {
+                                                    points += 3;
+                                                } else if ((document.getData().get("sleep").toString().equals("Early Bird")) && userSleep.equals("Depends on the day") && match.equals(1)) {
+                                                    points += 2;
+                                                } else if ((document.getData().get("sleep").toString().equals("Night Owl")) && userSleep.equals("Early Bird") && match.equals(1)) {
+                                                    points += 1;
+                                                } else if ((document.getData().get("sleep").toString().equals("Depends on the day")) && userSleep.equals("Early Bird") && match.equals(1)) {
+                                                    points += 2;
+                                                } else if ((document.getData().get("sleep").toString().equals("Early Bird")) && userSleep.equals("Early Bird") && match.equals(1)) {
+                                                    points += 3;
                                                 }
 
                                                 //Points for cleaning traits
                                                 if ((document.getData().get("clean").toString().equals("Neat Freak")) && userClean.equals("Neat Freak") && match.equals(1)) {
-                                                    points+=4;
-                                                }
-                                                else if ((document.getData().get("clean").toString().equals("Relatively Neat")) && userClean.equals("Neat Freak") && match.equals(1)) {
-                                                    points+=3;
-                                                }
-                                                else if ((document.getData().get("clean").toString().equals("Relatively Messy")) && userClean.equals("Neat Freak") && match.equals(1)) {
-                                                    points+=2;
-                                                }
-                                                else if ((document.getData().get("clean").toString().equals("Messy")) && userClean.equals("Neat Freak") && match.equals(1)) {
-                                                    points+=1;
-                                                }
-                                                else if ((document.getData().get("clean").toString().equals("Neat Freak")) && userClean.equals("Relatively Neat") && match.equals(1)) {
-                                                    points+=3;
-                                                }
-                                                else if ((document.getData().get("clean").toString().equals("Relatively Neat")) && userClean.equals("Relatively Neat") && match.equals(1)) {
-                                                    points+=4;
-                                                }
-                                                else if ((document.getData().get("clean").toString().equals("Relatively Messy")) && userClean.equals("Relatively Neat") && match.equals(1)) {
-                                                    points+=3;
-                                                }
-                                                else if ((document.getData().get("clean").toString().equals("Messy")) && userClean.equals("Relatively Neat") && match.equals(1)) {
-                                                    points+=2;
-                                                }
-                                                else if ((document.getData().get("clean").toString().equals("Neat Freak")) && userClean.equals("Relatively Messy") && match.equals(1)) {
-                                                    points+=2;
-                                                }
-                                                else if ((document.getData().get("clean").toString().equals("Relatively Neat")) && userClean.equals("Relatively Messy") && match.equals(1)) {
-                                                    points+=3;
-                                                }
-                                                else if ((document.getData().get("clean").toString().equals("Relatively Messy")) && userClean.equals("Relatively Messy") && match.equals(1)) {
-                                                    points+=4;
-                                                }
-                                                else if ((document.getData().get("clean").toString().equals("Messy")) && userClean.equals("Relatively Messy") && match.equals(1)) {
-                                                    points+=3;
-                                                }
-                                                else if ((document.getData().get("clean").toString().equals("Neat Freak")) && userClean.equals("Messy") && match.equals(1)) {
-                                                    points+=1;
-                                                }
-                                                else if ((document.getData().get("clean").toString().equals("Relatively Neat")) && userClean.equals("Messy") && match.equals(1)) {
-                                                    points+=2;
-                                                }
-                                                else if ((document.getData().get("clean").toString().equals("Relatively Messy")) && userClean.equals("Messy") && match.equals(1)) {
-                                                    points+=3;
-                                                }
-                                                else if ((document.getData().get("clean").toString().equals("Messy")) && userClean.equals("Messy") && match.equals(1)) {
-                                                    points+=4;
+                                                    points += 4;
+                                                } else if ((document.getData().get("clean").toString().equals("Relatively Neat")) && userClean.equals("Neat Freak") && match.equals(1)) {
+                                                    points += 3;
+                                                } else if ((document.getData().get("clean").toString().equals("Relatively Messy")) && userClean.equals("Neat Freak") && match.equals(1)) {
+                                                    points += 2;
+                                                } else if ((document.getData().get("clean").toString().equals("Messy")) && userClean.equals("Neat Freak") && match.equals(1)) {
+                                                    points += 1;
+                                                } else if ((document.getData().get("clean").toString().equals("Neat Freak")) && userClean.equals("Relatively Neat") && match.equals(1)) {
+                                                    points += 3;
+                                                } else if ((document.getData().get("clean").toString().equals("Relatively Neat")) && userClean.equals("Relatively Neat") && match.equals(1)) {
+                                                    points += 4;
+                                                } else if ((document.getData().get("clean").toString().equals("Relatively Messy")) && userClean.equals("Relatively Neat") && match.equals(1)) {
+                                                    points += 3;
+                                                } else if ((document.getData().get("clean").toString().equals("Messy")) && userClean.equals("Relatively Neat") && match.equals(1)) {
+                                                    points += 2;
+                                                } else if ((document.getData().get("clean").toString().equals("Neat Freak")) && userClean.equals("Relatively Messy") && match.equals(1)) {
+                                                    points += 2;
+                                                } else if ((document.getData().get("clean").toString().equals("Relatively Neat")) && userClean.equals("Relatively Messy") && match.equals(1)) {
+                                                    points += 3;
+                                                } else if ((document.getData().get("clean").toString().equals("Relatively Messy")) && userClean.equals("Relatively Messy") && match.equals(1)) {
+                                                    points += 4;
+                                                } else if ((document.getData().get("clean").toString().equals("Messy")) && userClean.equals("Relatively Messy") && match.equals(1)) {
+                                                    points += 3;
+                                                } else if ((document.getData().get("clean").toString().equals("Neat Freak")) && userClean.equals("Messy") && match.equals(1)) {
+                                                    points += 1;
+                                                } else if ((document.getData().get("clean").toString().equals("Relatively Neat")) && userClean.equals("Messy") && match.equals(1)) {
+                                                    points += 2;
+                                                } else if ((document.getData().get("clean").toString().equals("Relatively Messy")) && userClean.equals("Messy") && match.equals(1)) {
+                                                    points += 3;
+                                                } else if ((document.getData().get("clean").toString().equals("Messy")) && userClean.equals("Messy") && match.equals(1)) {
+                                                    points += 4;
                                                 }
 
                                                 //points for study traits
                                                 if ((document.getData().get("Study").toString().equals("With Music")) && userStudy.equals("With Music") && match.equals(1)) {
-                                                    points+=4;
-                                                }
-                                                else if ((document.getData().get("Study").toString().equals("Quiet")) && userStudy.equals("With Music") && match.equals(1)) {
-                                                    points+=1;
-                                                }
-                                                else if ((document.getData().get("Study").toString().equals("By Myself")) && userStudy.equals("With Music") && match.equals(1)) {
-                                                    points+=2;
-                                                }
-                                                else if ((document.getData().get("Study").toString().equals("With Other People")) && userStudy.equals("With Music") && match.equals(1)) {
-                                                    points+=3;
-                                                }
-                                                else if ((document.getData().get("Study").toString().equals("With Music")) && userStudy.equals("Quiet") && match.equals(1)) {
-                                                    points+=1;
-                                                }
-                                                else if ((document.getData().get("Study").toString().equals("Quiet")) && userStudy.equals("Quiet") && match.equals(1)) {
-                                                    points+=4;
-                                                }
-                                                else if ((document.getData().get("Study").toString().equals("By Myself")) && userStudy.equals("Quiet") && match.equals(1)) {
-                                                    points+=3;
-                                                }
-                                                else if ((document.getData().get("Study").toString().equals("With Other People")) && userStudy.equals("Quiet") && match.equals(1)) {
-                                                    points+=2;
-                                                }
-                                                else if ((document.getData().get("Study").toString().equals("With Music")) && userStudy.equals("With Other People") && match.equals(1)) {
-                                                    points+=3;
-                                                }
-                                                else if ((document.getData().get("Study").toString().equals("Quiet")) && userStudy.equals("With Other People") && match.equals(1)) {
-                                                    points+=2;
-                                                }
-                                                else if ((document.getData().get("Study").toString().equals("By Myself")) && userStudy.equals("With Other People") && match.equals(1)) {
-                                                    points+=1;
-                                                }
-                                                else if ((document.getData().get("Study").toString().equals("With Other People")) && userStudy.equals("With Other People") && match.equals(1)) {
-                                                    points+=4;
-                                                }
-                                                else if ((document.getData().get("Study").toString().equals("With Music")) && userStudy.equals("By Myself") && match.equals(1)) {
-                                                    points+=2;
-                                                }
-                                                else if ((document.getData().get("Study").toString().equals("Quiet")) && userStudy.equals("By Myself") && match.equals(1)) {
-                                                    points+=3;
-                                                }
-                                                else if ((document.getData().get("Study").toString().equals("By Myself")) && userStudy.equals("By Myself") && match.equals(1)) {
-                                                    points+=4;
-                                                }
-                                                else if ((document.getData().get("Study").toString().equals("With Other People")) && userStudy.equals("By Myself") && match.equals(1)) {
-                                                    points+=1;
+                                                    points += 4;
+                                                } else if ((document.getData().get("Study").toString().equals("Quiet")) && userStudy.equals("With Music") && match.equals(1)) {
+                                                    points += 1;
+                                                } else if ((document.getData().get("Study").toString().equals("By Myself")) && userStudy.equals("With Music") && match.equals(1)) {
+                                                    points += 2;
+                                                } else if ((document.getData().get("Study").toString().equals("With Other People")) && userStudy.equals("With Music") && match.equals(1)) {
+                                                    points += 3;
+                                                } else if ((document.getData().get("Study").toString().equals("With Music")) && userStudy.equals("Quiet") && match.equals(1)) {
+                                                    points += 1;
+                                                } else if ((document.getData().get("Study").toString().equals("Quiet")) && userStudy.equals("Quiet") && match.equals(1)) {
+                                                    points += 4;
+                                                } else if ((document.getData().get("Study").toString().equals("By Myself")) && userStudy.equals("Quiet") && match.equals(1)) {
+                                                    points += 3;
+                                                } else if ((document.getData().get("Study").toString().equals("With Other People")) && userStudy.equals("Quiet") && match.equals(1)) {
+                                                    points += 2;
+                                                } else if ((document.getData().get("Study").toString().equals("With Music")) && userStudy.equals("With Other People") && match.equals(1)) {
+                                                    points += 3;
+                                                } else if ((document.getData().get("Study").toString().equals("Quiet")) && userStudy.equals("With Other People") && match.equals(1)) {
+                                                    points += 2;
+                                                } else if ((document.getData().get("Study").toString().equals("By Myself")) && userStudy.equals("With Other People") && match.equals(1)) {
+                                                    points += 1;
+                                                } else if ((document.getData().get("Study").toString().equals("With Other People")) && userStudy.equals("With Other People") && match.equals(1)) {
+                                                    points += 4;
+                                                } else if ((document.getData().get("Study").toString().equals("With Music")) && userStudy.equals("By Myself") && match.equals(1)) {
+                                                    points += 2;
+                                                } else if ((document.getData().get("Study").toString().equals("Quiet")) && userStudy.equals("By Myself") && match.equals(1)) {
+                                                    points += 3;
+                                                } else if ((document.getData().get("Study").toString().equals("By Myself")) && userStudy.equals("By Myself") && match.equals(1)) {
+                                                    points += 4;
+                                                } else if ((document.getData().get("Study").toString().equals("With Other People")) && userStudy.equals("By Myself") && match.equals(1)) {
+                                                    points += 1;
                                                 }
 
                                                 //points for social traits
                                                 if ((document.getData().get("Social").toString().equals("Party Animal")) && userSocial.equals("Party Animal") && match.equals(1)) {
-                                                    points+=3;
-                                                }
-                                                else if ((document.getData().get("Social").toString().equals("Depends on my mood")) && userSocial.equals("Party Animal") && match.equals(1)) {
-                                                    points+=2;
-                                                }
-                                                else if ((document.getData().get("Social").toString().equals("Couch Potato")) && userSocial.equals("Party Animal") && match.equals(1)) {
-                                                    points+=1;
-                                                }
-                                                else if ((document.getData().get("Social").toString().equals("Party Animal")) && userSocial.equals("Depends on my mood") && match.equals(1)) {
-                                                    points+=2;
-                                                }
-                                                else if ((document.getData().get("Social").toString().equals("Depends on my mood")) && userSocial.equals("Depends on my mood") && match.equals(1)) {
-                                                    points+=3;
-                                                }
-                                                else if ((document.getData().get("Social").toString().equals("Couch Potato")) && userSocial.equals("Depends on my mood") && match.equals(1)) {
-                                                    points+=2;
-                                                }
-                                                else if ((document.getData().get("Social").toString().equals("Party Animal")) && userSocial.equals("Couch Potato") && match.equals(1)) {
-                                                    points+=1;
-                                                }
-                                                else if ((document.getData().get("Social").toString().equals("Depends on my mood")) && userSocial.equals("Couch Potato") && match.equals(1)) {
-                                                    points+=2;
-                                                }
-                                                else if ((document.getData().get("Social").toString().equals("Couch Potato")) && userSocial.equals("Couch Potato") && match.equals(1)) {
-                                                    points+=3;
+                                                    points += 3;
+                                                } else if ((document.getData().get("Social").toString().equals("Depends on my mood")) && userSocial.equals("Party Animal") && match.equals(1)) {
+                                                    points += 2;
+                                                } else if ((document.getData().get("Social").toString().equals("Couch Potato")) && userSocial.equals("Party Animal") && match.equals(1)) {
+                                                    points += 1;
+                                                } else if ((document.getData().get("Social").toString().equals("Party Animal")) && userSocial.equals("Depends on my mood") && match.equals(1)) {
+                                                    points += 2;
+                                                } else if ((document.getData().get("Social").toString().equals("Depends on my mood")) && userSocial.equals("Depends on my mood") && match.equals(1)) {
+                                                    points += 3;
+                                                } else if ((document.getData().get("Social").toString().equals("Couch Potato")) && userSocial.equals("Depends on my mood") && match.equals(1)) {
+                                                    points += 2;
+                                                } else if ((document.getData().get("Social").toString().equals("Party Animal")) && userSocial.equals("Couch Potato") && match.equals(1)) {
+                                                    points += 1;
+                                                } else if ((document.getData().get("Social").toString().equals("Depends on my mood")) && userSocial.equals("Couch Potato") && match.equals(1)) {
+                                                    points += 2;
+                                                } else if ((document.getData().get("Social").toString().equals("Couch Potato")) && userSocial.equals("Couch Potato") && match.equals(1)) {
+                                                    points += 3;
                                                 }
 
                                                 //points for temperature traits
                                                 if ((document.getData().get("Temperature").toString().equals("Freezing")) && userSocial.equals("Freezing") && match.equals(1)) {
-                                                    points+=5;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Cold")) && userTemperature.equals("Freezing") && match.equals(1)) {
-                                                    points+=4;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Moderate")) && userTemperature.equals("Freezing") && match.equals(1)) {
-                                                    points+=3;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Warm")) && userTemperature.equals("Freezing") && match.equals(1)) {
-                                                    points+=2;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Melting")) && userTemperature.equals("Freezing") && match.equals(1)) {
-                                                    points+=1;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Freezing")) && userSocial.equals("Cold") && match.equals(1)) {
-                                                    points+=4;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Cold")) && userTemperature.equals("Cold") && match.equals(1)) {
-                                                    points+=5;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Moderate")) && userTemperature.equals("Cold") && match.equals(1)) {
-                                                    points+=4;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Warm")) && userTemperature.equals("Cold") && match.equals(1)) {
-                                                    points+=3;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Melting")) && userTemperature.equals("Cold") && match.equals(1)) {
-                                                    points+=2;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Freezing")) && userSocial.equals("Moderate") && match.equals(1)) {
-                                                    points+=3;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Cold")) && userTemperature.equals("Moderate") && match.equals(1)) {
-                                                    points+=4;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Moderate")) && userTemperature.equals("Moderate") && match.equals(1)) {
-                                                    points+=5;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Warm")) && userTemperature.equals("Moderate") && match.equals(1)) {
-                                                    points+=4;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Melting")) && userTemperature.equals("Moderate") && match.equals(1)) {
-                                                    points+=3;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Freezing")) && userSocial.equals("Warm") && match.equals(1)) {
-                                                    points+=2;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Cold")) && userTemperature.equals("Warm") && match.equals(1)) {
-                                                    points+=3;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Moderate")) && userTemperature.equals("Warm") && match.equals(1)) {
-                                                    points+=4;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Warm")) && userTemperature.equals("Warm") && match.equals(1)) {
-                                                    points+=5;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Melting")) && userTemperature.equals("Warm") && match.equals(1)) {
-                                                    points+=4;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Freezing")) && userSocial.equals("Melting") && match.equals(1)) {
-                                                    points+=1;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Cold")) && userTemperature.equals("Melting") && match.equals(1)) {
-                                                    points+=2;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Moderate")) && userTemperature.equals("Melting") && match.equals(1)) {
-                                                    points+=3;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Warm")) && userTemperature.equals("Melting") && match.equals(1)) {
-                                                    points+=4;
-                                                }
-                                                else if ((document.getData().get("Temperature").toString().equals("Melting")) && userTemperature.equals("Melting") && match.equals(1)) {
-                                                    points+=5;
+                                                    points += 5;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Cold")) && userTemperature.equals("Freezing") && match.equals(1)) {
+                                                    points += 4;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Moderate")) && userTemperature.equals("Freezing") && match.equals(1)) {
+                                                    points += 3;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Warm")) && userTemperature.equals("Freezing") && match.equals(1)) {
+                                                    points += 2;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Melting")) && userTemperature.equals("Freezing") && match.equals(1)) {
+                                                    points += 1;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Freezing")) && userSocial.equals("Cold") && match.equals(1)) {
+                                                    points += 4;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Cold")) && userTemperature.equals("Cold") && match.equals(1)) {
+                                                    points += 5;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Moderate")) && userTemperature.equals("Cold") && match.equals(1)) {
+                                                    points += 4;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Warm")) && userTemperature.equals("Cold") && match.equals(1)) {
+                                                    points += 3;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Melting")) && userTemperature.equals("Cold") && match.equals(1)) {
+                                                    points += 2;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Freezing")) && userSocial.equals("Moderate") && match.equals(1)) {
+                                                    points += 3;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Cold")) && userTemperature.equals("Moderate") && match.equals(1)) {
+                                                    points += 4;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Moderate")) && userTemperature.equals("Moderate") && match.equals(1)) {
+                                                    points += 5;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Warm")) && userTemperature.equals("Moderate") && match.equals(1)) {
+                                                    points += 4;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Melting")) && userTemperature.equals("Moderate") && match.equals(1)) {
+                                                    points += 3;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Freezing")) && userSocial.equals("Warm") && match.equals(1)) {
+                                                    points += 2;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Cold")) && userTemperature.equals("Warm") && match.equals(1)) {
+                                                    points += 3;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Moderate")) && userTemperature.equals("Warm") && match.equals(1)) {
+                                                    points += 4;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Warm")) && userTemperature.equals("Warm") && match.equals(1)) {
+                                                    points += 5;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Melting")) && userTemperature.equals("Warm") && match.equals(1)) {
+                                                    points += 4;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Freezing")) && userSocial.equals("Melting") && match.equals(1)) {
+                                                    points += 1;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Cold")) && userTemperature.equals("Melting") && match.equals(1)) {
+                                                    points += 2;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Moderate")) && userTemperature.equals("Melting") && match.equals(1)) {
+                                                    points += 3;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Warm")) && userTemperature.equals("Melting") && match.equals(1)) {
+                                                    points += 4;
+                                                } else if ((document.getData().get("Temperature").toString().equals("Melting")) && userTemperature.equals("Melting") && match.equals(1)) {
+                                                    points += 5;
                                                 }
 
                                                 //Log the total points
@@ -353,7 +281,7 @@ public class MatchingScreen extends AppCompatActivity {
                                                 if (match.equals(1)) {
                                                     matchList.add(document.getData().get("fullname").toString());
                                                     matchEmailList.add(document.getData().get("email").toString());
-                                                    if(document.getData().containsKey(user.getEmail()))
+                                                    if (document.getData().containsKey(user.getEmail()))
                                                         swipedRightBy.add(document.getData().get("email").toString());
                                                     count++;
                                                     Log.d("TAG:", user.getEmail() + " is matched with " + document.getId());
@@ -366,8 +294,7 @@ public class MatchingScreen extends AppCompatActivity {
                                     myIntent2.putExtra("matchEmailList", matchEmailList);
                                     myIntent2.putExtra("swipedRightBy", swipedRightBy);
                                     startActivity(myIntent2);
-                                }
-                                else {
+                                } else {
                                     Log.d("TAG:", "Error getting documents: ", task.getException());
                                 }
                             }

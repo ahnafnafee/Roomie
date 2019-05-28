@@ -32,9 +32,9 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/diag_msg_btn"
+            style="@style/Dialog.UnelevatedButton"
             android:layout_width="176dp"
             android:layout_height="50dp"
-            style="@style/Dialog.UnelevatedButton"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="130dp"
@@ -42,12 +42,12 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/playin_btn"
+            style="@style/Dialog.UnelevatedButton"
             android:layout_width="176dp"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="24dp"
-            style="@style/Dialog.UnelevatedButton"
             android:text="Keep playing" />
 
 

@@ -12,13 +12,13 @@ import android.graphics.RectF;
 import android.os.AsyncTask;
 import android.os.Build;
 
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+
 import com.example.roomieprototype.R;
 
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
-
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
 
 
 public class DecodeBitmapTask extends AsyncTask<Void, Void, Bitmap> {
@@ -31,77 +31,15 @@ public class DecodeBitmapTask extends AsyncTask<Void, Void, Bitmap> {
 
     private final Reference<Listener> refListener;
 
-    public interface Listener {
-        void onPostExecuted(Bitmap bitmap);
-    }
-
     public DecodeBitmapTask(Resources resources, @DrawableRes int bitmapResId,
                             int reqWidth, int reqHeight,
-                            @NonNull Listener listener)
-    {
+                            @NonNull Listener listener) {
         this.cache = BackgroundBitmapCache.getInstance();
         this.resources = resources;
         this.bitmapResId = bitmapResId;
         this.reqWidth = reqWidth;
         this.reqHeight = reqHeight;
         this.refListener = new WeakReference<>(listener);
-    }
-
-    @Override
-    protected Bitmap doInBackground(Void... voids) {
-        Bitmap cachedBitmap = cache.getBitmapFromBgMemCache(bitmapResId);
-        if (cachedBitmap != null) {
-           return cachedBitmap;
-        }
-
-        final BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        BitmapFactory.decodeResource(resources, bitmapResId, options);
-
-        final int width = options.outWidth;
-        final int height = options.outHeight;
-
-        int inSampleSize = 1;
-        if (height > reqHeight || width > reqWidth) {
-            int halfWidth = width / 2;
-            int halfHeight = height / 2;
-
-            while ((halfHeight / inSampleSize) >= reqHeight && (halfWidth / inSampleSize) >= reqWidth
-                    && !isCancelled() )
-            {
-                inSampleSize *= 2;
-            }
-        }
-
-        if (isCancelled()) {
-            return null;
-        }
-
-        options.inSampleSize = inSampleSize;
-        options.inJustDecodeBounds = false;
-        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-
-        final Bitmap decodedBitmap = BitmapFactory.decodeResource(resources, bitmapResId, options);
-
-        final Bitmap result;
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            result = getRoundedCornerBitmap(decodedBitmap,
-                    resources.getDimension(R.dimen.card_corner_radius), reqWidth, reqHeight);
-            decodedBitmap.recycle();
-        } else {
-            result = decodedBitmap;
-        }
-
-        cache.addBitmapToBgMemoryCache(bitmapResId, result);
-        return result;
-    }
-
-    @Override
-    final protected void onPostExecute(Bitmap bitmap) {
-        final Listener listener = this.refListener.get();
-        if (listener != null) {
-            listener.onPostExecuted(bitmap);
-        }
     }
 
     public static Bitmap getRoundedCornerBitmap(Bitmap bitmap, float pixels, int width, int height) {
@@ -137,6 +75,66 @@ public class DecodeBitmapTask extends AsyncTask<Void, Void, Bitmap> {
         canvas.drawBitmap(bitmap, null, targetRect, paint);
 
         return output;
+    }
+
+    @Override
+    protected Bitmap doInBackground(Void... voids) {
+        Bitmap cachedBitmap = cache.getBitmapFromBgMemCache(bitmapResId);
+        if (cachedBitmap != null) {
+            return cachedBitmap;
+        }
+
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(resources, bitmapResId, options);
+
+        final int width = options.outWidth;
+        final int height = options.outHeight;
+
+        int inSampleSize = 1;
+        if (height > reqHeight || width > reqWidth) {
+            int halfWidth = width / 2;
+            int halfHeight = height / 2;
+
+            while ((halfHeight / inSampleSize) >= reqHeight && (halfWidth / inSampleSize) >= reqWidth
+                    && !isCancelled()) {
+                inSampleSize *= 2;
+            }
+        }
+
+        if (isCancelled()) {
+            return null;
+        }
+
+        options.inSampleSize = inSampleSize;
+        options.inJustDecodeBounds = false;
+        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+
+        final Bitmap decodedBitmap = BitmapFactory.decodeResource(resources, bitmapResId, options);
+
+        final Bitmap result;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            result = getRoundedCornerBitmap(decodedBitmap,
+                    resources.getDimension(R.dimen.card_corner_radius), reqWidth, reqHeight);
+            decodedBitmap.recycle();
+        } else {
+            result = decodedBitmap;
+        }
+
+        cache.addBitmapToBgMemoryCache(bitmapResId, result);
+        return result;
+    }
+
+    @Override
+    final protected void onPostExecute(Bitmap bitmap) {
+        final Listener listener = this.refListener.get();
+        if (listener != null) {
+            listener.onPostExecuted(bitmap);
+        }
+    }
+
+    public interface Listener {
+        void onPostExecuted(Bitmap bitmap);
     }
 
 }

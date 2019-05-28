@@ -1,11 +1,11 @@
 package com.example.roomieprototype;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -15,7 +15,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class PictureFromFirebase extends AppCompatActivity {
 
@@ -38,7 +37,7 @@ public class PictureFromFirebase extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
-        for(Integer i = 0; i<matchList.size();i++) {
+        for (Integer i = 0; i < matchList.size(); i++) {
             userPicRef = storageReference.child(matchEmailList.get(i));
             final long ONE_MEGABYTE = 1024 * 1024;
             userPicRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {

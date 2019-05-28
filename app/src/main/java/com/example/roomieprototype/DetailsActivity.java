@@ -2,13 +2,11 @@ package com.example.roomieprototype;
 
 import android.animation.ObjectAnimator;
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
 import android.transition.Transition;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageView;
-
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;

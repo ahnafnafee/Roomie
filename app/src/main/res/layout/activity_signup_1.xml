@@ -42,13 +42,11 @@
             <RelativeLayout
                 android:id="@+id/mid_content_1"
                 android:layout_width="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/fullname_text_input"
-                    app:boxStrokeColor="#A194F9"
-                    app:boxStrokeWidth="2dp"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="240dp"
                     android:layout_height="60dp"
@@ -56,6 +54,8 @@
                     android:layout_marginTop="20dp"
                     android:hint="@string/fullname_reg"
                     android:textColorHint="@color/colorPrimaryDark"
+                    app:boxStrokeColor="#A194F9"
+                    app:boxStrokeWidth="2dp"
                     app:errorEnabled="true"
                     app:fontFamily="@font/lato_regular">
 
@@ -70,8 +70,6 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/email_reg_text_input"
-                    app:boxStrokeColor="#A194F9"
-                    app:boxStrokeWidth="2dp"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="240dp"
                     android:layout_height="60dp"
@@ -80,6 +78,8 @@
                     android:layout_marginTop="16dp"
                     android:hint="@string/email_reg"
                     android:textColorHint="@color/colorPrimaryDark"
+                    app:boxStrokeColor="#A194F9"
+                    app:boxStrokeWidth="2dp"
                     app:errorEnabled="true"
                     app:fontFamily="@font/lato_regular">
 
@@ -94,8 +94,6 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/password_reg_text_input"
-                    app:boxStrokeColor="#A194F9"
-                    app:boxStrokeWidth="2dp"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="240dp"
                     android:layout_height="60dp"
@@ -104,6 +102,8 @@
                     android:layout_marginTop="16dp"
                     android:hint="@string/password_reg"
                     android:textColorHint="@color/colorPrimaryDark"
+                    app:boxStrokeColor="#A194F9"
+                    app:boxStrokeWidth="2dp"
                     app:errorEnabled="true"
                     app:fontFamily="@font/lato_regular"
                     app:passwordToggleEnabled="true">
@@ -119,8 +119,6 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/password2_reg_text_input"
-                    app:boxStrokeColor="#A194F9"
-                    app:boxStrokeWidth="2dp"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="240dp"
                     android:layout_height="60dp"
@@ -129,6 +127,8 @@
                     android:layout_marginTop="16dp"
                     android:hint="@string/password2_reg"
                     android:textColorHint="@color/colorPrimaryDark"
+                    app:boxStrokeColor="#A194F9"
+                    app:boxStrokeWidth="2dp"
                     app:errorEnabled="true"
                     app:fontFamily="@font/lato_regular"
                     app:passwordToggleEnabled="true">
@@ -145,7 +145,6 @@
             </RelativeLayout>
 
 
-
             <RelativeLayout
                 android:id="@+id/nxt_final_field"
                 android:layout_width="179dp"
@@ -155,13 +154,13 @@
 
                 <Button
                     android:id="@+id/next_reg_button_1"
-                    android:textColor="@color/white"
                     style="@style/Main.UnelevatedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="60dp"
                     android:layout_above="@id/signin_back1"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/next_btn" />
+                    android:text="@string/next_btn"
+                    android:textColor="@color/white" />
 
 
                 <RelativeLayout

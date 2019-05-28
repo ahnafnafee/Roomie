@@ -12,32 +12,29 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.roomieprototype.signUp.SignUpActivity1;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 public class LoginActivity extends AppCompatActivity {
 
+    public TextView test1;
+    public ProgressBar progBar;
+    FirebaseUser firebaseUser;
     // UI references.
     private TextInputEditText mEmailView;
     private TextInputLayout emailView;
     private TextInputEditText mPasswordView;
     private TextInputLayout passwordView;
-
-    public TextView test1;
-
     private FirebaseAuth mAuth;
-
-    public ProgressBar progBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +58,6 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(getBaseContext(), UserAccount.class));
             }
         });
-
 
 
         // Firebase
@@ -101,8 +97,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    FirebaseUser firebaseUser;
-
 //    @Override
 //    protected void onStart() {
 //        super.onStart();
@@ -116,7 +110,6 @@ public class LoginActivity extends AppCompatActivity {
 //            finish();
 //        }
 //    }
-
 
     private void attemptLogin() {
 

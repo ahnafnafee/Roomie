@@ -29,10 +29,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            app:backgroundTint="@color/white"
-            app:elevation="9dp"
             android:outlineProvider="bounds"
+            app:backgroundTint="@color/white"
             app:buttonGravity="top|bottom"
+            app:elevation="9dp"
             app:fabAlignmentMode="center"
             app:fabCradleMargin="8dp"
             app:fabCradleRoundedCornerRadius="8dp" />

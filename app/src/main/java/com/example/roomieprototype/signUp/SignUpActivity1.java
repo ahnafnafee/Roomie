@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.roomieprototype.LoginActivity;
 import com.example.roomieprototype.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -17,7 +20,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-// Firebase imports
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,10 +29,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.HashMap;
+
+// Firebase imports
 
 public class SignUpActivity1 extends AppCompatActivity {
     private TextInputEditText mFullNameView;
@@ -134,7 +135,7 @@ public class SignUpActivity1 extends AppCompatActivity {
                             String userid = firebaseUser.getUid();
                             reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
                             UserProfileChangeRequest updateDisplayName = new UserProfileChangeRequest.Builder().setDisplayName(fullname).build();
-                            UserProfileChangeRequest updateImageURL = new UserProfileChangeRequest.Builder().setPhotoUri(Uri.parse("gs://roomieprototype.appspot.com/"+email)).build();
+                            UserProfileChangeRequest updateImageURL = new UserProfileChangeRequest.Builder().setPhotoUri(Uri.parse("gs://roomieprototype.appspot.com/" + email)).build();
 
                             firebaseUser.updateProfile(updateDisplayName);
                             firebaseUser.updateProfile(updateImageURL);
@@ -181,7 +182,7 @@ public class SignUpActivity1 extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("TAG", "signInWithEmail:failure", task.getException());
-                            Toast.makeText(SignUpActivity1.this, "Authentication failed.",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpActivity1.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

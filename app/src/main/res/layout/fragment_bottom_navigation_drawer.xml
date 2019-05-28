@@ -38,8 +38,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="Drexel University"
         android:fontFamily="@font/poiret_one"
+        android:text="Drexel University"
         android:textColor="#4643b5"
         app:layout_constraintStart_toStartOf="@+id/user_fullname"
         app:layout_constraintTop_toBottomOf="@+id/user_fullname" />
@@ -49,8 +49,8 @@
         android:layout_width="54dp"
         android:layout_height="54dp"
         android:layout_marginStart="16dp"
-        android:src="@drawable/white_bg"
         android:scaleType="centerInside"
+        android:src="@drawable/white_bg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/user_fullname" />
 

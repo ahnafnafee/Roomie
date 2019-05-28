@@ -22,8 +22,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.roomieprototype.imgcards.SliderAdapter;
 import com.example.roomieprototype.imgutils.DecodeBitmapTask;
-import com.example.roomieprototype.messages.Adapter.UserAdapter;
-import com.example.roomieprototype.messages.Model.Chatlist;
 import com.example.roomieprototype.messages.Model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -42,13 +40,12 @@ public class UserAccount extends AppCompatActivity {
 
     private final int[] pics = {R.drawable.p1, R.drawable.p2, R.drawable.p3, R.drawable.p4, R.drawable.p5};
     private final SliderAdapter sliderAdapter = new SliderAdapter(pics, 5, new OnCardClickListener());
-
+    public User userInfo;
     private CardSliderLayoutManager layoutManger;
     private RecyclerView recyclerView;
     private int currentPosition;
     private DecodeBitmapTask decodeMapBitmapTask;
     private FirebaseUser cUser;
-    public User userInfo;
     private CircularImageView userDP;
 
 
@@ -74,7 +71,7 @@ public class UserAccount extends AppCompatActivity {
                 assert userInfo != null;
 
                 userDP = findViewById(R.id.user_dp);
-                if (userInfo.getId()!=null) {
+                if (userInfo.getId() != null) {
                     new DownloadImageTask(userDP)
                             .execute(userInfo.getImageURL());
                 }
@@ -95,33 +92,6 @@ public class UserAccount extends AppCompatActivity {
         });
 
 
-
-
-    }
-
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
-
-        public DownloadImageTask(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
-        }
     }
 
     private void initRecyclerView() {
@@ -174,6 +144,31 @@ public class UserAccount extends AppCompatActivity {
         }
 
         currentPosition = pos;
+    }
+
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
     }
 
     private class ImageViewFactory implements ViewSwitcher.ViewFactory {

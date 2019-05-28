@@ -5,11 +5,11 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 
-import com.example.roomieprototype.R;
-import com.example.roomieprototype.imgutils.DecodeBitmapTask;
-
 import androidx.annotation.DrawableRes;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.roomieprototype.R;
+import com.example.roomieprototype.imgutils.DecodeBitmapTask;
 
 public class SliderCard extends RecyclerView.ViewHolder implements DecodeBitmapTask.Listener {
 

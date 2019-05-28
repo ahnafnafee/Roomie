@@ -3,12 +3,10 @@ package com.example.roomieprototype;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,7 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -28,27 +28,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
-import androidx.annotation.NonNull;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLDecoder;
-
 public class BottomNavigationDrawerFragment extends BottomSheetDialogFragment {
 
 
-    public static BottomNavigationDrawerFragment newInstance() {
-
-        Bundle args = new Bundle();
-
-        BottomNavigationDrawerFragment fragment = new BottomNavigationDrawerFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    private ImageView closeButton;
     //Bottom Sheet Callback
     private BottomSheetBehavior.BottomSheetCallback mBottomSheetBehaviorCallback = new BottomSheetBehavior.BottomSheetCallback() {
 
@@ -70,11 +53,18 @@ public class BottomNavigationDrawerFragment extends BottomSheetDialogFragment {
             }
         }
     };
-
-    private ImageView closeButton;
     private TextView fullName;
     private CircularImageView userImage;
     private FirebaseUser user;
+
+    public static BottomNavigationDrawerFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        BottomNavigationDrawerFragment fragment = new BottomNavigationDrawerFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -86,7 +76,7 @@ public class BottomNavigationDrawerFragment extends BottomSheetDialogFragment {
         user = FirebaseAuth.getInstance().getCurrentUser();
         fullName = contentView.findViewById(R.id.user_fullname);
         userImage = contentView.findViewById(R.id.user_profile_pic);
-        Log.d("TAG","name"+user.getDisplayName());
+        Log.d("TAG", "name" + user.getDisplayName());
         fullName.setText(user.getDisplayName());
 
         // Reference to an image file in Cloud Storage
