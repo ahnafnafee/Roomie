@@ -26,18 +26,20 @@ public class DialogFrag extends DialogFragment {
 
 //    private Toolbar toolbar;
 
-    public static DialogFrag display(FragmentManager fragmentManager) {
+    public static void display(FragmentManager fragmentManager) {
         DialogFrag exampleDialog = new DialogFrag();
         exampleDialog.show(fragmentManager, TAG);
-        return exampleDialog;
     }
 
     @Override
     public void onStart() {
         super.onStart();
         Dialog dialog = getDialog();
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(false);
+        if (dialog != null) {
+            dialog.setCancelable(false);
+            dialog.setCanceledOnTouchOutside(false);
+        }
+
 
 
         if (dialog != null) {

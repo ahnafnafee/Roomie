@@ -1,5 +1,6 @@
 package com.example.roomieprototype;
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -234,7 +236,13 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
                 convertView = getLayoutInflater().inflate(R.layout.swipe_card, parent, false);
             }
 
-            ConstraintLayout topCard = convertView.findViewById(R.id.topCard);
+            ConstraintLayout userRel = convertView.findViewById(R.id.user_item_rel);
+            userRel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getContext(), UserInfo.class));
+                }
+            });
 
             ImageView imgViewCard = convertView.findViewById(R.id.imgView);
 
