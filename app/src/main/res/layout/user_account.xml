@@ -48,13 +48,13 @@
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/account_fullname"
             android:layout_marginTop="16dp"
             android:clipChildren="false"
             android:overScrollMode="never"
-            app:layoutManager="com.ramotion.cardslider.CardSliderLayoutManager"/>
+            app:layoutManager="com.ramotion.cardslider.CardSliderLayoutManager"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/account_fullname" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"

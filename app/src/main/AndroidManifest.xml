@@ -36,6 +36,7 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".UserAccount" />
         <activity android:name=".DetailsActivity" />
+        <activity android:name=".UserInfo" />
 
     </application>
 

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:tools="http://schemas.android.com/tools"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <item
         android:id="@+id/avatar_icon"
         android:icon="@drawable/ic_avatar"
-        android:title="Profile"/>
+        android:title="Profile" />
 
     <item
         android:id="@+id/action_empty"
-        android:title=""
-        android:enabled="false" />
+        android:enabled="false"
+        android:title="" />
 
     <item
         android:id="@+id/app_bar_msg"
         android:icon="@drawable/ic_messages"
-        android:title="Messages"/>
+        android:title="Messages" />
 </menu>

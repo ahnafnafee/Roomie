@@ -1,13 +1,11 @@
 package com.example.roomieprototype.imgcards;
 
-import android.os.Build;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.ViewCompat;
-import android.view.View;
 
-import com.ramotion.cardslider.CardSliderLayoutManager;
 import com.ramotion.cardslider.DefaultViewUpdater;
 
 public class CardsUpdater extends DefaultViewUpdater {
@@ -16,7 +14,7 @@ public class CardsUpdater extends DefaultViewUpdater {
     public void updateView(@NonNull View view, float position) {
         super.updateView(view, position);
 
-        final CardView card = ((CardView)view);
+        final CardView card = ((CardView) view);
         final View alphaView = card.getChildAt(1);
         final View imageView = card.getChildAt(0);
 

@@ -7,9 +7,8 @@ import android.util.LruCache;
  * LruCache for caching background bitmaps for {@link DecodeBitmapTask}.
  */
 class BackgroundBitmapCache {
-    private LruCache<Integer, Bitmap> mBackgroundsCache;
-
     private static BackgroundBitmapCache instance;
+    private LruCache<Integer, Bitmap> mBackgroundsCache;
 
     public static BackgroundBitmapCache getInstance() {
         if (instance == null) {

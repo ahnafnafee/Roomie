@@ -29,13 +29,12 @@ import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
+    String theLastMessage;
     private Context mContext;
     private List<User> mUsers;
     private boolean ischat;
 
-    String theLastMessage;
-
-    public UserAdapter(Context mContext, List<User> mUsers, boolean ischat){
+    public UserAdapter(Context mContext, List<User> mUsers, boolean ischat) {
         this.mUsers = mUsers;
         this.mContext = mContext;
         this.ischat = ischat;
@@ -57,20 +56,20 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         Log.d("Adpater Position", String.valueOf(position));
 
         holder.fullname.setText(user.getFullname());
-        if (user.getImageURL().equals("default")){
+        if (user.getImageURL().equals("default")) {
             holder.profile_image.setImageResource(R.drawable.ic_avtr);
         } else {
             Glide.with(mContext).load(user.getImageURL()).into(holder.profile_image);
         }
 
-        if (ischat){
+        if (ischat) {
             lastMessage(user.getId(), holder.last_msg);
         } else {
             holder.last_msg.setVisibility(View.GONE);
         }
 
-        if (ischat){
-            if (user.getStatus().equals("online")){
+        if (ischat) {
+            if (user.getStatus().equals("online")) {
                 holder.img_on.setVisibility(View.VISIBLE);
                 holder.img_off.setVisibility(View.GONE);
             } else {
@@ -97,27 +96,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         return mUsers.size();
     }
 
-    public  class ViewHolder extends RecyclerView.ViewHolder{
-
-        public TextView fullname;
-        public ImageView profile_image;
-        private ImageView img_on;
-        private ImageView img_off;
-        private TextView last_msg;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-
-            fullname = itemView.findViewById(R.id.fullname);
-            profile_image = itemView.findViewById(R.id.profile_image);
-            img_on = itemView.findViewById(R.id.img_on);
-            img_off = itemView.findViewById(R.id.img_off);
-            last_msg = itemView.findViewById(R.id.last_msg);
-        }
-    }
-
     //check for last message
-    private void lastMessage(final String userid, final TextView last_msg){
+    private void lastMessage(final String userid, final TextView last_msg) {
         theLastMessage = "default";
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Chats");
@@ -125,9 +105,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Chat chat = snapshot.getValue(Chat.class);
-                   if (firebaseUser != null && chat != null) {
+                    if (firebaseUser != null && chat != null) {
                         if (chat.getReceiver().equals(firebaseUser.getUid()) && chat.getSender().equals(userid) ||
                                 chat.getReceiver().equals(userid) && chat.getSender().equals(firebaseUser.getUid())) {
                             theLastMessage = chat.getMessage();
@@ -135,8 +115,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                     }
                 }
 
-                switch (theLastMessage){
-                    case  "default":
+                switch (theLastMessage) {
+                    case "default":
                         last_msg.setText("No Message");
                         break;
 
@@ -153,5 +133,24 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
             }
         });
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        public TextView fullname;
+        public ImageView profile_image;
+        private ImageView img_on;
+        private ImageView img_off;
+        private TextView last_msg;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+
+            fullname = itemView.findViewById(R.id.fullname);
+            profile_image = itemView.findViewById(R.id.profile_image);
+            img_on = itemView.findViewById(R.id.img_on);
+            img_off = itemView.findViewById(R.id.img_off);
+            last_msg = itemView.findViewById(R.id.last_msg);
+        }
     }
 }

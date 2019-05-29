@@ -39,5 +39,6 @@
     <string name="dorm">Dorm or Suite? </string>
 
     <string name="card_name">Regina Phalange</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique est metus, at finibus magna varius a. Etiam scelerisque libero eget diam.</string>
 
 </resources>

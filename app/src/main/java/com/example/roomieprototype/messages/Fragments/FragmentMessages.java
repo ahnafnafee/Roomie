@@ -31,23 +31,18 @@ import java.util.List;
 public class FragmentMessages extends Fragment {
 
 
+    FirebaseUser fuser;
+    DatabaseReference reference;
+    private RecyclerView recyclerView;
+    private UserAdapter userAdapter;
+    private List<User> mUsers;
+    private List<String> sUsers, cUsers;
+    private ArrayList<String> matchList, matchEmailList, xUserList;
+    private List<Chatlist> usersList;
+
     public FragmentMessages() {
         // Required empty public constructor
     }
-
-    private RecyclerView recyclerView;
-
-    private UserAdapter userAdapter;
-    private List<User> mUsers;
-
-    private List<String> sUsers, cUsers;
-
-    private ArrayList<String> matchList, matchEmailList, xUserList;
-
-    FirebaseUser fuser;
-    DatabaseReference reference;
-
-    private List<Chatlist> usersList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,7 +76,7 @@ public class FragmentMessages extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 usersList.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Chatlist chatlist = snapshot.getValue(Chatlist.class);
                     usersList.add(chatlist);
                 }
@@ -121,7 +116,7 @@ public class FragmentMessages extends Fragment {
                     queryChatList.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            for (final String item: xUserList) {
+                            for (final String item : xUserList) {
                                 final DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("Chatlist")
                                         .child(fuser.getUid())
                                         .child(item);
@@ -129,7 +124,7 @@ public class FragmentMessages extends Fragment {
                                 chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        if (!dataSnapshot.exists()){
+                                        if (!dataSnapshot.exists()) {
                                             chatRef.child("id").setValue(item);
                                         }
                                     }
@@ -165,7 +160,7 @@ public class FragmentMessages extends Fragment {
 
     }
 
-    private void updateToken(String token){
+    private void updateToken(String token) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
         Token token1 = new Token(token);
         reference.child(fuser.getUid()).setValue(token1);
@@ -178,10 +173,10 @@ public class FragmentMessages extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUsers.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User user = snapshot.getValue(User.class);
-                    for (Chatlist chatlist : usersList){
-                        if (user!=null && user.getId() != null && !user.getId().equals(chatlist.getId())){
+                    for (Chatlist chatlist : usersList) {
+                        if (user != null && user.getId() != null && !user.getId().equals(chatlist.getId())) {
                             mUsers.add(user);
                             Log.d("Within ChatList: ", String.valueOf(user));
                             break;
@@ -191,7 +186,7 @@ public class FragmentMessages extends Fragment {
 
 
                 Log.d("Inside ChatList", String.valueOf(mUsers));
-                for (User u: mUsers) {
+                for (User u : mUsers) {
                     Log.d("Fullname", String.valueOf(u.getFullname()));
                     Log.d("Email", String.valueOf(u.getEmail()));
                     Log.d("ID", String.valueOf(u.getId()));

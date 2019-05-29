@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserInfo">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/top_rect"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:orientation="vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/profile_pic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:foreground="@drawable/user_info_bg_top"
+                android:scaleType="centerCrop"
+                android:src="@drawable/p3" />
+
+            <TextView
+                android:id="@+id/user_fullname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/user_university"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/poiret_one"
+                android:text="angela moss"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="46sp" />
+
+            <TextView
+                android:id="@+id/user_university"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/questrial"
+                android:text="Drexel University, '22"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/close_btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="16dp"
+                android:background="@null"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_close_btn"
+                app:civ_border_width="0dp" />
+
+
+        </RelativeLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/user_info_bg_bottom"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/top_rect">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/about_me"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poiret_one"
+                android:text="about me"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recycler_view" />
+
+            <TextView
+                android:id="@+id/about_me_edit"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bio_rect"
+                android:fontFamily="@font/questrial"
+                android:gravity="start"
+                android:padding="16dp"
+                android:text="@string/lorem_ipsum"
+                android:textColor="#8A80EF"
+                android:textColorHint="#8A80EF"
+                android:textSize="18sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/about_me" />
+
+            <TextView
+                android:id="@+id/traits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:fontFamily="@font/poiret_one"
+                android:text="traits"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/about_me_edit" />
+
+            <RelativeLayout
+                android:id="@+id/user_chips"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/traits">
+
+                <TextView
+                    android:id="@+id/sleep_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/questrial"
+                    android:text="@string/sleep_schedule"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/sleep_chips"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/sleep_title"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/night_owl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:checked="true"
+                        android:clickable="false"
+                        android:text="Night Owl(After 12 am)"
+                        android:textColor="@color/colorPrimaryDark"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <TextView
+                    android:id="@+id/clean_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/sleep_chips"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/questrial"
+                    android:text="@string/clean_schedule"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/clean_chips"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/clean_title"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/neat_freak"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:checked="true"
+                        android:clickable="false"
+                        android:text="Neat Freak"
+                        android:textColor="@color/colorPrimaryDark"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <TextView
+                    android:id="@+id/eat_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/clean_chips"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/questrial"
+                    android:text="@string/eat_schedule"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/eat_chips"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/eat_title"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/no_pref"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:checked="true"
+                        android:clickable="false"
+                        android:text="No Preference"
+                        android:textColor="@color/colorPrimaryDark"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <TextView
+                    android:id="@+id/study_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/eat_chips"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/questrial"
+                    android:text="@string/study_schedule"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/study_chips"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/study_title"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/music"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:checked="true"
+                        android:clickable="false"
+                        android:text="With Music"
+                        android:textColor="@color/colorPrimaryDark"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <TextView
+                    android:id="@+id/social_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/study_chips"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/questrial"
+                    android:text="@string/social_schedule"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/social_chips"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/social_title"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/party_animal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:checked="true"
+                        android:clickable="false"
+                        android:text="Party Animal"
+                        android:textColor="@color/colorPrimaryDark"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <TextView
+                    android:id="@+id/temperature_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/social_chips"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/questrial"
+                    android:text="@string/temp_schedule"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/temperature_chips"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/temperature_title"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/freezing"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:checked="true"
+                        android:clickable="false"
+                        android:text="Freezing"
+                        android:textColor="@color/colorPrimaryDark"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <TextView
+                    android:id="@+id/dorm_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/temperature_chips"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/questrial"
+                    android:text="@string/dorm"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/dorm_chips"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/dorm_title"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/dorm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:checked="true"
+                        android:clickable="false"
+                        android:text="Melting"
+                        android:textColor="@color/colorPrimaryDark"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <TextView
+                    android:id="@+id/apartment_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/dorm_chips"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/questrial"
+                    android:text="@string/apartment"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/apartment_chips"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/apartment_title"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/apart_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkable="true"
+                        android:checked="true"
+                        android:clickable="false"
+                        android:text="No"
+                        android:textColor="@color/colorPrimaryDark"
+                        app:checkedIcon="@drawable/ic_check_circle_roomie"
+                        app:chipBackgroundColor="@color/gender_chip_color"
+                        app:chipStrokeColor="@color/colorAccent"
+                        app:chipStrokeWidth="1dp" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

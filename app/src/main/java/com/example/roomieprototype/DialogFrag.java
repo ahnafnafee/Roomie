@@ -8,18 +8,15 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.material.button.MaterialButton;
-
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
+
+import com.google.android.material.button.MaterialButton;
 
 public class DialogFrag extends DialogFragment {
 
@@ -29,18 +26,19 @@ public class DialogFrag extends DialogFragment {
 
 //    private Toolbar toolbar;
 
-    public static DialogFrag display(FragmentManager fragmentManager) {
+    public static void display(FragmentManager fragmentManager) {
         DialogFrag exampleDialog = new DialogFrag();
         exampleDialog.show(fragmentManager, TAG);
-        return exampleDialog;
     }
 
     @Override
     public void onStart() {
         super.onStart();
         Dialog dialog = getDialog();
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(false);
+        if (dialog != null) {
+            dialog.setCancelable(false);
+            dialog.setCanceledOnTouchOutside(false);
+        }
 
 
 
@@ -52,7 +50,7 @@ public class DialogFrag extends DialogFragment {
             int width = dm.widthPixels;
             int height = dm.heightPixels;
 
-            Log.d(TAG, ""+ width + ", " + height);
+            Log.d(TAG, "" + width + ", " + height);
 
             dialog.getWindow().setLayout((int) (width * 0.75), (int) (width * 1.11));
         }

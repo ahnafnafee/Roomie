@@ -6,6 +6,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+
 import com.example.roomieprototype.messages.Fragments.FragmentMessages;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -33,7 +34,8 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
 
     public BottomAppBar bottomAppBar;
     BottomNavigationView bottomNavigationView;
-
+    DatabaseReference reference;
+    FragmentMessages fragmentMessage = new FragmentMessages();
     private FloatingActionButton mBottomFAB;
     private ArrayList<String> matchList, matchEmailList, swipedRightBy;
     private FragmentMatch fragmentMatch;
@@ -42,7 +44,6 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
     private StorageReference userPicRef;
     private FirebaseFirestore db;
     private FirebaseUser user;
-    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
         storageReference = storage.getReference();
         matchList = getIntent().getStringArrayListExtra("matchList");
         matchEmailList = getIntent().getStringArrayListExtra("matchEmailList");
-        swipedRightBy  = getIntent().getStringArrayListExtra("swipedRightBy");
+        swipedRightBy = getIntent().getStringArrayListExtra("swipedRightBy");
         Log.d("TAG", "cardstack" + matchList.toString());
         Bundle bundle = new Bundle();
         bundle.putStringArrayList("matchList", matchList);
@@ -70,7 +71,6 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.action_empty);
-
 
 
         // Set initial fragment
@@ -111,8 +111,6 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
         moveTaskToBack(true);
     }
 
-    FragmentMessages fragmentMessage = new FragmentMessages();
-
     private void replaceFragment(Fragment fragment) {
         String backStateName = fragment.getClass().getName();
 
@@ -147,7 +145,7 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
         return false;
     }
 
-    private void status(String status){
+    private void status(String status) {
         reference = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
 
         HashMap<String, Object> hashMap = new HashMap<>();
