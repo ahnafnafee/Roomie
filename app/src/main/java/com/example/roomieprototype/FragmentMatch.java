@@ -19,6 +19,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,11 +40,11 @@ import link.fls.swipestack.SwipeStack;
 public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackListener, View.OnClickListener {
 
     public String imgStr;
-    public ImageView mSkipView, mLikeView;
-    public int count;
     private ArrayList<Drawable> mData;
     private SwipeStack mSwipeStack;
     private SwipeStackAdapter mAdapter;
+    public ImageView mSkipView, mLikeView, imgView;
+    public int count;
     private ArrayList<String> matchList, matchEmailList, swipedRightBy;
     private FirebaseStorage storage;
     private StorageReference storageReference;
@@ -107,7 +108,6 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
         i = 2;
 
         for (int j = 0; j < matchSize; j++) {
-            Log.d("TAG", "0th if statement");
             userPicRef = storageReference.child(matchEmailList.get(j));
 
             userPicRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -157,6 +157,8 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
             mSwipeStack.swipeTopViewToLeft();
         } else if (v.equals(mLikeView)) {
             mSwipeStack.swipeTopViewToRight();
+        } else if (v.equals(imgView)) {
+            Toast.makeText(getContext(),"Tapped", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -170,14 +172,14 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
     public void onViewSwipedToRight(final int position) {
         String swipedElement = mAdapter.getItem(position);
         Toast.makeText(getContext(), "Swiped right", Toast.LENGTH_SHORT).show();
-        if (swipedRightBy.contains(matchEmailList.get(position))) {
+        if(swipedRightBy.contains(matchEmailList.get(position))) {
             //matchList.remove(position);
             DialogFrag.display(getFragmentManager());
-        } else {
+        }else {
             Map<String, Object> userRight = new HashMap<>();
             userRight.put(matchEmailList.get(position), matchEmailList.get(position));
             DocumentReference docRef = db.collection("userData").document(user.getEmail());
-            docRef.set(userRight, SetOptions.merge());
+            docRef.set(userRight,SetOptions.merge());
         }
         //mData.remove(position);
         //matchList.remove(position);

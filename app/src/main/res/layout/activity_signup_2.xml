@@ -180,54 +180,30 @@
 
             <RelativeLayout
                 android:id="@+id/nxt_final_field"
-                android:layout_width="179dp"
+                android:layout_width="match_parent"
                 android:layout_height="116dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true">
+
+                <TextView
+                    android:id="@+id/pic_error"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/errorRed"
+                    android:layout_centerHorizontal="true"
+                    android:textAlignment="center"
+                    android:textSize="12sp"/>
 
                 <Button
                     android:id="@+id/next_reg_button_2"
                     style="@style/Main.UnelevatedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="60dp"
-                    android:layout_above="@id/signin_back1"
+                    android:layout_marginTop="14dp"
+                    android:layout_below="@id/pic_error"
                     android:layout_centerHorizontal="true"
                     android:fontFamily="@font/poiret_one"
                     android:text="@string/next_btn" />
-
-
-                <RelativeLayout
-                    android:id="@+id/signin_back1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="16dp">
-
-                    <TextView
-                        android:id="@+id/reg_chk"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/lato_light"
-                        android:paddingBottom="16dp"
-                        android:text="@string/have_an_account"
-                        android:textColor="#B5B5B5"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/signin_back"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/reg_chk"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:fontFamily="@font/lato_light"
-                        android:paddingBottom="16dp"
-                        android:text="@string/sign_in_back"
-                        android:textColor="#756BFF"
-                        android:textSize="16sp" />
-
-                </RelativeLayout>
 
             </RelativeLayout>
 
