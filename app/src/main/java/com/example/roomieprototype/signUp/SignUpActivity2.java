@@ -63,11 +63,16 @@ public class SignUpActivity2 extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseUser user;
     private DatabaseReference reference;
+    private TextView picError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_2);
+
+        // Error TextView
+        picError = findViewById(R.id.pic_error);
+
         // firebase database initiated
         db = FirebaseFirestore.getInstance();
 
@@ -107,41 +112,50 @@ public class SignUpActivity2 extends AppCompatActivity {
         btnNxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                boolean cancel = false;
                 // Get the data from an ImageView as bytes
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 40, baos);
-                byte[] data = baos.toByteArray();
+                if(bitmap == null) {
+                    picError.setText("Please add a profile picture");
+                    cancel = true;
+                }
 
-                UploadTask uploadTask = userPicRef.putBytes(data);
-                uploadTask.addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle unsuccessful uploads
-                    }
-                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        String userid = user.getUid();
-                        String email = user.getEmail();
+                if(!cancel) {
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 40, baos);
+                    byte[] data = baos.toByteArray();
 
-                        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userid).child("imageURL");
+                    UploadTask uploadTask = userPicRef.putBytes(data);
+                    uploadTask.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle unsuccessful uploads
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            String userid = user.getUid();
+                            String email = user.getEmail();
 
-                        storageReference.child(email).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                reference.setValue(String.valueOf(uri));
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception exception) {
-                                // Handle any errors
-                            }
-                        });
-                        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                        // ...
-                    }
-                });
-                startActivity(new Intent(getBaseContext(), SignUpActivity3.class));
+                            final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(userid).child("imageURL");
+
+                            storageReference.child(email).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    reference.setValue(String.valueOf(uri));
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception exception) {
+                                    // Handle any errors
+                                }
+                            });
+                            // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                            // ...
+                        }
+                    });
+                    startActivity(new Intent(getBaseContext(), SignUpActivity3.class));
+                }
             }
         });
 
