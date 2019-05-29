@@ -4,6 +4,7 @@
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">Must contain at least 8 characters</string>
     <string name="error_field_required">This field is required</string>
+    <string name="error_password_not_match">Passwords do not match</string>
 
     <string name="title_string">roomie</string>
     <string name="email_hint">Email</string>

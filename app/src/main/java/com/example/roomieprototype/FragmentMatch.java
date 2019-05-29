@@ -43,7 +43,7 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
     private ArrayList<Drawable> mData;
     private SwipeStack mSwipeStack;
     private SwipeStackAdapter mAdapter;
-    public ImageView mSkipView, mLikeView;
+    public ImageView mSkipView, mLikeView, imgView;
     public int count;
     private ArrayList<String> matchList, matchEmailList, swipedRightBy;
     private FirebaseStorage storage;
@@ -108,7 +108,6 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
         i = 2;
 
         for (int j = 0; j < matchSize; j++) {
-            Log.d("TAG", "0th if statement");
             userPicRef = storageReference.child(matchEmailList.get(j));
 
             userPicRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -158,6 +157,8 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
             mSwipeStack.swipeTopViewToLeft();
         } else if (v.equals(mLikeView)) {
             mSwipeStack.swipeTopViewToRight();
+        } else if (v.equals(imgView)) {
+            Toast.makeText(getContext(),"Tapped", Toast.LENGTH_SHORT).show();
         }
 
     }
