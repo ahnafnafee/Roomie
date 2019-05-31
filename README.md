@@ -30,7 +30,6 @@ This application works similarly to the Tinder app, where instead of matching wi
 1. flschweiger/SwipeStack: [A simple, customizable and easy to use swipeable view stack for Android.](https://github.com/flschweiger/SwipeStack)
 2. lopspower/CircularImageView: [Create circular ImageView in Android in the simplest way possible.](https://github.com/lopspower/CircularImageView)
 3. MdFarhanRaja/SearchableSpinner: [Fully Searchable Spiner Dialog](https://github.com/MdFarhanRaja/SearchableSpinner)
-4. Ramotion/cardslider-android: [Cardslider is a material design UI controller that allows you to swipe through cards with pictures and accompanying descriptions.](https://github.com/Ramotion/cardslider-android)
 
 # License
 
