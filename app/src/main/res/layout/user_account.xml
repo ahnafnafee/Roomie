@@ -227,7 +227,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/lato_light"
+                        android:fontFamily="@font/questrial"
                         android:text="@string/sleep_schedule"
                         android:textColor="#241993"
                         android:textSize="16sp" />
@@ -288,7 +288,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/sleep_chips"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/lato_light"
+                        android:fontFamily="@font/questrial"
                         android:text="@string/clean_schedule"
                         android:textColor="#241993"
                         android:textSize="16sp" />
@@ -361,7 +361,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/clean_chips"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/lato_light"
+                        android:fontFamily="@font/questrial"
                         android:text="@string/eat_schedule"
                         android:textColor="#241993"
                         android:textSize="16sp" />
@@ -446,7 +446,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/eat_chips"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/lato_light"
+                        android:fontFamily="@font/questrial"
                         android:text="@string/study_schedule"
                         android:textColor="#241993"
                         android:textSize="16sp" />
@@ -519,7 +519,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/study_chips"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/lato_light"
+                        android:fontFamily="@font/questrial"
                         android:text="@string/social_schedule"
                         android:textColor="#241993"
                         android:textSize="16sp" />
@@ -580,7 +580,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/social_chips"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/lato_light"
+                        android:fontFamily="@font/questrial"
                         android:text="@string/temp_schedule"
                         android:textColor="#241993"
                         android:textSize="16sp" />
@@ -665,7 +665,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/temperature_chips"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/lato_light"
+                        android:fontFamily="@font/questrial"
                         android:text="@string/dorm"
                         android:textColor="#241993"
                         android:textSize="16sp" />
