@@ -96,29 +96,8 @@ public class DialogFrag extends DialogFragment {
             getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         }
 
-//        toolbar = view.findViewById(R.id.toolbar);
-
         return view;
     }
-
-//    public void replaceFragment(Fragment fragment) {
-//        String backStateName = fragment.getClass().getName();
-//
-//        assert getFragmentManager() != null;
-//        if (getFragmentManager().getBackStackEntryCount() < 2) {
-//            FragmentManager manager = getFragmentManager();
-//            boolean fragmentPopped = manager.popBackStackImmediate(backStateName, 0);
-//
-//            if (!fragmentPopped) { //fragment not in back stack, create it.
-//                FragmentTransaction ft = manager.beginTransaction();
-//                ft.replace(R.id.container, fragment);
-//                ft.addToBackStack(backStateName);
-//                ft.commitAllowingStateLoss();
-//            }
-//        }
-//
-//        Log.d("Test: ", String.valueOf(getFragmentManager().getBackStackEntryCount()));
-//    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
