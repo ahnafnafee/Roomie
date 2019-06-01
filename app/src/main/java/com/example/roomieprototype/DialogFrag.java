@@ -14,8 +14,11 @@ import android.view.Window;
 import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.example.roomieprototype.messages.Fragments.FragmentMessages;
 import com.google.android.material.button.MaterialButton;
 
 public class DialogFrag extends DialogFragment {
@@ -23,6 +26,8 @@ public class DialogFrag extends DialogFragment {
     private static final String TAG = "Dialog";
 
     private MaterialButton playBtn, msgBtn;
+
+    FragmentMessages fragmentMessage = new FragmentMessages();
 
 //    private Toolbar toolbar;
 
@@ -80,7 +85,9 @@ public class DialogFrag extends DialogFragment {
         msgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Will be implemented soon", Toast.LENGTH_SHORT).show();
+                getFragmentManager()
+                        .beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).replace(R.id.container, fragmentMessage).addToBackStack(null).commitAllowingStateLoss();
+                getDialog().dismiss();
             }
         });
 
@@ -93,6 +100,25 @@ public class DialogFrag extends DialogFragment {
 
         return view;
     }
+
+//    public void replaceFragment(Fragment fragment) {
+//        String backStateName = fragment.getClass().getName();
+//
+//        assert getFragmentManager() != null;
+//        if (getFragmentManager().getBackStackEntryCount() < 2) {
+//            FragmentManager manager = getFragmentManager();
+//            boolean fragmentPopped = manager.popBackStackImmediate(backStateName, 0);
+//
+//            if (!fragmentPopped) { //fragment not in back stack, create it.
+//                FragmentTransaction ft = manager.beginTransaction();
+//                ft.replace(R.id.container, fragment);
+//                ft.addToBackStack(backStateName);
+//                ft.commitAllowingStateLoss();
+//            }
+//        }
+//
+//        Log.d("Test: ", String.valueOf(getFragmentManager().getBackStackEntryCount()));
+//    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {

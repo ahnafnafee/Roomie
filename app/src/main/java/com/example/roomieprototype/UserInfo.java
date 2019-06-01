@@ -35,6 +35,8 @@ public class UserInfo extends AppCompatActivity {
             }
         });
 
+
+
         mImgArr = new ArrayList<>();
 
         for (int x = 0; x < 5; x++) {
