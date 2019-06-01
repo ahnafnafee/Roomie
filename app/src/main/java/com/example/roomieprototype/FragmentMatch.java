@@ -70,6 +70,23 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
         // Required empty public constructor
     }
 
+    private static Bitmap drawableToBitmap(Drawable drawable) {
+        if (drawable instanceof BitmapDrawable) {
+            return ((BitmapDrawable) drawable).getBitmap();
+        }
+
+        int width = drawable.getIntrinsicWidth();
+        width = width > 0 ? width : 1;
+        int height = drawable.getIntrinsicHeight();
+        height = height > 0 ? height : 1;
+
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+
+        return bitmap;
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -152,14 +169,12 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
         return RootView;
     }
 
-
     public void fillWithTestData() {
         for (int x = 0; x < matchList.size(); x++) {
             Drawable img = ResourcesCompat.getDrawable(getResources(), R.drawable.white_bg, null);
             mData.add(img);
         }
     }
-
 
     @Override
     public void onClick(View v) {
@@ -226,24 +241,6 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
         //matchList.remove(position);
     }
 
-    public static Bitmap drawableToBitmap (Drawable drawable) {
-        if (drawable instanceof BitmapDrawable) {
-            return ((BitmapDrawable)drawable).getBitmap();
-        }
-
-        int width = drawable.getIntrinsicWidth();
-        width = width > 0 ? width : 1;
-        int height = drawable.getIntrinsicHeight();
-        height = height > 0 ? height : 1;
-
-        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        drawable.draw(canvas);
-
-        return bitmap;
-    }
-
     @Override
     public void onStackEmpty() {
         Toast.makeText(getContext(), R.string.stack_empty, Toast.LENGTH_SHORT).show();
@@ -296,9 +293,7 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
                 public void onClick(View v) {
                     Intent i = new Intent(getContext(), UserInfo.class);
                     i.putExtra("fullname", mText.get(position));
-                    if (picBitmap!=null) {
-                        i.putExtra("maindp", byteArray);
-                    }
+                    i.putExtra("maindp", byteArray);
                     startActivity(i);
                 }
             });
@@ -307,7 +302,6 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
 
             TextView textViewCard = convertView.findViewById(R.id.textViewCard);
             textViewCard.setText(mText.get(position));
-
 
 
             imgViewCard.setImageDrawable(mPic.get(position));

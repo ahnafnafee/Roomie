@@ -22,9 +22,9 @@ public class UserInfo extends AppCompatActivity {
 
     private static final String TAG = "UserInfo";
     public ArrayList<String> mImgArr;
+    public Bundle uBundle;
     private CircularImageView sClose;
     private String imgStr;
-    public Bundle uBundle;
     private ImageView mainDP;
 
     @Override

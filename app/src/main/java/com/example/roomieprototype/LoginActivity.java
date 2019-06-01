@@ -29,13 +29,13 @@ public class LoginActivity extends AppCompatActivity {
 
     public TextView test1;
     public ProgressBar progBar;
-    FirebaseUser firebaseUser;
     // UI references.
     private TextInputEditText mEmailView;
     private TextInputLayout emailView;
     private TextInputEditText mPasswordView;
     private TextInputLayout passwordView;
     private FirebaseAuth mAuth;
+    private FirebaseUser cUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +63,11 @@ public class LoginActivity extends AppCompatActivity {
 
         // Firebase
         mAuth = FirebaseAuth.getInstance();
+        cUser = mAuth.getCurrentUser();
+
+        if (cUser != null) {
+            startActivity(new Intent(getBaseContext(), MatchingScreen.class));
+        }
 
         // Progress Bar
         progBar = findViewById(R.id.progBar);
