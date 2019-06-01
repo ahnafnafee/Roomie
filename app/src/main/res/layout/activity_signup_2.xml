@@ -82,6 +82,7 @@
                     <com.google.android.material.chip.Chip
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
+                        android:id="@+id/gender_male"
                         android:layout_height="52dp"
                         android:text="Male"
                         android:textColor="@color/dark_purpblue"
@@ -95,6 +96,7 @@
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="52dp"
+                        android:id="@+id/gender_female"
                         android:gravity="center_horizontal"
                         android:text="Female"
                         android:textColor="@color/dark_purpblue"
@@ -109,6 +111,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="52dp"
                         android:text="Other"
+                        android:id="@+id/gender_other"
                         android:textColor="@color/dark_purpblue"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/gender_chip_color"

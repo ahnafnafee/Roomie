@@ -7,6 +7,12 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.roomieprototype.messages.Fragments.FragmentMessages;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -23,12 +29,6 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 
 public class CardStack extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -37,7 +37,7 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
     DatabaseReference reference;
     FragmentMessages fragmentMessage = new FragmentMessages();
     private FloatingActionButton mBottomFAB;
-    private ArrayList<String> matchList, matchEmailList, swipedRightBy;
+    private ArrayList<String> matchList, matchEmailList, swipedRightBy, swipedRightByID;
     private FragmentMatch fragmentMatch;
     private FirebaseStorage storage;
     private StorageReference storageReference;
@@ -56,11 +56,13 @@ public class CardStack extends AppCompatActivity implements View.OnClickListener
         matchList = getIntent().getStringArrayListExtra("matchList");
         matchEmailList = getIntent().getStringArrayListExtra("matchEmailList");
         swipedRightBy = getIntent().getStringArrayListExtra("swipedRightBy");
+        swipedRightByID = getIntent().getStringArrayListExtra("swipedRightByID");
         Log.d("TAG", "cardstack" + matchList.toString());
         Bundle bundle = new Bundle();
         bundle.putStringArrayList("matchList", matchList);
         bundle.putStringArrayList("matchEmailList", matchEmailList);
         bundle.putStringArrayList("swipedRightBy", swipedRightBy);
+        bundle.putStringArrayList("swipedRightByID", swipedRightByID);
         // set Fragmentclass Arguments
         fragmentMatch = new FragmentMatch();
         fragmentMatch.setArguments(bundle);

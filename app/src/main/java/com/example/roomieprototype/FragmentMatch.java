@@ -1,7 +1,9 @@
 package com.example.roomieprototype;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -11,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,17 +22,23 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
-import com.bumptech.glide.Glide;
+import com.example.roomieprototype.messages.Model.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,12 +49,12 @@ import link.fls.swipestack.SwipeStack;
 public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackListener, View.OnClickListener {
 
     public String imgStr;
+    public ImageView mSkipView, mLikeView, imgView;
+    public int count;
     private ArrayList<Drawable> mData;
     private SwipeStack mSwipeStack;
     private SwipeStackAdapter mAdapter;
-    public ImageView mSkipView, mLikeView, imgView;
-    public int count;
-    private ArrayList<String> matchList, matchEmailList, swipedRightBy;
+    private ArrayList<String> matchList, matchEmailList, swipedRightBy, swipedRightByID;
     private FirebaseStorage storage;
     private StorageReference storageReference;
     private StorageReference userPicRef;
@@ -63,6 +70,23 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
         // Required empty public constructor
     }
 
+    private static Bitmap drawableToBitmap(Drawable drawable) {
+        if (drawable instanceof BitmapDrawable) {
+            return ((BitmapDrawable) drawable).getBitmap();
+        }
+
+        int width = drawable.getIntrinsicWidth();
+        width = width > 0 ? width : 1;
+        int height = drawable.getIntrinsicHeight();
+        height = height > 0 ? height : 1;
+
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+
+        return bitmap;
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -75,6 +99,7 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
             matchList = bundle.getStringArrayList("matchList");
             matchEmailList = bundle.getStringArrayList("matchEmailList");
             swipedRightBy = bundle.getStringArrayList("swipedRightBy");
+            swipedRightByID = bundle.getStringArrayList("swipedRightByID");
             Log.d("TAG", "fragmentmatch" + matchList.toString());
         }
 
@@ -144,14 +169,12 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
         return RootView;
     }
 
-
     public void fillWithTestData() {
         for (int x = 0; x < matchList.size(); x++) {
             Drawable img = ResourcesCompat.getDrawable(getResources(), R.drawable.white_bg, null);
             mData.add(img);
         }
     }
-
 
     @Override
     public void onClick(View v) {
@@ -160,7 +183,7 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
         } else if (v.equals(mLikeView)) {
             mSwipeStack.swipeTopViewToRight();
         } else if (v.equals(imgView)) {
-            Toast.makeText(getContext(),"Tapped", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Tapped", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -174,14 +197,37 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
     public void onViewSwipedToRight(final int position) {
         String swipedElement = mAdapter.getItem(position);
         Toast.makeText(getContext(), "Swiped right", Toast.LENGTH_SHORT).show();
-        if(swipedRightBy.contains(matchEmailList.get(position))) {
-            //matchList.remove(position);
+        if (swipedRightBy.contains(matchEmailList.get(position))) {
+            final DatabaseReference matchChatList = FirebaseDatabase.getInstance().getReference().child("Matched");
+            final DatabaseReference uList = FirebaseDatabase.getInstance().getReference().child("Users");
+            uList.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        User cUser = snapshot.getValue(User.class);
+
+                        for (String uChat : swipedRightBy) {
+                            if (cUser.getEmail().equals(uChat)) {
+                                matchChatList.child(user.getUid()).child(cUser.getId()).child("id").setValue(user.getUid());
+                                matchChatList.child(cUser.getId()).child(user.getUid()).child("id").setValue(cUser.getId());
+                            }
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
             DialogFrag.display(getFragmentManager());
-        }else {
+        } else {
             Map<String, Object> userRight = new HashMap<>();
             userRight.put(matchEmailList.get(position), matchEmailList.get(position));
             DocumentReference docRef = db.collection("userData").document(user.getEmail());
-            docRef.set(userRight,SetOptions.merge());
+            docRef.set(userRight, SetOptions.merge());
         }
         //mData.remove(position);
         //matchList.remove(position);
@@ -236,11 +282,19 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
                 convertView = getLayoutInflater().inflate(R.layout.swipe_card, parent, false);
             }
 
+            final Bitmap picBitmap = drawableToBitmap(mPic.get(position));
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            picBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            final byte[] byteArray = stream.toByteArray();
+
             ConstraintLayout userRel = convertView.findViewById(R.id.user_item_rel);
             userRel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(getContext(), UserInfo.class));
+                    Intent i = new Intent(getContext(), UserInfo.class);
+                    i.putExtra("fullname", mText.get(position));
+                    i.putExtra("maindp", byteArray);
+                    startActivity(i);
                 }
             });
 
@@ -248,6 +302,7 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
 
             TextView textViewCard = convertView.findViewById(R.id.textViewCard);
             textViewCard.setText(mText.get(position));
+
 
             imgViewCard.setImageDrawable(mPic.get(position));
 

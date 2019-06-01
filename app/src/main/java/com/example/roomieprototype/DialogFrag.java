@@ -14,8 +14,11 @@ import android.view.Window;
 import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.example.roomieprototype.messages.Fragments.FragmentMessages;
 import com.google.android.material.button.MaterialButton;
 
 public class DialogFrag extends DialogFragment {
@@ -23,6 +26,8 @@ public class DialogFrag extends DialogFragment {
     private static final String TAG = "Dialog";
 
     private MaterialButton playBtn, msgBtn;
+
+    FragmentMessages fragmentMessage = new FragmentMessages();
 
 //    private Toolbar toolbar;
 
@@ -80,7 +85,9 @@ public class DialogFrag extends DialogFragment {
         msgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Will be implemented soon", Toast.LENGTH_SHORT).show();
+                getFragmentManager()
+                        .beginTransaction().setCustomAnimations(R.anim.fade_in, R.anim.fade_out).replace(R.id.container, fragmentMessage).addToBackStack(null).commitAllowingStateLoss();
+                getDialog().dismiss();
             }
         });
 
@@ -88,8 +95,6 @@ public class DialogFrag extends DialogFragment {
             getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         }
-
-//        toolbar = view.findViewById(R.id.toolbar);
 
         return view;
     }

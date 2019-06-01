@@ -1,8 +1,12 @@
 package com.example.roomieprototype;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,8 +22,10 @@ public class UserInfo extends AppCompatActivity {
 
     private static final String TAG = "UserInfo";
     public ArrayList<String> mImgArr;
+    public Bundle uBundle;
     private CircularImageView sClose;
     private String imgStr;
+    private ImageView mainDP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +40,17 @@ public class UserInfo extends AppCompatActivity {
                 finish();
             }
         });
+
+        byte[] byteArray = this.getIntent().getByteArrayExtra("maindp");
+        Bitmap userDP = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+        String userFullname = this.getIntent().getStringExtra("fullname");
+
+        mainDP = findViewById(R.id.profile_pic);
+        mainDP.setImageBitmap(userDP);
+
+        TextView fullName = findViewById(R.id.user_fullname);
+        fullName.setText(userFullname);
+
 
         mImgArr = new ArrayList<>();
 
