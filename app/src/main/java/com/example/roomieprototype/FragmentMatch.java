@@ -1,7 +1,9 @@
 package com.example.roomieprototype;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -36,6 +38,7 @@ import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -223,6 +226,24 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
         //matchList.remove(position);
     }
 
+    public static Bitmap drawableToBitmap (Drawable drawable) {
+        if (drawable instanceof BitmapDrawable) {
+            return ((BitmapDrawable)drawable).getBitmap();
+        }
+
+        int width = drawable.getIntrinsicWidth();
+        width = width > 0 ? width : 1;
+        int height = drawable.getIntrinsicHeight();
+        height = height > 0 ? height : 1;
+
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+
+        return bitmap;
+    }
+
     @Override
     public void onStackEmpty() {
         Toast.makeText(getContext(), R.string.stack_empty, Toast.LENGTH_SHORT).show();
@@ -264,11 +285,21 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
                 convertView = getLayoutInflater().inflate(R.layout.swipe_card, parent, false);
             }
 
+            final Bitmap picBitmap = drawableToBitmap(mPic.get(position));
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            picBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            final byte[] byteArray = stream.toByteArray();
+
             ConstraintLayout userRel = convertView.findViewById(R.id.user_item_rel);
             userRel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(getContext(), UserInfo.class));
+                    Intent i = new Intent(getContext(), UserInfo.class);
+                    i.putExtra("fullname", mText.get(position));
+                    if (picBitmap!=null) {
+                        i.putExtra("maindp", byteArray);
+                    }
+                    startActivity(i);
                 }
             });
 
@@ -276,6 +307,8 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
 
             TextView textViewCard = convertView.findViewById(R.id.textViewCard);
             textViewCard.setText(mText.get(position));
+
+
 
             imgViewCard.setImageDrawable(mPic.get(position));
 
