@@ -31,8 +31,8 @@ import java.util.List;
 public class FragmentMessages extends Fragment {
 
 
+    public DatabaseReference chatReference;
     FirebaseUser fuser;
-    DatabaseReference reference;
     private RecyclerView recyclerView;
     private UserAdapter userAdapter;
     private List<User> mUsers;
@@ -70,26 +70,6 @@ public class FragmentMessages extends Fragment {
 
         readUsers();
 
-        reference = FirebaseDatabase.getInstance().getReference("Chatlist").child(fuser.getUid());
-        Log.d("Outside ChatList", String.valueOf(reference));
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                usersList.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Chatlist chatlist = snapshot.getValue(Chatlist.class);
-                    usersList.add(chatlist);
-                }
-                Log.d("Outside ChatList", String.valueOf(usersList));
-                chatList();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
         updateToken(FirebaseInstanceId.getInstance().getToken());
 
 
@@ -107,9 +87,44 @@ public class FragmentMessages extends Fragment {
                 for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
                     final User tUser = childDataSnapshot.getValue(User.class);
 
-                    if (!fuser.getUid().equals(tUser.getId())) {
-                        xUserList.add(tUser.getId());
-                    }
+                    final DatabaseReference matchChatList = FirebaseDatabase.getInstance().getReference("Matched").child(fuser.getUid());
+                    matchChatList.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            xUserList.clear();
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                Log.d("matchQuery", String.valueOf(snapshot.getKey()));
+                                xUserList.add(String.valueOf(snapshot.getKey()));
+                                Log.d("xUserList", String.valueOf(xUserList));
+                            }
+
+                            chatReference = FirebaseDatabase.getInstance().getReference("Chatlist").child(fuser.getUid());
+                            Log.d("Outside ChatList", String.valueOf(chatReference));
+                            chatReference.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    usersList.clear();
+                                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                        Chatlist chatlist = snapshot.getValue(Chatlist.class);
+                                        usersList.add(chatlist);
+                                    }
+                                    Log.d("Outside ChatList", String.valueOf(usersList));
+                                    chatList();
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+
+                    });
 
                     final DatabaseReference queryChatList = FirebaseDatabase.getInstance().getReference("roomieprototype").child("Chatlist");
 
@@ -168,15 +183,16 @@ public class FragmentMessages extends Fragment {
 
     private void chatList() {
         mUsers = new ArrayList<>();
-        reference = FirebaseDatabase.getInstance().getReference("Users");
-        reference.addValueEventListener(new ValueEventListener() {
+        chatReference = FirebaseDatabase.getInstance().getReference("Users");
+        chatReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUsers.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User user = snapshot.getValue(User.class);
-                    for (Chatlist chatlist : usersList) {
-                        if (user != null && user.getId() != null && !user.getId().equals(chatlist.getId())) {
+
+                    for (String cList : xUserList) {
+                        if (user.getId().equals(cList)) {
                             mUsers.add(user);
                             Log.d("Within ChatList: ", String.valueOf(user));
                             break;

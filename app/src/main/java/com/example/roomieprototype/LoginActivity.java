@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.roomieprototype.signUp.SignUpActivity1;
+import com.example.roomieprototype.signUp.SignUpActivity2;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -55,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         test1.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), UserInfo.class));
+                startActivity(new Intent(getBaseContext(), SignUpActivity2.class));
             }
         });
 

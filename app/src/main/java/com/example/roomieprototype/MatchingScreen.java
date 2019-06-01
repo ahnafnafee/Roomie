@@ -1,16 +1,22 @@
 package com.example.roomieprototype;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.roomieprototype.messages.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -19,8 +25,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class MatchingScreen extends AppCompatActivity {
 
@@ -35,7 +39,7 @@ public class MatchingScreen extends AppCompatActivity {
     private String userTemperature;
     private String userApart;
     private String userDorm;
-    private ArrayList<String> matchList, matchEmailList, swipedRightBy;
+    private ArrayList<String> matchList, matchEmailList, swipedRightBy, swipedRightByID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +59,15 @@ public class MatchingScreen extends AppCompatActivity {
         matchList = new ArrayList<>();
         matchEmailList = new ArrayList<>();
         swipedRightBy = new ArrayList<>();
+        swipedRightByID = new ArrayList<>();
+
         Task task = ((CollectionReference) firebaseUsers).document(user.getEmail()).get();
 
         task.addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
+                    final DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         userSleep = document.getData().get("sleep").toString();
                         Log.d("TAG:", document.getId() + " userSleep =  " + document.getData().get("sleep"));
@@ -80,7 +86,7 @@ public class MatchingScreen extends AppCompatActivity {
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     Integer count = 0;
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                    for (final QueryDocumentSnapshot document : task.getResult()) {
                                         if (!(user.getEmail().equals(document.getData().get("email").toString()))) {
                                             Integer points = 0;
                                             Integer match = 1;
@@ -278,22 +284,68 @@ public class MatchingScreen extends AppCompatActivity {
                                                     match = 0;
 
                                                 //Log if they match
+
+
                                                 if (match.equals(1)) {
                                                     matchList.add(document.getData().get("fullname").toString());
                                                     matchEmailList.add(document.getData().get("email").toString());
                                                     if (document.getData().containsKey(user.getEmail()))
+
                                                         swipedRightBy.add(document.getData().get("email").toString());
+                                                    Log.d("swipedRightByIn", String.valueOf(swipedRightBy));
                                                     count++;
                                                     Log.d("TAG:", user.getEmail() + " is matched with " + document.getId());
                                                 }
                                             }
                                         }
                                     }
-                                    Intent myIntent2 = new Intent(getBaseContext(), CardStack.class);
+                                    final Intent myIntent2 = new Intent(getBaseContext(), CardStack.class);
                                     myIntent2.putExtra("matchList", matchList);
                                     myIntent2.putExtra("matchEmailList", matchEmailList);
                                     myIntent2.putExtra("swipedRightBy", swipedRightBy);
-                                    startActivity(myIntent2);
+                                    Log.d("swipedRightBy", String.valueOf(swipedRightBy));
+
+                                    DatabaseReference rtReference = FirebaseDatabase.getInstance().getReference("Users");
+                                    rtReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            swipedRightByID.clear();
+                                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                                User user = snapshot.getValue(User.class);
+//                                                Log.d("CyclicUser", user.getEmail());
+                                                for (String right : swipedRightBy) {
+                                                    Log.d("sRight", right);
+                                                    if (user.getEmail().equals(right)) {
+                                                        Log.d("sRightIn", right);
+                                                        Log.d("emailMatch", user.getEmail());
+                                                        Log.d("matchID", user.getId());
+                                                        Log.d("matchhh", "-------------------------------------");
+                                                        swipedRightByID.add(user.getId());
+                                                        Log.d("swipedRightByID", String.valueOf(swipedRightByID));
+                                                        break;
+                                                    }
+                                                }
+                                            }
+
+                                            Log.d("swipedRightByID", String.valueOf(swipedRightByID));
+                                            Log.d("swipeRightS", String.valueOf(swipedRightBy.size()));
+                                            Log.d("swipeRightIDS", String.valueOf(swipedRightByID.size()));
+                                            Log.d("swipeRightIDOut", String.valueOf(swipedRightByID.size()));
+
+
+                                            myIntent2.putExtra("swipedRightByID", swipedRightByID);
+                                            startActivity(myIntent2);
+
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+                                    });
+
+
                                 } else {
                                     Log.d("TAG:", "Error getting documents: ", task.getException());
                                 }
