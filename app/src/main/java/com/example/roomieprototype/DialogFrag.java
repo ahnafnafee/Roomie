@@ -2,8 +2,12 @@ package com.example.roomieprototype;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -11,15 +15,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.roomieprototype.messages.Fragments.FragmentMessages;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class DialogFrag extends DialogFragment {
 
@@ -27,12 +39,18 @@ public class DialogFrag extends DialogFragment {
 
     private MaterialButton playBtn, msgBtn;
 
+    private ImageView userImage,matchImage;
+    private FirebaseUser user;
+    private String picEmail;
+
     FragmentMessages fragmentMessage = new FragmentMessages();
 
 //    private Toolbar toolbar;
 
-    public static void display(FragmentManager fragmentManager) {
+    public void display(FragmentManager fragmentManager) {
+        Bundle bundle = this.getArguments();
         DialogFrag exampleDialog = new DialogFrag();
+        exampleDialog.setArguments(bundle);
         exampleDialog.show(fragmentManager, TAG);
     }
 
@@ -70,6 +88,44 @@ public class DialogFrag extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         final View view = inflater.inflate(R.layout.dialog_fragment, container, false);
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            picEmail = bundle.getString("picEmail");
+        }
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        userImage = view.findViewById(R.id.match_one);
+        matchImage = view.findViewById(R.id.match_two);
+
+        // Reference to an image file in Cloud Storage
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(user.getEmail());
+
+        final long ONE_MEGABYTE = 1024 * 1024;
+        storageReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                Drawable image = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+                userImage.setImageDrawable(image);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+
+        storageReference = FirebaseStorage.getInstance().getReference().child(picEmail);
+        storageReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                Drawable image = new BitmapDrawable(getResources(), BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+                matchImage.setImageDrawable(image);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
 
         playBtn = view.findViewById(R.id.playin_btn);
         msgBtn = view.findViewById(R.id.diag_msg_btn);

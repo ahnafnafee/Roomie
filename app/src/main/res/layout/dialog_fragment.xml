@@ -11,21 +11,23 @@
         android:background="@drawable/diagfrag_bg"
         android:minWidth="260dp">
 
-        <ImageView
+        <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/match_one"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_marginStart="50dp"
+            android:scaleType="centerInside"
             android:layout_marginTop="110dp"
             android:layout_marginEnd="0dp"
             android:src="@drawable/diag_dp" />
 
-        <ImageView
+        <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/match_two"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="0dp"
+            android:scaleType="centerInside"
             android:layout_marginTop="110dp"
             android:layout_marginEnd="50dp"
             android:src="@drawable/diag_dp" />

@@ -222,7 +222,11 @@ public class FragmentMatch extends Fragment implements SwipeStack.SwipeStackList
 
                 }
             });
-            DialogFrag.display(getFragmentManager());
+            Bundle bundle = new Bundle();
+            bundle.putString("picEmail",matchEmailList.get(position));
+            DialogFrag dialogFrag = new DialogFrag();
+            dialogFrag.setArguments(bundle);
+            dialogFrag.display(getFragmentManager());
         } else {
             Map<String, Object> userRight = new HashMap<>();
             userRight.put(matchEmailList.get(position), matchEmailList.get(position));
