@@ -1,7 +1,5 @@
 package com.example.roomieprototype;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,11 +7,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.roomieprototype.messages.Model.User;
 import com.example.roomieprototype.userimg.ImgRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.ArrayList;
@@ -22,10 +28,11 @@ public class UserInfo extends AppCompatActivity {
 
     private static final String TAG = "UserInfo";
     public ArrayList<String> mImgArr;
-    public Bundle uBundle;
     private CircularImageView sClose;
     private String imgStr;
     private ImageView mainDP;
+    private String userdpURL;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +48,34 @@ public class UserInfo extends AppCompatActivity {
             }
         });
 
-        byte[] byteArray = this.getIntent().getByteArrayExtra("maindp");
-        Bitmap userDP = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-        String userFullname = this.getIntent().getStringExtra("fullname");
-
+        final String userFullname = this.getIntent().getStringExtra("fullname");
         mainDP = findViewById(R.id.profile_pic);
-        mainDP.setImageBitmap(userDP);
+
+        final DatabaseReference uList = FirebaseDatabase.getInstance().getReference().child("Users");
+        uList.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    User cUser = snapshot.getValue(User.class);
+
+                    assert cUser != null;
+                    if (cUser.getFullname().equals(userFullname)) {
+                        userdpURL = cUser.getImageURL();
+                        Glide.with(getApplicationContext()).load(userdpURL).into(mainDP);
+                        Log.d("userDP_URL", userdpURL);
+                        break;
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
         TextView fullName = findViewById(R.id.user_fullname);
         fullName.setText(userFullname);
