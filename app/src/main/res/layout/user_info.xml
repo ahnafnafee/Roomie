@@ -372,7 +372,7 @@
                         android:checkable="true"
                         android:checked="true"
                         android:clickable="false"
-                        android:text="Melting"
+                        android:text="Dorm"
                         android:textColor="@color/colorPrimaryDark"
                         app:checkedIcon="@drawable/ic_check_circle_roomie"
                         app:chipBackgroundColor="@color/gender_chip_color"
