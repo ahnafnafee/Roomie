@@ -12,8 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminateDrawable="@drawable/progress_bar_bg"
-        android:minWidth="80dp"
-        android:minHeight="80dp"
+        android:minWidth="60dp"
+        android:minHeight="60dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -22,8 +22,8 @@
 
     <ImageView
         android:id="@+id/auth_img"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:contentDescription="Authenticated"
         android:src="@drawable/ic_auth"
         android:visibility="gone"
