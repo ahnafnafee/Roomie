@@ -3,6 +3,10 @@ package com.example.roomieprototype;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +32,9 @@ import java.util.ArrayList;
 
 public class MatchingScreen extends AppCompatActivity {
 
+    public ImageView authImg;
+    public ProgressBar progressBar;
+    public TextView authText;
     private Query firebaseUsers;
     private FirebaseFirestore db;
     private FirebaseUser user;
@@ -60,6 +67,10 @@ public class MatchingScreen extends AppCompatActivity {
         matchEmailList = new ArrayList<>();
         swipedRightBy = new ArrayList<>();
         swipedRightByID = new ArrayList<>();
+
+        authImg = findViewById(R.id.auth_img);
+        progressBar = findViewById(R.id.progressBar_cyclic);
+        authText = findViewById(R.id.auth_txt);
 
         Task task = ((CollectionReference) firebaseUsers).document(user.getEmail()).get();
 
@@ -304,6 +315,10 @@ public class MatchingScreen extends AppCompatActivity {
                                     myIntent2.putExtra("matchEmailList", matchEmailList);
                                     myIntent2.putExtra("swipedRightBy", swipedRightBy);
                                     Log.d("swipedRightBy", String.valueOf(swipedRightBy));
+
+                                    progressBar.setVisibility(View.GONE);
+                                    authImg.setVisibility(View.VISIBLE);
+                                    authText.setVisibility(View.VISIBLE);
 
                                     DatabaseReference rtReference = FirebaseDatabase.getInstance().getReference("Users");
                                     rtReference.addListenerForSingleValueEvent(new ValueEventListener() {

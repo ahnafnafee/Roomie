@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         test1.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), SignUpActivity2.class));
+                Toast.makeText(getApplicationContext(), "Will be implemented soon", Toast.LENGTH_SHORT).show();
             }
         });
 
