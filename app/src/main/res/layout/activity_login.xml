@@ -40,7 +40,7 @@
                 android:layout_height="130dp"
                 android:layout_gravity="center_horizontal"
                 android:contentDescription="@string/city_logo_description"
-                app:srcCompat="@drawable/city_logo" />
+                app:srcCompat="@drawable/ic_roomie_logo" />
 
             <TextView
                 android:id="@+id/title"
