@@ -5,7 +5,8 @@
 
 ![](https://raw.githubusercontent.com/ahnafnafee/RoomiePrototype/master/screenshots/roomie.png)
 
-
+   ‍   
+# Roomie
 
 *Tinder Style Roommate Finder App*
 
