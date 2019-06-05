@@ -1,3 +1,8 @@
+//Name: Sign-Up Activity 2
+//Purpose: The purpose of this file is to allow the user to upload a profile picture, go through a drop down menu for both their birthday and university.
+//Version 5
+//Dependencies: Circular Image View and Searchable Spinner
+
 package com.example.roomieprototype.signUp;
 
 import android.app.DatePickerDialog;

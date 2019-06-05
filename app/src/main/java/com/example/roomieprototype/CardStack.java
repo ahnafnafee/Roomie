@@ -1,3 +1,8 @@
+//Name: Card Stack
+//Purpose: This code generates the picture cards of potential matches for the user.
+//Version 5, updated on June 1, 2019
+//Dependencies: Swipe Stack Library
+
 package com.example.roomieprototype;
 
 

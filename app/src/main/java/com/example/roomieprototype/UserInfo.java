@@ -1,3 +1,8 @@
+//Name: User Info
+//Purpose: This code showcases the user's information and it allows other users to view it.
+//Version 5
+//Dependencies: Circular Image View
+
 package com.example.roomieprototype;
 
 import android.os.Bundle;

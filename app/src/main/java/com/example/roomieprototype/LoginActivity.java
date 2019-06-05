@@ -1,3 +1,7 @@
+//Name: Login Activity
+//Purpose: This code allows already registered users to login after signing out.
+//Version 5
+
 package com.example.roomieprototype;
 
 import android.content.Intent;

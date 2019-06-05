@@ -1,3 +1,7 @@
+//Name: Matching Screen
+//Purpose: This code uses the user traits that were inputted earlier to match users to other users based off of how many traits they have in common (point system) and also gets most of the data to be used in the app from Firebase.
+//Version 5
+
 package com.example.roomieprototype;
 
 import android.content.Intent;
