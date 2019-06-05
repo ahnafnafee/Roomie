@@ -1,3 +1,7 @@
+//Name: Bottom Navigation Drawer
+//Purpose: This file creates a navigation drawer that gives the user easy access to their profile and allows them to logout of the application.
+//Version 5
+
 package com.example.roomieprototype;
 
 import android.annotation.SuppressLint;

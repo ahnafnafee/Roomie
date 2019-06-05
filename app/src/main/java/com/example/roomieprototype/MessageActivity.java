@@ -1,3 +1,7 @@
+//Name: Message Activity
+//Purpose: The purpose of this file is to allow the user to message other users that they are matched with.
+//Version 5
+
 package com.example.roomieprototype;
 
 import android.content.Intent;

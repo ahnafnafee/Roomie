@@ -1,3 +1,7 @@
+// Name: Sign-Up Activity 1
+// Purpose: This code allows the user to sign-up for the application by inputting their name email, password, and password validation.
+// Version 5
+
 package com.example.roomieprototype.signUp;
 
 import android.content.Intent;

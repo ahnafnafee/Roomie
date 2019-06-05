@@ -1,3 +1,7 @@
+//Name: Fragment Match
+//Purpose: This file allows the user to swipe through potential matches, right if they like them, left if they don’t.
+//Version 5
+
 package com.example.roomieprototype;
 
 import android.content.Intent;

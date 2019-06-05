@@ -1,3 +1,7 @@
+//Name: Sign-Up Activity 3
+//Purpose: This code asks the users to select answers to prompt, like study habits, in order to eventually match them with other users based on their answers.
+//Version 5
+
 package com.example.roomieprototype.signUp;
 
 import android.content.Intent;
@@ -35,7 +39,7 @@ public class SignUpActivity3 extends AppCompatActivity {
     private String temperatureSchedule;
     private String apartmentSchedule;
     private String dormSchedule;
-    private ChipGroup sleepChips,eatChips,cleanChips,studyChips,dormChips,apartmentChips,socialChips,temperatureChips;
+    private ChipGroup sleepChips, eatChips, cleanChips, studyChips, dormChips, apartmentChips, socialChips, temperatureChips;
     private TextView chipError;
 
 
@@ -83,28 +87,24 @@ public class SignUpActivity3 extends AppCompatActivity {
                 } else if (cleanChips.getCheckedChipId() == View.NO_ID) {
                     cancel = true;
                     chipError.setText("Please select a cleaning trait.");
-                } else if (studyChips.getCheckedChipId() == View.NO_ID){
+                } else if (studyChips.getCheckedChipId() == View.NO_ID) {
                     cancel = true;
                     chipError.setText("Please select a studying trait.");
-                }
-                else if (dormChips.getCheckedChipId()==View.NO_ID) {
+                } else if (dormChips.getCheckedChipId() == View.NO_ID) {
                     cancel = true;
                     chipError.setText("Please select if you want a dorm or a suite.");
-                }
-                else if (apartmentChips.getCheckedChipId()==View.NO_ID) {
+                } else if (apartmentChips.getCheckedChipId() == View.NO_ID) {
                     cancel = true;
                     chipError.setText("Please select if you have an apartment or not.");
-                }
-                else if (socialChips.getCheckedChipId()==View.NO_ID) {
+                } else if (socialChips.getCheckedChipId() == View.NO_ID) {
                     cancel = true;
                     chipError.setText("Please select a social trait");
-                }
-                else if (temperatureChips.getCheckedChipId()==View.NO_ID) {
+                } else if (temperatureChips.getCheckedChipId() == View.NO_ID) {
                     cancel = true;
                     chipError.setText("Please select a temperature trait.");
                 }
 
-                if(!cancel) {
+                if (!cancel) {
                     //Switch to MainActivity
                     Intent myIntent = new Intent(getBaseContext(), CardStack.class);
                     startActivity(myIntent);

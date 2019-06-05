@@ -1,3 +1,8 @@
+//Name: User Account
+//Purpose: This file displays the user’s profile, which includes the user’s information as well as their profile picture.
+//Version 5
+//Dependencies: Circular Image View
+
 package com.example.roomieprototype;
 
 import android.graphics.Bitmap;
